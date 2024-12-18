@@ -1,0 +1,62 @@
+name: Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    name: Release
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Cache Gradle
+        uses: burrunan/gradle-cache-action@v1
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      - name: Build MicroG
+        run: ./gradlew --no-daemon assembleRelease
+
+      - name: Generate Release Information
+        id: release_information
+        run: |
+          echo "tag=$(wget -qO- 'https://api.github.com/repos/WSTxda/MicroG-RE/releases/latest' | jq -r '.tag_name')" >> "$GITHUB_OUTPUT"
+          echo "
+          Changelog: https://github.com/WSTxda/MicroG-RE/releases/
+          **Download Below** :point_down:
+          "> ${{ github.workspace }}-Body.txt
+        shell: bash
+
+      - name: Move files
+        run: |
+          mkdir play-services-core/build/outputs/apk/releases
+          mv play-services-core/build/outputs/apk/default/release/*.apk play-services-core/build/outputs/apk/releases/MicroG-RE-${{ steps.release_information.outputs.tag }}.apk
+          mv play-services-core/build/outputs/apk/huawei/release/*.apk  play-services-core/build/outputs/apk/releases/MicroG-RE-HW-${{ steps.release_information.outputs.tag }}.apk
+
+      - name: Sign APK
+        id: sign_apk
+        uses: r0adkll/sign-android-release@v1
+        with:
+          releaseDirectory: play-services-core/build/outputs/apk/releases
+          signingKeyBase64: ${{ secrets.SIGNING_KEYSTORE }}
+          alias: ${{ secrets.SIGNING_KEY_ALIAS }}
+          keyStorePassword: ${{ secrets.SIGNING_KEYSTORE_PASSWORD }}
+          keyPassword: ${{ secrets.SIGNING_KEY_PASSWORD }}
+        env:
+          BUILD_TOOLS_VERSION: "34.0.0"
+
+      - name: Release MicroG-RE
+        uses: ncipollo/release-action@v1.14.0
+        with:
+          artifacts: play-services-core/build/outputs/apk/releases/*-signed.apk
+          name: ${{ steps.release_information.outputs.tag }}
+          tag: ${{ steps.release_information.outputs.tag }}
+          bodyFile: ${{ github.workspace }}-Body.txt
