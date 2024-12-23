@@ -19,7 +19,7 @@
     <string name="lib_name">Alat UI MicroG</string>
     <string name="lib_license">Lisensi Apache 2.0, Tim microG</string>
 
-    <string name="about_version_str">Versi %1$s</string>
+    <string name="about_version_str">Versi: %1$s</string>
     <string name="about_name_version_str">%1$s %2$s</string>
     <string name="about_default_license">Semua hak dilindungi undang-undang</string>
 
@@ -48,6 +48,8 @@
     <string name="update_available">Versi baru tersedia!</string>
     <string name="no_update_available">Anda sudah menggunakan versi terbaru</string>
     <string name="check_updates_error">Tidak dapat memeriksa pembaruan</string>
+
+    <string name="snackbar_button_download">Unduh</string>
 
     <string name="error_connection">Kesalahan koneksi:</string>
     <string name="error_others">Kesalahan:</string>
