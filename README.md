@@ -54,6 +54,6 @@ height="80">](https://www.buymeacoffee.com/wstxda)
 
 [microG Project](https://github.com/microg) for GmsCore, alternative of Play Services. [wiki](https://github.com/microg/GmsCore/wiki)
 
-[Shadow578](https://github.com/shadow578)and [ReVanced Team](https://github.com/ReVanced) for the implementation of GmsCore for ReVanced patches
+[Shadow578](https://github.com/shadow578) and [ReVanced Team](https://github.com/ReVanced) for the implementation of GmsCore for ReVanced patches
 
 [AyushTNM](https://github.com/ayushTNM) for some useful implementations and ideas
