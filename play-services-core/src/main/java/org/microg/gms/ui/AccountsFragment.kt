@@ -5,7 +5,6 @@ import android.accounts.AccountManager
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.Bitmap
-import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
@@ -28,6 +27,7 @@ import org.microg.gms.auth.AuthConstants
 import org.microg.gms.auth.login.LoginActivity
 import org.microg.gms.people.DatabaseHelper
 import org.microg.gms.people.PeopleManager
+import androidx.core.net.toUri
 
 class AccountsFragment : PreferenceFragmentCompat() {
 
@@ -103,7 +103,7 @@ class AccountsFragment : PreferenceFragmentCompat() {
     }
 
     private fun openUrl(url: String) {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        val intent = Intent(Intent.ACTION_VIEW, url.toUri())
         startActivitySafelyIntent(intent, "Failed to open URL: $url")
     }
 

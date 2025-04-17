@@ -470,7 +470,7 @@
             android:excludeFromRecents="true"
             android:targetActivity="org.microg.gms.ui.AccountManagerActivity"
             android:taskAffinity="org.microg.gms.settings">
-            <intent-filter>
+            <intent-filter tools:ignore="AppLinkUrlError">
                 <action android:name="com.google.android.gms.accountsettings.action.VIEW_SETTINGS" />
                 <action android:name="${basePackageName}.android.gms.accountsettings.action.VIEW_SETTINGS" />
                 <action android:name="com.google.android.gms.accountsettings.action.BROWSE_SETTINGS" />
