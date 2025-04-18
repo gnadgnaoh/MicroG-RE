@@ -361,8 +361,9 @@
         <!-- microG Settings activity -->
         <activity
             android:name="org.microg.gms.ui.MainSettingsActivity"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
+            android:exported="true"
             android:enabled="false"
-            android:process=":ui"
             android:taskAffinity="org.microg.gms.settings">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -373,10 +374,8 @@
         <!-- Allow microG Settings from opening by other applications -->
         <activity-alias
             android:name="org.microg.gms.ui.SettingsActivity"
-            android:label="@string/gms_settings_name"
-            android:process=":ui"
-            android:targetActivity="org.microg.gms.ui.MainSettingsActivity"
-            android:taskAffinity="org.microg.gms.settings">
+            android:exported="true"
+            android:targetActivity="org.microg.gms.ui.MainSettingsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.APPLICATION_PREFERENCES" />

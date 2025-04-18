@@ -10,7 +10,6 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
 import android.os.PowerManager
 import android.provider.Settings
@@ -30,6 +29,7 @@ import org.microg.gms.gcm.GcmPrefs
 import org.microg.gms.ui.settings.SettingsProvider
 import org.microg.gms.ui.settings.getAllSettingsProviders
 import org.microg.tools.ui.ResourceSettingsFragment
+import androidx.core.net.toUri
 
 class SettingsFragment : ResourceSettingsFragment() {
     private val createdPreferences = mutableListOf<Preference>()
@@ -72,7 +72,7 @@ class SettingsFragment : ResourceSettingsFragment() {
         findPreference<SwitchPreferenceCompat>(PREF_HIDE_LAUNCHER_ICON)?.apply {
             setOnPreferenceChangeListener { _, newValue ->
                 val isEnabled = newValue as Boolean
-                iconActivityVisibility(MainSettingsActivity::class.java, !isEnabled)
+                toggleActivityVisibility(MainSettingsActivity::class.java, !isEnabled)
                 true
             }
         }
@@ -84,14 +84,12 @@ class SettingsFragment : ResourceSettingsFragment() {
             openLink(getString(R.string.github_link))
             true
         }
-
         findPreference<Preference>(PREF_ABOUT)!!.summary =
             getString(org.microg.tools.ui.R.string.about_version_str, AboutFragment.getSelfVersion(context))
 
         for (entry in getAllSettingsProviders(requireContext()).flatMap { it.getEntriesStatic(requireContext()) }) {
             entry.createPreference()
         }
-
         findPreference<Preference>(PREF_IGNORE_BATTERY_OPTIMIZATION)?.isVisible =
             !isBatteryOptimizationPermissionGranted()
 
@@ -109,7 +107,7 @@ class SettingsFragment : ResourceSettingsFragment() {
 
     private fun requestBatteryOptimizationPermission() {
         val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS).apply {
-            data = Uri.parse("package:${requireContext().packageName}")
+            data = "package:${requireContext().packageName}".toUri()
         }
         startActivity(intent)
     }
@@ -124,16 +122,7 @@ class SettingsFragment : ResourceSettingsFragment() {
         }
     }
 
-    private fun isIconActivityVisible(activityClass: Class<*>): Boolean {
-        val packageManager = requireActivity().packageManager
-        val componentName = ComponentName(requireContext(), activityClass)
-        return when (packageManager.getComponentEnabledSetting(componentName)) {
-            PackageManager.COMPONENT_ENABLED_STATE_ENABLED -> true
-            else -> false
-        }
-    }
-
-    private fun iconActivityVisibility(activityClass: Class<*>, showActivity: Boolean) {
+    private fun toggleActivityVisibility(activityClass: Class<*>, showActivity: Boolean) {
         val packageManager = requireActivity().packageManager
         val componentName = ComponentName(requireContext(), activityClass)
 
@@ -148,6 +137,25 @@ class SettingsFragment : ResourceSettingsFragment() {
     private fun updateHideLauncherIconSwitchState() {
         val isActivityVisible = isIconActivityVisible(MainSettingsActivity::class.java)
         findPreference<SwitchPreferenceCompat>(PREF_HIDE_LAUNCHER_ICON)?.isChecked = !isActivityVisible
+    }
+
+    private fun isIconActivityVisible(activityClass: Class<*>): Boolean {
+        val packageManager = requireActivity().packageManager
+        val componentName = ComponentName(requireContext(), activityClass)
+        return when (packageManager.getComponentEnabledSetting(componentName)) {
+            PackageManager.COMPONENT_ENABLED_STATE_ENABLED -> true
+            PackageManager.COMPONENT_ENABLED_STATE_DISABLED -> false
+            PackageManager.COMPONENT_ENABLED_STATE_DEFAULT -> {
+                try {
+                    val activityInfo = packageManager.getActivityInfo(componentName, 0)
+                    activityInfo.enabled
+                } catch (_: PackageManager.NameNotFoundException) {
+                    false
+                }
+            }
+
+            else -> false
+        }
     }
 
     private fun SettingsProvider.Companion.Entry.createPreference(): Preference? {
@@ -185,7 +193,7 @@ class SettingsFragment : ResourceSettingsFragment() {
     }
 
     private fun openLink(url: String) {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        val intent = Intent(Intent.ACTION_VIEW, url.toUri())
         try {
             startActivity(intent)
         } catch (e: ActivityNotFoundException) {
