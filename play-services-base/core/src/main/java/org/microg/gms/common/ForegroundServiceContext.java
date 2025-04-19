@@ -11,6 +11,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
+import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.os.PowerManager;
 import android.provider.Settings;
@@ -41,12 +42,13 @@ public class ForegroundServiceContext extends ContextWrapper {
         return super.startService(service);
     }
 
-    @RequiresApi(23)
     private boolean isIgnoringBatteryOptimizations() {
         PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
         return powerManager.isIgnoringBatteryOptimizations(getPackageName());
     }
 
+    /** @noinspection deprecation*/
+    @SuppressLint("DiscouragedApi")
     private static String getServiceName(Service service) {
         String serviceName = null;
         try {
@@ -81,7 +83,7 @@ public class ForegroundServiceContext extends ContextWrapper {
             try {
                 Notification notification = buildForegroundNotification(service, serviceName);
                 service.startForeground(serviceName.hashCode(), notification);
-                Log.d(tag, "Notification: " + notification.toString());
+                Log.d(tag, "Notification: " + notification);
             } catch (Exception e) {
                 Log.w(tag, e);
             }
@@ -130,8 +132,17 @@ public class ForegroundServiceContext extends ContextWrapper {
         );
 
         // Notification actions
-        Action batteryAction = new Action.Builder(R.drawable.ic_battery_action, context.getString(R.string.foreground_action_battery_optimization), batteryPendingIntent).build();
-        Action notificationAction = new Action.Builder(R.drawable.ic_notification_action, context.getString(R.string.foreground_action_notification_settings), notificationCategoryPendingIntent).build();
+        Action batteryAction = new Action.Builder(
+                Icon.createWithResource(context, R.drawable.ic_battery_action),
+                context.getString(R.string.foreground_action_battery_optimization),
+                batteryPendingIntent
+        ).build();
+
+        Action notificationAction = new Action.Builder(
+                Icon.createWithResource(context, R.drawable.ic_notification_action),
+                context.getString(R.string.foreground_action_notification_settings),
+                notificationCategoryPendingIntent
+        ).build();
 
         Log.d(TAG, notifyTitle + " // " + firstLine + " // " + secondLine);
 
@@ -143,11 +154,10 @@ public class ForegroundServiceContext extends ContextWrapper {
                 .setStyle(new Notification.BigTextStyle().bigText(firstLine + "\n" + secondLine))
                 .setPriority(Notification.PRIORITY_HIGH)
                 .setShowWhen(false)
-                .setFullScreenIntent(notificationCategoryPendingIntent, true)
+                .setContentIntent(notificationCategoryPendingIntent)
                 .setContentIntent(mainSettingsPendingIntent)
                 .addAction(batteryAction)
                 .addAction(notificationAction)
                 .build();
     }
-
 }
