@@ -157,6 +157,7 @@
     <string name="pref_accounts_summary">Dodaj i zarządzaj kontami Google</string>
     <string name="prefcat_accounts_options_title">Opcje</string>
     <string name="prefcat_accounts_login_accounts_title">Zalogowane</string>
+    <string name="pref_accounts_login_accounts_summary">Konta są przechowywane tylko na tym urządzeniu. Stuknij konto, aby je usunąć</string>
     <string name="pref_accounts_add_account_title">Dodaj konto</string>
     <string name="pref_accounts_manage_accounts_title">Zarządzaj kontami</string>
     <string name="pref_accounts_manage_accounts_summary">Otwórz menedżera kont na urządzeniu</string>

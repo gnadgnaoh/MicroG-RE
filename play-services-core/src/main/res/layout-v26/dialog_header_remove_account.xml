@@ -12,11 +12,15 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:autoSizeMaxTextSize="24sp"
+        android:autoSizeMinTextSize="18sp"
+        android:autoSizeStepGranularity="2sp"
+        android:autoSizeTextType="uniform"
         android:ellipsize="end"
         android:maxLines="1"
-        android:layout_marginBottom="16dp"
-        tools:text="@string/dialog_title_remove_account"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        tools:text="@string/dialog_title_remove_account" />
 
     <com.google.android.material.card.MaterialCardView
         style="?attr/materialCardViewFilledStyle"
@@ -51,6 +55,8 @@
                     style="?attr/textAppearanceLabelLarge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="2"
                     tools:text="Username" />
 
                 <com.google.android.material.textview.MaterialTextView
@@ -59,6 +65,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
+                    android:autoSizeMaxTextSize="14sp"
+                    android:autoSizeMinTextSize="10sp"
+                    android:autoSizeStepGranularity="2sp"
+                    android:autoSizeTextType="uniform"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:textColor="?android:textColorSecondary"
                     tools:text="email@example.com" />
             </LinearLayout>

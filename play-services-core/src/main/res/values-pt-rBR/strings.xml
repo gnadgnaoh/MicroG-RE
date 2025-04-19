@@ -168,6 +168,7 @@ Isso pode levar alguns minutos."</string>
     <string name="pref_accounts_summary">Adicionar e gerenciar contas Google</string>
     <string name="prefcat_accounts_options_title">Opções</string>
     <string name="prefcat_accounts_login_accounts_title">Conectado em</string>
+    <string name="pref_accounts_login_accounts_summary">As contas são armazenadas apenas neste dispositivo. Toque na conta para removê-la</string>
     <string name="pref_accounts_add_account_title">Adicionar conta</string>
     <string name="pref_accounts_manage_accounts_title">Gerenciador de contas</string>
     <string name="pref_accounts_manage_accounts_summary">Abrir o gerenciador de contas do dispositivo</string>

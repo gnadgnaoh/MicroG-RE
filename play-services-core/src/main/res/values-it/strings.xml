@@ -177,6 +177,7 @@ Questo potrebbe richiedere qualche minuto"</string>
     <string name="pref_accounts_summary">Aggiungi e gestisci account Google</string>
     <string name="prefcat_accounts_options_title">Opzioni</string>
     <string name="prefcat_accounts_login_accounts_title">Accesso effettuato</string>
+    <string name="pref_accounts_login_accounts_summary">Gli account sono salvati solo su questo dispositivo. Tocca l\'account per rimuoverlo</string>
     <string name="pref_accounts_add_account_title">Aggiungi account</string>
     <string name="pref_accounts_manage_accounts_title">Gestisci account</string>
     <string name="pref_accounts_manage_accounts_summary">Apri gestore account del dispositivo</string>

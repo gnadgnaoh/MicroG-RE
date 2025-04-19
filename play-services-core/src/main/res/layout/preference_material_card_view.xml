@@ -10,13 +10,14 @@
     android:clickable="true"
     android:focusable="true"
     app:cardBackgroundColor="?colorSecondaryContainer"
-    app:cardCornerRadius="18dp">
+    app:cardCornerRadius="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:addStatesFromChildren="false"
         android:orientation="vertical"
-        android:padding="22dp">
+        android:padding="20dp">
 
         <TextView
             android:id="@android:id/title"

@@ -173,6 +173,7 @@
     <string name="pref_accounts_summary">إضافة وإدارة حسابات Google</string>
     <string name="prefcat_accounts_options_title">خيارات</string>
     <string name="prefcat_accounts_login_accounts_title">تسجيل الدخول</string>
+    <string name="pref_accounts_login_accounts_summary">يتم تخزين الحسابات على هذا الجهاز فقط. اضغط على الحساب لإزالته</string>
     <string name="pref_accounts_add_account_title">إضافة حساب</string>
     <string name="pref_accounts_manage_accounts_title">إدارة الحسابات</string>
     <string name="pref_accounts_manage_accounts_summary">افتح مدير حسابات الجهاز</string>
