@@ -14,6 +14,7 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion"
+    //noinspection GradleDependency
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion"
 
     // TODO: Switch to upstream once raw requests are merged
@@ -33,6 +34,7 @@ android {
         minSdkVersion androidMinSdk
         targetSdkVersion androidTargetSdk
 
+        //noinspection GroovyConstructorNamedArguments
         manifestPlaceholders = [
                 basePackageName: "$basePackageName"
         ]

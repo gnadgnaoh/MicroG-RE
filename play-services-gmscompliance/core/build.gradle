@@ -15,6 +15,7 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion"
+    //noinspection GradleDependency
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion"
 
     //noinspection GradleDependency
@@ -38,6 +39,7 @@ android {
         minSdkVersion androidMinSdk
         targetSdkVersion androidTargetSdk
 
+        //noinspection GroovyConstructorNamedArguments
         manifestPlaceholders = [
                 basePackageName: "$basePackageName"
         ]

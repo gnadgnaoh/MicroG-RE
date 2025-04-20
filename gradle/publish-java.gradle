@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-task javaSourcesJar(type: Jar) {
+tasks.register('javaSourcesJar', Jar) {
     archiveClassifier.set("sources")
     from sourceSets.main.allJava
 }
@@ -13,7 +13,7 @@ javadoc {
     source = sourceSets.main.allJava
 }
 
-task javaJavadocsJar(type: Jar) {
+tasks.register('javaJavadocsJar', Jar) {
     archiveClassifier.set("javadoc")
     from javadoc
 }
