@@ -267,8 +267,9 @@
             android:name="org.microg.gms.auth.login.LoginActivity"
             android:configChanges="uiMode|keyboardHidden|keyboard|screenSize"
             android:exported="true"
+            android:label="@string/pref_accounts_add_account_title"
             android:process=":ui"
-            android:theme="@style/LoginTheme">
+            android:theme="@style/AppThemeLauncher">
             <intent-filter>
                 <action android:name="${basePackageName}.android.gms.auth.login.LOGIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -438,7 +439,8 @@
             android:name="org.microg.gms.ui.AccountManagerActivity"
             android:label="@string/pref_account_title"
             android:process=":ui"
-            android:taskAffinity="org.microg.gms.settings" />
+            android:taskAffinity="org.microg.gms.settings"
+            android:theme="@style/AppThemeLauncher" />
 
         <activity
             android:name="org.microg.gms.ui.PrivacySettingsActivity"

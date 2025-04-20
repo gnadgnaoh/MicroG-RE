@@ -71,9 +71,6 @@ import java.util.Locale;
 import static android.accounts.AccountManager.PACKAGE_NAME_KEY_LEGACY_NOT_VISIBLE;
 import static android.accounts.AccountManager.VISIBILITY_USER_MANAGED_VISIBLE;
 import static android.os.Build.VERSION.SDK_INT;
-import static android.os.Build.VERSION_CODES.GINGERBREAD_MR1;
-import static android.os.Build.VERSION_CODES.HONEYCOMB;
-import static android.os.Build.VERSION_CODES.LOLLIPOP;
 import static android.telephony.TelephonyManager.SIM_STATE_UNKNOWN;
 import static android.view.KeyEvent.KEYCODE_BACK;
 import static android.view.View.INVISIBLE;
@@ -127,6 +124,7 @@ public class LoginActivity extends AssistantActivity {
 
                 // Begin login.
                 // Only required if client code does not invoke showView() via JSBridge
+                //noinspection DataFlowIssue
                 if ("identifier".equals(uri.getFragment()) || uri.getPath().endsWith("/identifier"))
                     runOnUiThread(() -> webView.setVisibility(VISIBLE));
 
@@ -144,6 +142,7 @@ public class LoginActivity extends AssistantActivity {
             }
         });
         if(getIntent().hasExtra(AccountManager.KEY_ACCOUNT_AUTHENTICATOR_RESPONSE)){
+            //noinspection DataFlowIssue
             Object tempObject = getIntent().getExtras().get("accountAuthenticatorResponse");
             if (tempObject instanceof AccountAuthenticatorResponse) {
                 response = (AccountAuthenticatorResponse) tempObject;
@@ -161,8 +160,6 @@ public class LoginActivity extends AssistantActivity {
             } else {
                 retrieveRtToken(getIntent().getStringExtra(EXTRA_TOKEN));
             }
-        } else if (android.os.Build.VERSION.SDK_INT < 21) {
-            init();
         } else {
             setMessage(R.string.auth_before_connect);
             setSpoofButtonText(R.string.brand_spoof_button);
@@ -175,6 +172,7 @@ public class LoginActivity extends AssistantActivity {
         super.onNextButtonClicked();
         state++;
         if (state == 1) {
+            //noinspection DataFlowIssue
             if (isSpoofingEnabled(this)) {
                 LastCheckinInfo.clear(this);
                 setSpoofingEnabled(this, false);
@@ -192,6 +190,7 @@ public class LoginActivity extends AssistantActivity {
         super.onHuaweiButtonClicked();
         state++;
         if (state == 1) {
+            //noinspection DataFlowIssue
             if (!isSpoofingEnabled(this)) {
                 LastCheckinInfo.clear(this);
                 setSpoofingEnabled(this, true);
@@ -203,6 +202,7 @@ public class LoginActivity extends AssistantActivity {
         }
     }
 
+    /** @noinspection deprecation*/
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -220,13 +220,7 @@ public class LoginActivity extends AssistantActivity {
         authContent.addView(loading);
         setMessage(R.string.auth_connecting);
         CookieManager.getInstance().setAcceptCookie(true);
-        if (SDK_INT >= LOLLIPOP) {
-            CookieManager.getInstance().removeAllCookies(value -> start());
-        } else {
-            //noinspection deprecation
-            CookieManager.getInstance().removeAllCookie();
-            start();
-        }
+        CookieManager.getInstance().removeAllCookies(value -> start());
     }
 
     private static boolean isSystemDarkTheme(Context context) {
@@ -245,6 +239,7 @@ public class LoginActivity extends AssistantActivity {
         // Apply dark theme to WebView based on system state
         if (Build.VERSION.SDK_INT >= 29) {
             if (WebViewFeature.isFeatureSupported(WebViewFeature.FORCE_DARK)) {
+                //noinspection deprecation
                 WebSettingsCompat.setForceDark(webView.getSettings(), systemIsDark ? WebSettingsCompat.FORCE_DARK_ON : WebSettingsCompat.FORCE_DARK_OFF);
             }
         }
@@ -272,6 +267,7 @@ public class LoginActivity extends AssistantActivity {
     private void start() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+        //noinspection deprecation
         if (networkInfo != null && networkInfo.isConnected()) {
             if (LastCheckinInfo.read(this).getAndroidId() == 0) {
                 new Thread(() -> {
@@ -430,6 +426,7 @@ public class LoginActivity extends AssistantActivity {
         return false;
     }
 
+    @SuppressLint("GestureBackNavigation")
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KEYCODE_BACK) && webView.canGoBack() && (webView.getVisibility() == VISIBLE)) {
@@ -612,10 +609,8 @@ public class LoginActivity extends AssistantActivity {
             Log.d(TAG, "JSBridge: setAllActionsEnabled");
         }
 
-        @TargetApi(HONEYCOMB)
         @JavascriptInterface
         public final void setBackButtonEnabled(boolean backButtonEnabled) {
-            if (SDK_INT <= GINGERBREAD_MR1) return;
             int visibility = getWindow().getDecorView().getSystemUiVisibility();
             if (backButtonEnabled)
                 visibility &= -STATUS_BAR_DISABLE_BACK;
