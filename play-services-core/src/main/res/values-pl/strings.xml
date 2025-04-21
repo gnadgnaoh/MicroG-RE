@@ -1,17 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ SPDX-FileCopyrightText: 2017 MicroG Project Team
   ~ SPDX-License-Identifier: Apache-2.0
   -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="gms_settings_name">Ustawienia MicroG</string>
     <string name="gms_settings_summary">Ustaw usługi MicroG</string>
-	
+
     <string name="just_a_sec">Chwileczkę…</string>
     <string name="ask_permission_tos">Kontynuując, zgadzasz się na wykorzystywanie swoich danych przez Google oraz usługi MicroG zgodnie z warunkami korzystania oraz polityką prywatności Google</string>
     <string name="ask_scope_permission_title"><xliff:g example="F-Droid">%1$s</xliff:g> chce:</string>
     <string name="ask_service_permission_title"><xliff:g example="F-Droid">%1$s</xliff:g> chce wykorzystać:</string>
-	
+
     <string name="pref_privacy_title">Prywatność</string>
     <string name="pref_privacy_summary">Ustawienia prywatności dla uwierzytelniania i aplikacji</string>
     <string name="prefcat_applications">Aplikacje</string>
@@ -157,13 +156,13 @@
     <string name="pref_accounts_summary">Dodaj i zarządzaj kontami Google</string>
     <string name="prefcat_accounts_options_title">Opcje</string>
     <string name="prefcat_accounts_login_accounts_title">Zalogowane</string>
-    <string name="pref_accounts_login_accounts_summary">Konta są przechowywane tylko na tym urządzeniu. Stuknij konto, aby je usunąć</string>
+    <string name="pref_accounts_login_accounts_summary">Konta są przechowywane tylko na tym urządzeniu. Dotknij konto, aby je trwale usunąć</string>
     <string name="pref_accounts_add_account_title">Dodaj konto</string>
     <string name="pref_accounts_manage_accounts_title">Zarządzaj kontami</string>
     <string name="pref_accounts_manage_accounts_summary">Otwórz menedżera kont na urządzeniu</string>
-	
-	<!-- Aktywność w YouTube -->
-	
+
+    <!-- Aktywność w YouTube -->
+
     <string name="prefcat_youtube_activity">Aktywność w YouTube</string>
     <string name="pref_manage_all_history">Zarządzaj całą historią</string>
     <string name="pref_data_in_youtube">Twoje dane w YouTube</string>

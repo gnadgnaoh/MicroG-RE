@@ -17,22 +17,22 @@
     <string name="prefcat_authentication">Autenticação</string>
 
     <string name="sorry">Desculpe…</string>
-    <string name="auth_before_connect">"Conectar a conta Google com MicroG.
+    <string name="auth_before_connect">"Vamos conectar sua conta Google usando o MicroG.
 
-Vamos conectar a uma conta Google, use o botão <b>Entrar</b> ou utilize o botão <b>Huawei</b> se você possuir um dispositivo com esta marca. Ao pressionar um dos botões você será redirecionado a página para efetuar o login em sua conta."</string>
+Para começar, clique no botão <b>Entrar</b>. Se você estiver usando um dispositivo Huawei, utilize o botão <b>Huawei</b>. Ao clicar em um dos botões, você será redirecionado para a página de login da sua conta."</string>
     <string name="auth_sign_in">Entrar</string>
-    <string name="auth_connecting">"Estabelecendo conexão com os servidores do Google para fazer login.
+    <string name="auth_connecting">"Conectando aos servidores do Google para realizar o login.
 
-Isso pode levar alguns segundos."</string>
-    <string name="no_network_error_desc">"Você não tem uma conexão de rede.
+Isso pode levar alguns segundos. Por favor, aguarde…"</string>
+    <string name="no_network_error_desc">"Parece que você não está conectado à internet.
 
-Isso pode ser um problema temporário ou seu dispositivo Android pode não ser configurado para serviços de dados. Tente novamente quando conectado a uma rede móvel ou conecte-se a uma rede Wi-Fi."</string>
-    <string name="auth_general_error_desc">"Houve um problema na comunicação com os servidores do Google.
+Isso pode ser um problema temporário ou seu dispositivo pode não estar configurado para usar dados móveis. Tente novamente quando estiver conectado a uma rede móvel ou Wi-Fi."</string>
+    <string name="auth_general_error_desc">"Ocorreu um erro ao tentar se comunicar com os servidores do Google.
 
-Tente de novo mais tarde."</string>
-    <string name="auth_finalize">"Seu dispositivo está entrando em contato com o Google para salvar informações em sua conta.
+Por favor, tente novamente mais tarde."</string>
+    <string name="auth_finalize">"Seu dispositivo está finalizando a configuração e salvando as informações na sua conta Google.
 
-Isso pode levar alguns minutos."</string>
+Isso pode levar alguns minutos. Por favor, seja paciente."</string>
     <string name="allow">Permitir</string>
     <string name="deny">Negar</string>
     <string name="auth_notification_title">Autenticação necessária</string>
@@ -168,11 +168,13 @@ Isso pode levar alguns minutos."</string>
     <string name="pref_accounts_summary">Adicionar e gerenciar contas Google</string>
     <string name="prefcat_accounts_options_title">Opções</string>
     <string name="prefcat_accounts_login_accounts_title">Conectado em</string>
-    <string name="pref_accounts_login_accounts_summary">As contas são armazenadas apenas neste dispositivo. Toque na conta para removê-la</string>
+    <string name="pref_accounts_login_accounts_summary">As contas são armazenadas apenas neste dispositivo. Toque em uma conta para removê-la permanetemente</string>
     <string name="pref_accounts_add_account_title">Adicionar conta</string>
     <string name="pref_accounts_manage_accounts_title">Gerenciador de contas</string>
     <string name="pref_accounts_manage_accounts_summary">Abrir o gerenciador de contas do dispositivo</string>
+
     <!-- YouTube activity-->
+
     <string name="prefcat_youtube_activity">Atividades no YouTube</string>
     <string name="pref_manage_all_history">Gerencie todo o histórico</string>
     <string name="pref_data_in_youtube">Seus dados no YouTube</string>

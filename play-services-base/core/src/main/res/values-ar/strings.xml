@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ SPDX-FileCopyrightText: 2020, microG Project Team
   ~ SPDX-License-Identifier: Apache-2.0
   -->
@@ -24,5 +23,4 @@
     <string name="service_status_manual">يدوي</string>
     <string name="service_status_enabled_short">ممكن</string>
     <string name="service_status_disabled_short">معطل</string>
-
 </resources>

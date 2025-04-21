@@ -196,7 +196,7 @@ Bu işlem birkaç dakika sürebilir."</string>
     <string name="pref_accounts_summary">Google hesapları ekleyin ve yönetin</string>
     <string name="prefcat_accounts_options_title">Seçenekler</string>
     <string name="prefcat_accounts_login_accounts_title">Oturum açılmış hesaplar</string>
-    <string name="pref_accounts_login_accounts_summary">Hesaplar yalnızca bu cihazda saklanır. Kaldırmak için hesaba dokunun</string>
+    <string name="pref_accounts_login_accounts_summary">Hesaplar yalnızca bu cihazda saklanır. Kalıcı olarak kaldırmak için bir hesaba dokunun</string>
     <string name="pref_accounts_add_account_title">Hesap ekle</string>
     <string name="pref_accounts_manage_accounts_title">Hesapları yönet</string>
     <string name="pref_accounts_manage_accounts_summary">Cihaz hesap yöneticisini aç</string>
@@ -219,7 +219,6 @@ Bu işlem birkaç dakika sürebilir."</string>
     <!-- Settings options strings-->
 
     <string name="developer">Geliştirici</string>
-    <string name="github">GitHub</string>
     <string name="github_source">Kaynak kod deposu</string>
     <string name="pref_hide_launcher_icon">Başlatıcıda simgeyi gizle</string>
 </resources>

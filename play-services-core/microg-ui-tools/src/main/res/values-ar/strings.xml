@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2013-2017 microG Project Team
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -37,7 +36,7 @@
     <string name="about_root_version">الإصدار v0.1.0</string>
     <string name="about_root_libraries">المكتبات المضمنة</string>
 
-   <string name="about_android_support_v4">مكتبة دعم v4</string>
+    <string name="about_android_support_v4">مكتبة دعم v4</string>
     <string name="about_android_support_v7_appcompat">مكتبة دعم v7 appcompat</string>
     <string name="about_android_support_v7_preference">مكتبة دعم v7 preference</string>
     <string name="about_android_support_license">رخصة Apache 2.0، مشروع Android Open Source</string>

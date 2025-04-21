@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (C) 2013-2017 microG Project Team
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <string name="about_version_str">Phiên bản: %1$s</string>
+    <string name="about_default_license">Mọi quyền được bảo lưu</string>
+
+    <string name="prefcat_setup">Thiết lập</string>
+
+    <string name="self_check_title">Tự kiểm tra</string>
+    <string name="self_check_desc">Kiểm tra xem hệ thống có được cấu hình đúng để sử dụng MicroG hay không</string>
+
+    <string name="self_check_cat_permissions">Quyền được cấp</string>
+    <string name="self_check_name_permission">Quyền cho %1$s:</string>
+    <string name="self_check_resolution_permission">Chạm vào đây để cấp quyền. Việc không cấp quyền có thể dẫn đến hành vi không phù hợp của ứng dụng</string>
+
+    <string name="about_root_summary">Tóm tắt</string>
+    <string name="about_root_libraries">Thư viện được bao gồm</string>
+
+    <!-- Updater strings-->
+
+    <string name="check_updates">Kiểm tra cập nhật</string>
+    <string name="update_available">Có phiên bản mới!</string>
+    <string name="no_update_available">Phiên bản của bạn là mới nhất</string>
+    <string name="check_updates_error">Lỗi khi cố gắng kiểm tra</string>
+
+    <string name="snackbar_button_download">Tải xuống</string>
+
+    <string name="error_connection">Lỗi kết nối:</string>
+    <string name="error_others">Lỗi:</string>
+</resources>
