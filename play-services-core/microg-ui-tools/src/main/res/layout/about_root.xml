@@ -67,16 +67,15 @@
                     android:textAppearance="?attr/textAppearanceBodyLarge"
                     android:textColor="?android:textColorSecondary" />
 
-                <Button
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnCheckUpdates"
-                    style="@style/Widget.Material3.Button.TonalButton.Icon"
+                    style="@style/Widget.Material3Expressive.Button.TonalButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|center"
                     android:layout_marginTop="12dp"
                     android:text="@string/check_updates"
-                    app:icon="@drawable/ic_update"
-                    app:iconPadding="8dp" />
+                    app:icon="@drawable/ic_update" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 

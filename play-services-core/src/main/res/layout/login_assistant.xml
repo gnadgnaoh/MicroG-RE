@@ -119,18 +119,19 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/spoof_button"
-            style="@style/Widget.Material3.Button.TonalButton"
+            style="@style/Widget.Material3Expressive.Button.TonalButton"
             android:layout_width="0dp"
-            android:layout_marginEnd="12dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
             android:layout_weight="1"
             tools:text="@string/brand_spoof_button" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/next_button"
+            style="@style/Widget.Material3Expressive.Button"
             android:layout_width="0dp"
-            android:layout_marginStart="12dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
             android:layout_weight="1"
             tools:text="@string/auth_sign_in" />
     </LinearLayout>
