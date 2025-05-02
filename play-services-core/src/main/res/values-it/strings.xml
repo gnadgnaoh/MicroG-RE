@@ -177,10 +177,13 @@ Questo potrebbe richiedere qualche minuto"</string>
     <string name="pref_accounts_summary">Aggiungi e gestisci account Google</string>
     <string name="prefcat_accounts_options_title">Opzioni</string>
     <string name="prefcat_accounts_login_accounts_title">Accesso effettuato</string>
+    <string name="pref_accounts_login_accounts_summary">Gli account sono memorizzati solo su questo dispositivo. Tocca un account per rimuoverlo definitivamente</string>
     <string name="pref_accounts_add_account_title">Aggiungi account</string>
     <string name="pref_accounts_manage_accounts_title">Gestisci account</string>
     <string name="pref_accounts_manage_accounts_summary">Apri gestore account del dispositivo</string>
+
     <!-- YouTube activity-->
+
     <string name="prefcat_youtube_activity">Attività di YouTube</string>
     <string name="pref_manage_all_history">Gestisci tutta la cronologia</string>
     <string name="pref_data_in_youtube">I tuoi dati su YouTube</string>

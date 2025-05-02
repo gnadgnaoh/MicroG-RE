@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ SPDX-FileCopyrightText: 2017 MicroG Project Team
+  ~ SPDX-License-Identifier: Apache-2.0
+  -->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="gms_settings_name">Cài đặt MicroG</string>
+    <string name="gms_settings_summary">Thiết lập dịch vụ MicroG</string>
+
+    <string name="just_a_sec">Chờ tí.....</string>
+    <string name="ask_permission_tos">Bằng việc tiếp tục, bạn đồng ý cho app và Google.Inc sử dụng thông tin của bạn và đồng ý với TOS và quyền riêng tư</string>
+    <string name="ask_scope_permission_title"><xliff:g example="F-Droid">%1$s</xliff:g> Bạn có muốn:</string>
+    <string name="ask_service_permission_title"><xliff:g example="F-Droid">%1$s</xliff:g> Bạn có muốn sử dụng:</string>
+
+    <string name="pref_privacy_title">Quyền riêng tư</string>
+    <string name="pref_privacy_summary">Cài đặt về quyền riêng tư cho xác thực và ứng dụng</string>
+    <string name="prefcat_applications">Ứng dụng</string>
+    <string name="prefcat_authentication">Xác thực</string>
+
+    <string name="sorry">Lấy làm tiếc…</string>
+    <string name="auth_before_connect">"Liên kết tài khoản Google của bạn với MicroG
+
+Bắt đầu từ việc liên kết tài khoản Google của bạn, bấm nút <b>Sign in</b> hoặc nút <b>Huawei</b> Nếu bạn đang sử dụng thiết bị đến từ Huawei và tương tự. Khi bạn bấm nút thì bạn sẽ được chuyển hướng đến trang đăng nhập."</string>
+    <string name="auth_sign_in">Sign in</string>
+    <string name="auth_connecting">"Đang chuyển hướng đến trang đăng nhập.
+
+Việc này có thể tốn một chút thời gian, vui lòng kiên nhẫn"</string>
+    <string name="no_network_error_desc">"Kết nối thất bại.
+Có thể do mạng yếu hoặc sự cố tạm thời, xin vui lòng thử lại sau"</string>
+    <string name="auth_general_error_desc">"Sự cố từ server của Google
+Google béo quá nổ server r, vui lòng thử lại sau 24h"</string>
+    <string name="auth_finalize">"Đang gửi thông tin thiết bị của bạn cho Google để lưu tài khoản.
+Việc này có thể tốn thời gian"</string>
+    <string name="allow">Cho phép</string>
+    <string name="deny">Từ chối</string>
+    <string name="auth_notification_title">Yêu cầu xác minh bổ sung</string>
+    <string name="auth_notification_content"><xliff:g example="F-Droid">%1$s</xliff:g> Yêu cầu đăng nhận lại để sử dụng</string>
+
+    <string name="signin_picker_title">Chọn tài khoản</string>
+    <string name="signin_picker_subtitle">để tiếp tục với <xliff:g example="F-Droid">%1$s</xliff:g></string>
+    <string name="signin_picker_add_account_label">Thêm tài khoản khác</string>
+    <string name="signin_confirm_title">Cho phép bạn đăng nhập với <xliff:g example="F-Droid">%1$s</xliff:g></string>
+    <string name="signin_confirm_button_text">Cho phép và chia sẻ</string>
+    <string name="signin_subtext_sharing">Để tiếp tục, MicroG sẽ chia sẻ TÊN, EMAIL, ẢNH ĐẠI DIỆN của Google Account đã được chọn cho <xliff:g example="F-Droid">%1$s</xliff:g></string>
+
+    <string name="perm_status_broadcast_label">ghi chép từ tín hiệu sóng nội bộ</string>
+    <string name="perm_gsf_read_gservices_label">đọc cài đặt dịch vụ Google</string>
+    <string name="perm_c2dm_receive_label">Hóng từ tin C2DM</string>
+    <string name="perm_c2dm_send_label">Gửi tin C2DM cho ứng dụng khác</string>
+    <string name="perm_gtalk_svc_label">Mở rộng tin và đồng bộ thông báo từ dịch vụ Google</string>
+    <string name="perm_extended_access_label">Mở rộng quyền truy cập tới dịch vụ Google</string>
+
+    <string name="service_name_checkin">Thông tin thiết bị</string>
+    <string name="service_name_mcs">Thông báo trực tuyến</string>
+
+    <string name="network_type_mobile">Dữ liệu di động</string>
+    <string name="network_type_wifi">Wi-Fi</string>
+    <string name="network_type_roaming">Chuyển vùng quốc tế</string>
+    <string name="network_type_other">Những mạng khác</string>
+
+    <!-- Self check -->
+
+    <string name="self_check_cat_fake_sig">Hỗ trợ giả mạo hệ thống</string>
+    <string name="self_check_cat_gms_packages">Đã cài gói tệp</string>
+    <string name="self_check_cat_system">Hệ thống</string>
+
+    <string name="self_check_name_fake_sig_perm">Thiết bị của bạn có hộ trợ giả mạo hệ thống</string>
+    <string name="self_check_resolution_fake_sig_perm">bản ROM của bạn không hỗ trợ giả mạo hệ thống cho MicroG, bạn có thể sử dụng Lsposed module (Eg. fakegapps), vui lòng xem tài liệu về những bản ROM được hỗ trợ </string>
+    <string name="self_check_name_perm_granted">Hệ thống đã cấp quyền giả mạo cho MicroG</string>
+    <string name="self_check_resolution_perm_granted">Bản ROM của bạn có hỗ trợ giả mạo cho MicroG, nhưng yêu cầu thực hiện một vài thao tác để kích hoạt, vui lòng đọc hdsd nếu có</string>
+    <string name="self_check_name_system_spoofs">Gỉa mạo chữ kí hệ thống</string>
+    <string name="self_check_resolution_system_spoofs">Vui lòng đọc tài liệu để kích hoạt</string>
+
+    <string name="self_check_pkg_gms">Dịch vụ Google</string>
+    <string name="self_check_pkg_vending">Cửa hàng Google</string>
+    <string name="self_check_name_app_installed"><xliff:g example="F-Droid">%1$s</xliff:g> đã cài đặt</string>
+    <string name="self_check_resolution_app_installed">Cài đặt ứng dụng <xliff:g example="F-Droid">%1$s</xliff:g> hoặc là một cái khác tương thích, đọc hdsd để biết ứng dụng nào tương thích</string>
+    <string name="self_check_name_correct_sig"><xliff:g example="F-Droid">%1$s</xliff:g> đúng chữ kí</string>
+    <string name="self_check_resolution_correct_sig">Mặc dù đã đucợ cài đặt <xliff:g example="F-Droid">%1$s</xliff:g> nhưng nó không được tương thích, vui lòng đọc hdsd để biết thêm thông tin</string>
+
+    <string name="self_check_name_battery_optimizations">Vô hiệu hoá tối ưu pin cho ứng dụng</string>
+    <string name="self_check_resolution_battery_optimizations">Bấm vào đây để bật khả năng chạy ngầm liên tục cho ứng dụng để tránh lỗi (Một vài OEM sẽ yêu cầu bật tự động chạy, vui lòng tự tìm hiểu)</string>
+
+    <string name="self_check_pkg_revanced">ReVanced</string>
+    <string name="self_check_pkg_revanced_extended">ReVanced Extended</string>
+    <string name="self_check_pkg_youtube_advanced">YT Advanced</string>
+    <string name="self_check_pkg_vanced">Vanced</string>
+    <string name="self_check_revanced_name_app_installed">Đang chạy với <xliff:g example="F-Droid">%1$s</xliff:g></string>
+    <string name="self_check_revanced_resolution_app_installed"><xliff:g example="F-Droid">%1$s</xliff:g> ứng dụng không tìm thấy hoặc đã bị chỉnh sửa</string>
+
+    <!-- Settings strings -->
+
+    <string name="prefcat_about">Thông tin</string>
+
+    <string name="cond_gcm_bat_title">Tối ưu pin đã được kích hoạt</string>
+    <string name="cond_gcm_bat_summary">Bạn đã bật thông báo đám mây nhưng chưa cho khả năng chạy ngậm, vui lòng cho chạy ngầm liên tục để thông báo ổn định</string>
+    <string name="cond_gcm_bat_action">Cho chạy ngầm</string>
+    <string name="cond_perm_title">Thiếu quyền</string>
+
+    <string name="pref_auth_trust_google_title">Tin tưởng cấp quyền cho những ứng dụng của Google</string>
+    <string name="pref_auth_trust_google_summary">Khi tắt, người dùng sẽ được hỏi có chia sẻ thông tin tài khoản cho những ứng dụng của Google hay không, việc tắt sẽ gây ra một vài lỗi</string>
+    <string name="pref_auth_visible_title">Cho phép các ứng dụng tìm tài khoản trong MicroG</string>
+    <string name="pref_auth_visible_summary">Khi kích hoạt, mọi ứng dụng có thể xem thông tin tài khoản của bạn đã liên kết với MicroG</string>
+    <string name="brand_spoof_button">Huawei</string>
+    <string name="pref_auth_include_android_id_title">Xác thực bằng thông tin của thiết bị</string>
+    <string name="pref_auth_include_android_id_summary">Khi tắt, thông tin xác minh sẽ không bao gồm thông tin thiết bị của bạn, bạn có thể gặp một vài sự cố</string>
+    <string name="pref_auth_strip_device_name_title">Không gửi tên thiết bị khi xác thực</string>
+    <string name="pref_auth_strip_device_name_summary">Khi kích hoạt, tên thiết bị của bạn sẽ không được gửi để xác minh, việc bật lên sẽ gây ra một vài lỗi</string>
+
+    <string name="pref_checkin_enable_summary">Liên kết thiết bị của bạn với dịch vụ Google và tạo 1 mã định danh duy nhất, MicroG sẽ giúp bạn xoá một vài dữ liệu dư thừa</string>
+    <string name="pref_device_registration_android_id">Android ID</string>
+
+    <string name="checkin_not_registered">Chưa liên kết</string>
+    <string name="checkin_last_registration">Lần liên kết cuối: <xliff:g example="Yesterday, 02:20 PM">%1$s</xliff:g></string>
+    <string name="checkin_enable_switch">Thiết bị đã liên kết</string>
+
+    <string name="pref_info_status">Trạng thái</string>
+
+    <string name="pref_account_title">Tài khoản</string>
+    <string name="pref_account_summary">Đăng nhập tài khoản Google mới</string>
+    <string name="pref_gcm_enable_mcs_summary">Thông báo đám mấy (FCM) là dịch vụ gửi/nhận thông báo cho các ứng dụng đã chỉnh sửa mà cần FCM, để sử dụng bạn cần bật đăng kí thiết bị</string>
+    <string name="pref_gcm_confirm_new_apps_title">Xác nhận ứng dụng mới</string>
+    <string name="pref_gcm_confirm_new_apps_summary">Hỏi trước khi cho phép ưng dụng nhận/gửi thông báo</string>
+
+    <string name="pref_about_title">Về MicroG</string>
+
+    <string name="gcm_unregister_app">Chưa đăng kí</string>
+    <string name="gcm_no_message_yet">Không có thông báo nhận gần đây</string>
+    <string name="gcm_last_message_at">Thông báo lần cuối: <xliff:g example="Yesterday, 02:20 PM">%1$s</xliff:g></string>
+    <string name="gcm_registered">Đã đăng kí</string>
+    <string name="gcm_registered_since">Đăng kí từ: <xliff:g example="Yesterday, 02:20 PM">%1$s</xliff:g></string>
+    <string name="gcm_unregister_confirm_title">Chưa đăng kí <xliff:g example="F-Droid">%1$s</xliff:g>?</string>
+    <string name="gcm_unregister_confirm_message">Một vài ứng dụng không tự đăng kí lại hoặc ko có tuỳ chọn để làm thủ công, ứng dụng có thể hoạt động không đúng cách sau khi huỷ đăng kí.\nTiếp tục?</string>
+    <string name="gcm_unregister_after_deny_message">Bạn đã từ chối đăng kí ứng dụng đã được đăng kí để nhận/gửi thông báo. \nBạn có muốn huỷ đăng kí để không còn nhận thông báo trong tương lai không?</string>
+    <string name="gcm_messages_counter">Số lượng thông báo: <xliff:g example="123">%1$d</xliff:g> (<xliff:g example="12345">%2$d</xliff:g> bytes)</string>
+    <string name="gcm_network_state_disconnected">Đã ngắt kết nối</string>
+    <string name="gcm_network_state_connected">Đã kết nối vào <xliff:g example="2 hours ago">%1$s</xliff:g></string>
+    <string name="gcm_enable_switch">Nhận thông báo (FCM)</string>
+    <string name="gcm_allow_app_popup">Cho phép <xliff:g example="F-Droid">%1$s</xliff:g> để nhận thông báo?</string>
+
+    <string name="pref_push_app_allow_register_title">Cho phép đăng kí</string>
+    <string name="pref_push_app_allow_register_summary">Cho phép ứng dụng sử dụng dịch vụ nhận thông báo qua FCM</string>
+    <string name="pref_push_app_wake_for_delivery_title">Khởi động ứng dụng khi nhận được thông báo</string>
+    <string name="pref_push_app_wake_for_delivery_summary">Khởi động ứng dụng trong nền để nhận những thông báo tiếp theo</string>
+    <string name="prefcat_push_apps_title">Ứng dụng sử dụng dịch vụ gửi/nhận thông báo</string>
+    <string name="prefcat_push_apps_registered_title">Những ứng dụng đã đăng kí</string>
+    <string name="prefcat_push_apps_unregistered_title">Những ứng dụng chưa đăng kí</string>
+    <string name="prefcat_push_networks_title">Các giao thức kết nối để nhận thông báo</string>
+
+    <string name="profile_name_native">Trực tiếp</string>
+    <string name="profile_name_real">Thực</string>
+    <string name="profile_name_user">Tuỳ chỉnh: %s</string>
+    <string name="profile_name_auto">Tự động: %s</string>
+    <string name="profile_name_system">Hệ thống: %s</string>
+    <string name="pref_device_registration_import_custom_profile_title">Nhập profile tuỳ chỉnh</string>
+    <string name="pref_device_registration_serial_title">Serial</string>
+    <string name="pref_device_registration_import_custom_profile_summary">Nhập thông tin thiết bị từ file</string>
+    <string name="pref_device_registration_select_profile_title">Chọn profile thiết bị</string>
+    <string name="pref_device_registration_device_profile_category">Thông tin thiết bị</string>
+
+    <string name="push_notifications_summary_off">Tắt</string>
+    <string name="push_notifications_summary_automatic">Bật / tự động: %s</string>
+    <string name="push_notifications_summary_manual">Bật / thủ công: %s</string>
+    <string name="push_notifications_summary_values_seconds">%s giây</string>
+    <string name="push_notifications_summary_values_minutes">%s phút</string>
+
+    <string name="pref_network_google_enabled_summary">Nếu bị vô hiệu hoá, mọi luồng kết nối tới máy chủ của Google sẽ bị ngắt</string>
+    <string name="pref_network_google_enabled">Kết nối tới máy chủ của Google</string>
+    <string name="pref_network_google_use_tor">Kết nối máy chủ Google qua mạng lưới Tor</string>
+    <string name="pref_network_google_use_tor_summary">Yêu cầu ứng dụng Orbot \\nChưa được cài đặt</string>
+
+    <!-- Account settings-->
+
+    <string name="pref_accounts_summary">Thêm và quản lý tài khoản Google của bạn</string>
+    <string name="prefcat_accounts_options_title">Tuỳ chọn</string>
+    <string name="prefcat_accounts_login_accounts_title">Đã đăng nhập</string>
+    <string name="pref_accounts_login_accounts_summary">Tài khoản chỉ được lưu trữ trên thiết bị này. Chạm vào tài khoản để xóa vĩnh viễn</string>
+    <string name="pref_accounts_add_account_title">Thêm tài khoản</string>
+    <string name="pref_accounts_manage_accounts_title">Quản lý tài khoản</string>
+    <string name="pref_accounts_manage_accounts_summary">Mở trình quản lý tài khoản của hệ thống</string>
+
+    <!-- YouTube activity-->
+
+    <string name="prefcat_youtube_activity">Hoạt động trên Youtube</string>
+    <string name="pref_manage_all_history">Quản lý lịch sử</string>
+    <string name="pref_data_in_youtube">Dữ liệu của bạn với Youtube</string>
+
+    <!-- Account remove dialog-->
+
+    <string name="dialog_title_remove_account">Huỷ liên kết tài khoản</string>
+    <string name="dialog_message_remove_account">Bạn có muốn huỷ liên kết tài khoản này không?\n\nMột vài tính năng và dịch vụ sẽ không khả dụng sau đó\n\nDữ liệu của bạn sẽ không thay đổi</string>
+    <string name="dialog_confirm_button">Huỷ liên kết</string>
+    <string name="dialog_cancel_button">Suy nghĩ…</string>
+    <string name="snackbar_remove_account">Tài khoản %s đã huỷ liên kết</string>
+    <string name="snackbar_undo_button">Quay lại</string>
+
+    <!-- Settings options strings-->
+
+    <string name="developer">Nhà phát triển</string>
+    <string name="github_source">Nơi lưu trữ mã nguồn</string>
+    <string name="pref_hide_launcher_icon">Ẩn ứng dụng</string>
+</resources>

@@ -5,5 +5,7 @@
         <item name="android:windowIsFloating">true</item>
         <item name="android:dialogCornerRadius">@dimen/settings_dialog_corner_radius</item>
         <item name="colorBackgroundFloating">?colorSurfaceContainer</item>
+        <item name="android:windowMinWidthMajor">91%</item>
+        <item name="android:windowMinWidthMinor">91%</item>
     </style>
 </resources>

@@ -16,6 +16,8 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical">
@@ -24,12 +26,18 @@
         android:id="@+id/progress_bar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:indeterminate="true" />
+        android:indeterminate="true"
+        android:layout_marginTop="12dp"
+        app:indeterminateAnimatorDurationScale="6"
+        app:waveAmplitude="6dp"
+        app:wavelength="28dp" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/description_text"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginTop="20dp"
-        android:textAppearance="?android:attr/textAppearanceListItem" />
+        android:layout_marginTop="24dp"
+        android:textAppearance="?attr/textAppearanceTitleMedium"
+        android:textColor="?android:textColorPrimary"
+        tools:text="@string/auth_connecting" />
 </LinearLayout>

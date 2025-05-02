@@ -60,5 +60,6 @@ afterEvaluate {
             sign publishing.publications
         }
     }
+    //noinspection ConfigurationAvoidance
     tasks.getByPath("sourceReleaseJar").duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }

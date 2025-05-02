@@ -15,6 +15,7 @@ android {
         minSdkVersion androidMinSdk
         targetSdkVersion androidTargetSdk
 
+        //noinspection GroovyConstructorNamedArguments
         manifestPlaceholders = [
                 basePackageName: "$basePackageName"
         ]

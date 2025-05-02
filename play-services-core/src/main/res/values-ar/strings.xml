@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ SPDX-FileCopyrightText: 2017 MicroG Project Team
   ~ SPDX-License-Identifier: Apache-2.0
   -->
@@ -173,10 +172,13 @@
     <string name="pref_accounts_summary">إضافة وإدارة حسابات Google</string>
     <string name="prefcat_accounts_options_title">خيارات</string>
     <string name="prefcat_accounts_login_accounts_title">تسجيل الدخول</string>
+    <string name="pref_accounts_login_accounts_summary">يتم تخزين الحسابات على هذا الجهاز فقط. اضغط على حساب لإزالته نهائيًا</string>
     <string name="pref_accounts_add_account_title">إضافة حساب</string>
     <string name="pref_accounts_manage_accounts_title">إدارة الحسابات</string>
     <string name="pref_accounts_manage_accounts_summary">افتح مدير حسابات الجهاز</string>
+
     <!-- YouTube activity-->
+
     <string name="prefcat_youtube_activity">نشاط YouTube</string>
     <string name="pref_manage_all_history">إدارة كل السجل</string>
     <string name="pref_data_in_youtube">بياناتك في YouTube</string>

@@ -70,6 +70,7 @@ android {
         buildConfigField "String", "APPLICATION_NAMESPACE", "\"${android.namespace}\""
         buildConfigField "String", "BASE_PACKAGE_NAME", "\"$basePackageName\""
         buildConfigField "String", "INCLUDED_PROJECTS", "\"${includeProjects.join(",")}\""
+        //noinspection GroovyConstructorNamedArguments
         manifestPlaceholders = [
                 basePackageName: "$basePackageName"
         ]
@@ -139,7 +140,7 @@ if (file('user.gradle').exists()) {
     apply from: 'user.gradle'
 }
 
-android.applicationVariants.all { variant ->
+android.applicationVariants.configureEach { variant ->
     variant.outputs.each { output ->
         output.outputFileName = variant.applicationId + "-" + variant.versionCode + variant.versionName.substring(version.length()) + ".apk"
     }

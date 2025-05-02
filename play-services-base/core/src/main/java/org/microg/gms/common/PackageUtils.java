@@ -84,7 +84,7 @@ public class PackageUtils {
         KNOWN_GOOGLE_PACKAGES.put("com.google.android.apps.jam","9c1de3b64590e313470bb920f9f4b7819ee06140");
         KNOWN_GOOGLE_PACKAGES.put("com.fitbit.FitbitMobile","29a4514c3b90b90cb6badc79614262195c6a5747");
         KNOWN_GOOGLE_PACKAGES.put("com.google.android.apps.magazines", "bd32424203e0fb25f36b57e5aa356f9bdd1da998");
-        KNOWN_GOOGLE_PACKAGES.put("com.google.android.apps.photos", "f8456b1d9996acf9ce21fb450b0d32b895f36885");
+        KNOWN_GOOGLE_PACKAGES.put("com.google.android.apps.photos", "24bb24c05e47e0aefa68a58a766179d9b613a600");
     }
 
     public static boolean isGooglePackage(Context context, String packageName) {
@@ -142,7 +142,7 @@ public class PackageUtils {
         } else if (packageName.endsWith(".youtube.music")) {
             return "afb0fed5eeaebdd86f56a97742f4b6b33ef59875";
         } else if (packageName.endsWith(".photos")) {
-            return "f8456b1d9996acf9ce21fb450b0d32b895f36885";
+            return "24bb24c05e47e0aefa68a58a766179d9b613a600";
         } else if (packageName.endsWith(".magazines")) {
             return "bd32424203e0fb25f36b57e5aa356f9bdd1da998";
         }

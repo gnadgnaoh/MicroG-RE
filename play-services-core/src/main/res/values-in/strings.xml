@@ -170,10 +170,13 @@ Ini mungkin memerlukan beberapa menit"</string>
     <string name="pref_accounts_summary">Tambahkan dan kelola akun Google</string>
     <string name="prefcat_accounts_options_title">Opsi</string>
     <string name="prefcat_accounts_login_accounts_title">Masuk</string>
+    <string name="pref_accounts_login_accounts_summary">Akun disimpan hanya di perangkat ini. Ketuk akun untuk menghapusnya secara permanen</string>
     <string name="pref_accounts_add_account_title">Tambahkan akun</string>
     <string name="pref_accounts_manage_accounts_title">Kelola akun</string>
     <string name="pref_accounts_manage_accounts_summary">Buka manajer akun perangkat</string>
+
     <!-- YouTube activity-->
+
     <string name="prefcat_youtube_activity">Aktivitas YouTube</string>
     <string name="pref_manage_all_history">Kelola semua riwayat</string>
     <string name="pref_data_in_youtube">Data Anda di YouTube</string>

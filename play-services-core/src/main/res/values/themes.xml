@@ -8,7 +8,7 @@
 
     <!-- Base application theme -->
 
-    <style name="Theme.Base" parent="Theme.Material3.DynamicColors.DayNight">
+    <style name="Theme.Base" parent="Theme.Material3Expressive.DynamicColors.DayNight">
         <item name="preferenceTheme">@style/Theme.Base.PreferenceThemeOverlay</item>
     </style>
 
@@ -72,20 +72,20 @@
         <item name="android:windowAnimationStyle">@style/MaterialAlertDialog.Material3.Animation</item>
         <item name="android:windowSoftInputMode">adjustResize</item>
         <item name="dialogCornerRadius">@dimen/settings_dialog_corner_radius</item>
+        <item name="materialAlertDialogTitleIconStyle">@style/Component.MaterialAlertDialog.Material3.Title.Icon</item>
+        <item name="android:windowMinWidthMajor">91%</item>
+        <item name="android:windowMinWidthMinor">91%</item>
     </style>
 
     <style name="Component.Dialog" parent="AppThemeBase">
         <item name="android:windowIsFloating">true</item>
         <item name="colorBackgroundFloating">?colorSurfaceContainer</item>
+        <item name="android:windowMinWidthMajor">91%</item>
+        <item name="android:windowMinWidthMinor">91%</item>
     </style>
 
-    <style name="Component.AlertDialog.RemoveAccount" parent="@style/ThemeOverlay.Material3.MaterialAlertDialog.Centered">
-        <item name="android:colorBackground">?colorSurfaceContainer</item>
-        <item name="android:listPreferredItemHeightSmall">48dp</item>
-        <item name="android:windowAnimationStyle">@style/MaterialAlertDialog.Material3.Animation</item>
-        <item name="android:windowSoftInputMode">adjustResize</item>
-        <item name="dialogCornerRadius">@dimen/settings_dialog_corner_radius</item>
-        <item name="buttonBarPositiveButtonStyle">@style/TextAppearance.PositiveButton.Warning</item>
+    <style name="Component.MaterialAlertDialog.Material3.Title.Icon" parent="MaterialAlertDialog.Material3.Title.Icon.CenterStacked">
+        <item name="android:layout_marginTop">12dp</item>
     </style>
 
     <style name="Component.Snackbar" parent="Widget.Material3.Snackbar">
@@ -105,11 +105,6 @@
 
     <style name="TextAppearance.Preference.Category.Title" parent="@style/TextAppearance.Material3.LabelLarge" />
 
-    <style name="TextAppearance.PositiveButton.Warning" parent="@style/Widget.Material3.Button.TextButton.Dialog">
-        <item name="android:textColor">?colorError</item>
-        <item name="rippleColor">?colorErrorContainer</item>
-    </style>
-
     <!-- Application theme -->
 
     <style name="AppTheme" parent="AppThemeBase" />
@@ -125,7 +120,7 @@
         <item name="android:windowAnimationStyle">@android:style/Animation</item>
     </style>
 
-    <style name="LoginTheme" parent="AppThemeBase" />
+    <style name="AppThemeLauncher" parent="AppThemeBase" />
 
     <style name="AppThemeBase" parent="Theme.Base.DayNight.NoActionBar">
         <!-- Theming -->

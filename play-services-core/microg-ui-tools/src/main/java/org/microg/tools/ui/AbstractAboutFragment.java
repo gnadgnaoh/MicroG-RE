@@ -133,23 +133,17 @@ public abstract class AbstractAboutFragment extends Fragment {
         LinearLayout libraryContainer = aboutRoot.findViewById(R.id.library_container);
         for (Library library : libraries) {
             View libraryView = inflater.inflate(R.layout.library_item, libraryContainer, false);
-            ((TextView) libraryView.findViewById(android.R.id.text1))
-                    .setText(getString(R.string.about_name_version_str, library.name, getLibVersion(library.packageName)));
-            ((TextView) libraryView.findViewById(android.R.id.text2))
-                    .setText(library.copyright != null ? library.copyright : getString(R.string.about_default_license));
+            ((TextView) libraryView.findViewById(android.R.id.text1)).setText(getString(R.string.about_name_version_str, library.name, getLibVersion(library.packageName)));
+            ((TextView) libraryView.findViewById(android.R.id.text2)).setText(library.copyright != null ? library.copyright : getString(R.string.about_default_license));
             libraryContainer.addView(libraryView);
         }
 
         Button btnCheckUpdates = aboutRoot.findViewById(R.id.btnCheckUpdates);
         btnCheckUpdates.setOnClickListener(v -> {
-            btnCheckUpdates.setEnabled(false);
-
             UpdateChecker updateChecker = new UpdateChecker(getContext());
             updateChecker.checkForUpdates(() -> {
-                btnCheckUpdates.setEnabled(true);
             });
         });
-
         return aboutRoot;
     }
 

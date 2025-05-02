@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <Preference
+        android:selectable="false"
+        android:summary="@string/pref_accounts_login_accounts_summary" />
+
     <PreferenceCategory
         android:key="prefcat_current_accounts"
         android:title="@string/prefcat_accounts_login_accounts_title"

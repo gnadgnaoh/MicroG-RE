@@ -267,8 +267,9 @@
             android:name="org.microg.gms.auth.login.LoginActivity"
             android:configChanges="uiMode|keyboardHidden|keyboard|screenSize"
             android:exported="true"
+            android:label="@string/pref_accounts_add_account_title"
             android:process=":ui"
-            android:theme="@style/LoginTheme">
+            android:theme="@style/AppThemeLauncher">
             <intent-filter>
                 <action android:name="${basePackageName}.android.gms.auth.login.LOGIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -361,8 +362,9 @@
         <!-- microG Settings activity -->
         <activity
             android:name="org.microg.gms.ui.MainSettingsActivity"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
+            android:exported="true"
             android:enabled="false"
-            android:process=":ui"
             android:taskAffinity="org.microg.gms.settings">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -373,10 +375,8 @@
         <!-- Allow microG Settings from opening by other applications -->
         <activity-alias
             android:name="org.microg.gms.ui.SettingsActivity"
-            android:label="@string/gms_settings_name"
-            android:process=":ui"
-            android:targetActivity="org.microg.gms.ui.MainSettingsActivity"
-            android:taskAffinity="org.microg.gms.settings">
+            android:exported="true"
+            android:targetActivity="org.microg.gms.ui.MainSettingsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
@@ -439,7 +439,8 @@
             android:name="org.microg.gms.ui.AccountManagerActivity"
             android:label="@string/pref_account_title"
             android:process=":ui"
-            android:taskAffinity="org.microg.gms.settings" />
+            android:taskAffinity="org.microg.gms.settings"
+            android:theme="@style/AppThemeLauncher" />
 
         <activity
             android:name="org.microg.gms.ui.PrivacySettingsActivity"
@@ -470,7 +471,7 @@
             android:excludeFromRecents="true"
             android:targetActivity="org.microg.gms.ui.AccountManagerActivity"
             android:taskAffinity="org.microg.gms.settings">
-            <intent-filter>
+            <intent-filter tools:ignore="AppLinkUrlError">
                 <action android:name="com.google.android.gms.accountsettings.action.VIEW_SETTINGS" />
                 <action android:name="${basePackageName}.android.gms.accountsettings.action.VIEW_SETTINGS" />
                 <action android:name="com.google.android.gms.accountsettings.action.BROWSE_SETTINGS" />

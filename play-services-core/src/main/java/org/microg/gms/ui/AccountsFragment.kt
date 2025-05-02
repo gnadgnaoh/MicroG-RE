@@ -5,12 +5,11 @@ import android.accounts.AccountManager
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.Bitmap
-import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
-import androidx.appcompat.app.AlertDialog
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import androidx.lifecycle.lifecycleScope
 import androidx.preference.Preference
@@ -28,6 +27,11 @@ import org.microg.gms.auth.AuthConstants
 import org.microg.gms.auth.login.LoginActivity
 import org.microg.gms.people.DatabaseHelper
 import org.microg.gms.people.PeopleManager
+import androidx.core.net.toUri
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.imageview.ShapeableImageView
+import com.google.android.material.textview.MaterialTextView
 
 class AccountsFragment : PreferenceFragmentCompat() {
 
@@ -73,7 +77,9 @@ class AccountsFragment : PreferenceFragmentCompat() {
         }
 
         findPreference<Preference>("pref_privacy")?.setOnPreferenceClickListener {
-            startActivitySafely(PrivacySettingsActivity::class.java, "Failed to launch privacy activity")
+            startActivitySafely(
+                PrivacySettingsActivity::class.java, "Failed to launch privacy activity"
+            )
             true
         }
 
@@ -103,7 +109,7 @@ class AccountsFragment : PreferenceFragmentCompat() {
     }
 
     private fun openUrl(url: String) {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        val intent = Intent(Intent.ACTION_VIEW, url.toUri())
         startActivitySafelyIntent(intent, "Failed to open URL: $url")
     }
 
@@ -165,15 +171,47 @@ class AccountsFragment : PreferenceFragmentCompat() {
     }
 
     private fun showAccountRemovalDialog(accountName: String) {
-        AlertDialog.Builder(requireContext(), R.style.Component_AlertDialog_RemoveAccount)
-            .setIcon(R.drawable.ic_google_logo)
-            .setTitle(getString(R.string.dialog_title_remove_account))
-            .setMessage(getString(R.string.dialog_message_remove_account))
-            .setPositiveButton(getString(R.string.dialog_confirm_button)) { _, _ ->
-                removeAccount(accountName)
-            }.setNegativeButton(getString(R.string.dialog_cancel_button)) { dialog, _ ->
-                dialog.dismiss()
-            }.create().show()
+        val account = Account(accountName, AuthConstants.DEFAULT_ACCOUNT_TYPE)
+
+        val dialogView =
+            LayoutInflater.from(requireContext()).inflate(R.layout.dialog_remove_account, null)
+
+        val avatarView = dialogView.findViewById<ShapeableImageView>(R.id.account_avatar)
+        val nameView = dialogView.findViewById<MaterialTextView>(R.id.account_name)
+        val emailView = dialogView.findViewById<MaterialTextView>(R.id.account_email)
+        val dialogTitle = dialogView.findViewById<MaterialTextView>(R.id.dialog_title)
+        val messageView = dialogView.findViewById<MaterialTextView>(R.id.dialog_message)
+        val positiveButton = dialogView.findViewById<MaterialButton>(R.id.positive_button)
+        val negativeButton = dialogView.findViewById<MaterialButton>(R.id.negative_button)
+
+        nameView.text = getDisplayName(account) ?: accountName
+        emailView.text = accountName
+        dialogTitle.text = getString(R.string.dialog_title_remove_account)
+        messageView.text = getString(R.string.dialog_message_remove_account)
+        positiveButton.text = getString(R.string.dialog_confirm_button)
+        negativeButton.text = getString(R.string.dialog_cancel_button)
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            PeopleManager.getOwnerAvatarBitmap(requireContext(), accountName, true)?.let { bmp ->
+                val circular = RoundedBitmapDrawableFactory.create(resources, bmp).apply {
+                    isCircular = true
+                }
+                withContext(Dispatchers.Main) {
+                    avatarView.setImageDrawable(circular)
+                }
+            }
+        }
+
+        val dialog = MaterialAlertDialogBuilder(requireContext()).setView(dialogView).create()
+
+        positiveButton.setOnClickListener {
+            removeAccount(accountName)
+            dialog.dismiss()
+        }
+        negativeButton.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
     }
 
     private fun removeAccount(accountName: String) {
