@@ -6,7 +6,7 @@
 
 ![Banner](https://raw.githubusercontent.com/WSTxda/MicroG-RE/master/Images/Banner.svg)
 
-**Screenshots**
+### Screenshots
 
 <details>
   <summary>Light</summary>
@@ -22,7 +22,7 @@
 
 </details>
 
-**Recommended Patches**
+### Recommended Patches
 
 [ReVanced](https://github.com/ReVanced/revanced-patches)
 
@@ -30,23 +30,24 @@
 
 [ReVanced Extended (anddea)](https://github.com/anddea/revanced-patches)
 
-**Download**
+### Download
 
-[<img src="https://raw.githubusercontent.com/WSTxda/QP-Gallery-Releases/master/Images/GitHub.svg"
+[<img src="https://raw.githubusercontent.com/WSTxda/WSTxda/main/images/GitHub.svg"
 alt='Get it on GitHub'
-height="80">](https://github.com/WSTxda/MicroG-RE/releases) [<img src="https://raw.githubusercontent.com/WSTxda/QP-Gallery-Releases/master/Images/Telegram.svg"
+height="80">](https://github.com/WSTxda/MicroG-RE/releases) [<img src="https://raw.githubusercontent.com/WSTxda/WSTxda/main/images/Telegram.svg"
 alt='Get it on Telegram'
 height="80">](https://t.me/WSTprojects)
 
-**Donate**
+### Donate
 
-[<img src="https://raw.githubusercontent.com/WSTxda/QP-Gallery-Releases/master/Images/PayPal.svg"
-alt='Donate with PayPal'
-height="80">](https://bit.ly/2lV0E6u) [<img src="https://raw.githubusercontent.com/WSTxda/QP-Gallery-Releases/master/Images/BMC.svg"
-alt='Donate with BMC'
-height="80">](https://www.buymeacoffee.com/wstxda)
+[<img src="https://raw.githubusercontent.com/WSTxda/WSTxda/main/images/PayPal.svg"
+      alt='Donate with PayPal'
+      height="80">](https://bit.ly/2lV0E6u)
+[<img src="https://raw.githubusercontent.com/WSTxda/WSTxda/main/images/BMC.svg"
+      alt='Donate with BMC'
+      height="80">](https://www.buymeacoffee.com/wstxda)
 
-**Credits**
+### Credits
 
 [microG Project](https://github.com/microg) for GmsCore, alternative of Play Services. [wiki](https://github.com/microg/GmsCore/wiki)
 
