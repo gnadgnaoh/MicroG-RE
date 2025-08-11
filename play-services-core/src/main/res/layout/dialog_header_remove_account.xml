@@ -1,67 +1,74 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/dialog_title"
         style="?attr/textAppearanceTitleLarge"
-        android:layout_width="fill_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:ellipsize="end"
-        android:maxLines="1"
-        android:layout_marginBottom="16dp"
-        tools:text="@string/dialog_title_remove_account"
-        android:textAlignment="center" />
+        android:maxLines="2"
+        android:paddingBottom="16dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/dialog_title_remove_account" />
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/account_card"
         style="?attr/materialCardViewFilledStyle"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:foregroundGravity="center_vertical"
         app:cardBackgroundColor="?attr/colorSecondaryContainer"
-        app:cardCornerRadius="16dp">
+        app:cardCornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dialog_title">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
             android:padding="14dp">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/account_avatar"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
                 tools:src="@drawable/ic_google_logo" />
 
-            <LinearLayout
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/account_name"
+                style="?attr/textAppearanceTitleMedium"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:textColor="?attr/colorOnSecondaryContainer"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/account_avatar"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Username" />
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/account_name"
-                    style="?attr/textAppearanceLabelLarge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="Username" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/account_email"
-                    style="?attr/textAppearanceBodyMedium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:textColor="?android:textColorSecondary"
-                    tools:text="email@example.com" />
-            </LinearLayout>
-        </LinearLayout>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/account_email"
+                style="?attr/textAppearanceBodyMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="?attr/colorSecondary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/account_name"
+                app:layout_constraintTop_toBottomOf="@id/account_name"
+                tools:text="email@example.com" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
