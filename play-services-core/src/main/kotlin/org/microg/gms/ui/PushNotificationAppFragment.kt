@@ -23,6 +23,7 @@ import kotlinx.coroutines.withContext
 import org.microg.gms.gcm.GcmDatabase
 import org.microg.gms.gcm.PushRegisterManager
 
+@Suppress("DEPRECATION")
 class PushNotificationAppFragment : PreferenceFragmentCompat() {
     private lateinit var appHeadingPreference: AppHeadingPreference
     private lateinit var wakeForDelivery: TwoStatePreference

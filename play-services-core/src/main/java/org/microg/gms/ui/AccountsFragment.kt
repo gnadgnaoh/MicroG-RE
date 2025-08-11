@@ -11,14 +11,19 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
+import androidx.core.net.toUri
 import androidx.lifecycle.lifecycleScope
 import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
 import androidx.preference.PreferenceFragmentCompat
 import com.google.android.gms.R
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.color.MaterialColors
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textview.MaterialTextView
 import com.google.android.material.transition.platform.MaterialSharedAxis
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -27,11 +32,6 @@ import org.microg.gms.auth.AuthConstants
 import org.microg.gms.auth.login.LoginActivity
 import org.microg.gms.people.DatabaseHelper
 import org.microg.gms.people.PeopleManager
-import androidx.core.net.toUri
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.imageview.ShapeableImageView
-import com.google.android.material.textview.MaterialTextView
 
 class AccountsFragment : PreferenceFragmentCompat() {
 
@@ -41,7 +41,6 @@ class AccountsFragment : PreferenceFragmentCompat() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.preferences_accounts)
-        refreshAccountSettings()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -116,7 +115,7 @@ class AccountsFragment : PreferenceFragmentCompat() {
     private fun addAccountFab() {
         fab = requireActivity().findViewById(R.id.preference_fab)
         fab.text = getString(R.string.pref_accounts_add_account_title)
-        fab.setIconResource(R.drawable.ic_add_new_account)
+        fab.setIconResource(R.drawable.ic_add)
         fab.setOnClickListener {
             startActivitySafely(LoginActivity::class.java, "Failed to launch login activity")
         }
@@ -126,42 +125,76 @@ class AccountsFragment : PreferenceFragmentCompat() {
     private fun refreshAccountSettings() {
         val context = requireContext()
         val accountManager = AccountManager.get(context)
-        val accounts = accountManager.getAccountsByType(AuthConstants.DEFAULT_ACCOUNT_TYPE)
+        val accounts = accountManager.getAccountsByType(AuthConstants.DEFAULT_ACCOUNT_TYPE).toList()
 
         clearAccountPreferences()
 
-        val preferenceCategory = findPreference<PreferenceCategory>("prefcat_current_accounts")
+        val category = findPreference<PreferenceCategory>("prefcat_current_accounts") ?: return
         val accountsCategoryVisible = accounts.isNotEmpty()
+        category.isVisible = accountsCategoryVisible
+        if (!accountsCategoryVisible) return
 
-        preferenceCategory?.let {
-            it.isVisible = accountsCategoryVisible
-            if (accountsCategoryVisible) {
-                lifecycleScope.launch(Dispatchers.Main) {
-                    accounts.forEach { account ->
-                        val photo = PeopleManager.getOwnerAvatarBitmap(context, account.name, false)
-                        val newPreference = Preference(requireContext()).apply {
-                            title = getDisplayName(account)
-                            summary = account.name
-                            icon = getCircleBitmapDrawable(photo)
-                            key = "account:${account.name}"
-                            order = 0
+        lifecycleScope.launch {
+            val quickBitmaps: List<Bitmap?> = withContext(Dispatchers.IO) {
+                accounts.map { acc -> PeopleManager.getOwnerAvatarBitmap(context, acc.name, false) }
+            }
 
-                            setOnPreferenceClickListener {
-                                showAccountRemovalDialog(account.name)
-                                true
-                            }
+            val total = accounts.size
+            accounts.forEachIndexed { index, account ->
+                val photo = quickBitmaps.getOrNull(index)
+                val newPreference = Preference(requireContext()).apply {
+                    title = getDisplayName(account)
+                    summary = account.name
+                    key = "account:${account.name}"
+                    order = index
+                    icon = getCircleBitmapDrawable(photo)
+                    layoutResource = chooseLayoutForPosition(index, total)
+                    isIconSpaceReserved = photo != null
+                    setOnPreferenceClickListener {
+                        showAccountRemovalDialog(account.name)
+                        true
+                    }
+                }
+
+                if (category.findPreference<Preference>(newPreference.key) == null) {
+                    category.addPreference(newPreference)
+                }
+            }
+
+            accounts.forEachIndexed { index, account ->
+                if (quickBitmaps.getOrNull(index) == null) {
+                    lifecycleScope.launch {
+                        val bmp: Bitmap? = withContext(Dispatchers.IO) {
+                            PeopleManager.getOwnerAvatarBitmap(context, account.name, true)
                         }
-
-                        if (preferenceCategory.findPreference<Preference>(newPreference.key) == null) {
-                            if (photo == null) {
-                                withContext(Dispatchers.IO) {
-                                    PeopleManager.getOwnerAvatarBitmap(context, account.name, true)
-                                }?.let { newPreference.icon = getCircleBitmapDrawable(it) }
+                        bmp?.let {
+                            val drawable = getCircleBitmapDrawable(it)
+                            withContext(Dispatchers.Main) {
+                                val pref =
+                                    category.findPreference<Preference>("account:${account.name}")
+                                pref?.icon = drawable
+                                pref?.isIconSpaceReserved = true
                             }
-                            preferenceCategory.addPreference(newPreference)
                         }
                     }
                 }
+            }
+        }
+    }
+
+    private fun chooseLayoutForPosition(index: Int, total: Int): Int {
+        return when {
+            total <= 1 -> R.layout.preference_material_secondary_single
+            total == 2 -> if (index == 0) {
+                R.layout.preference_material_secondary_top
+            } else {
+                R.layout.preference_material_secondary_bottom
+            }
+
+            else -> when (index) {
+                0 -> R.layout.preference_material_secondary_top
+                total - 1 -> R.layout.preference_material_secondary_bottom
+                else -> R.layout.preference_material_secondary_middle
             }
         }
     }

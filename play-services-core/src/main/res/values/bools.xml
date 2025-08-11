@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Copyright (C) 2013-2017 microG Project Team
   ~
@@ -16,8 +15,6 @@
   -->
 
 <resources>
-    <bool name="settings_config_icon_space_reserved">false</bool>
-    <bool name="settings_config_allow_divider">false</bool>
 
     <bool name="is_gmscore">true</bool>
 </resources>

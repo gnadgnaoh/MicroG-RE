@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ SPDX-FileCopyrightText: 2020, microG Project Team
   ~ SPDX-License-Identifier: Apache-2.0
@@ -15,12 +14,14 @@
 
     <PreferenceCategory
         android:key="prefcat_push_app_settings"
-        android:layout="@layout/preference_category_no_label">
+        android:layout="@layout/preference_category_no_label"
+        app:allowDividerAbove="false">
 
         <SwitchPreferenceCompat
             android:defaultValue="true"
             android:icon="@drawable/ic_push_register"
             android:key="pref_push_app_allow_register"
+            android:layout="@layout/preference_material_top"
             android:persistent="false"
             android:summary="@string/pref_push_app_allow_register_summary"
             android:title="@string/pref_push_app_allow_register_title" />
@@ -29,6 +30,7 @@
             android:defaultValue="true"
             android:icon="@drawable/ic_launch_push"
             android:key="pref_push_app_wake_for_delivery"
+            android:layout="@layout/preference_material_middle"
             android:persistent="false"
             android:summary="@string/pref_push_app_wake_for_delivery_summary"
             android:title="@string/pref_push_app_wake_for_delivery_title" />
@@ -36,17 +38,19 @@
         <Preference
             android:icon="@drawable/ic_unregister"
             android:key="pref_push_app_unregister"
+            android:layout="@layout/preference_material_error_bottom"
             android:title="@string/gcm_unregister_app" />
-
     </PreferenceCategory>
     <PreferenceCategory
         android:key="prefcat_push_app_unregister"
-        android:layout="@layout/preference_category_no_label">
+        android:layout="@layout/preference_category_no_label"
+        app:allowDividerAbove="false">
 
         <Preference
             android:icon="@drawable/ic_information"
             android:key="pref_push_app_status"
+            android:layout="@layout/preference_material_information"
             android:selectable="false"
-            tools:summary="Messages: 1000 (37 MB)\nLast message: 22 min ago\nRegistered since: 3 month ago" />
+            android:title="Messages: 1000 (37 MB)\nLast message: 22 min ago\nRegistered since: 3 month ago" />
     </PreferenceCategory>
 </PreferenceScreen>

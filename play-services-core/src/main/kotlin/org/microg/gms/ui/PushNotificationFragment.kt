@@ -8,7 +8,6 @@ package org.microg.gms.ui
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
-import android.os.Looper
 import android.text.format.DateUtils
 import android.view.Menu
 import android.view.MenuInflater
@@ -30,6 +29,7 @@ import org.microg.gms.gcm.GcmDatabase
 import org.microg.gms.gcm.GcmPrefs
 import org.microg.gms.gcm.getGcmServiceInfo
 
+@Suppress("DEPRECATION")
 class PushNotificationFragment : PreferenceFragmentCompat() {
     private lateinit var switchBarPreference: SwitchBarPreference
     private lateinit var pushStatusCategory: PreferenceCategory
@@ -97,8 +97,8 @@ class PushNotificationFragment : PreferenceFragmentCompat() {
         lifecycleScope.launchWhenStarted {
             val statusInfo = getGcmServiceInfo(appContext)
             switchBarPreference.isChecked = statusInfo.configuration.enabled
-            pushStatusCategory.isVisible = statusInfo != null && statusInfo.configuration.enabled
-            pushStatus.summary = if (statusInfo != null && statusInfo.connected) {
+            pushStatusCategory.isVisible = true && statusInfo.configuration.enabled
+            pushStatus.summary = if (statusInfo.connected) {
                 appContext.getString(R.string.gcm_network_state_connected, DateUtils.getRelativeTimeSpanString(statusInfo.startTimestamp, System.currentTimeMillis(), 0))
             } else {
                 appContext.getString(R.string.gcm_network_state_disconnected)
@@ -120,9 +120,11 @@ class PushNotificationFragment : PreferenceFragmentCompat() {
                     pref.order = idx
                     pref.applicationInfo = applicationInfo
                     pref.onPreferenceClickListener = Preference.OnPreferenceClickListener {
-                        findNavController().navigate(requireContext(), R.id.openGcmAppDetails, bundleOf(
+                        findNavController().navigate(
+                            requireContext(), R.id.openGcmAppDetails, bundleOf(
                                 "package" to app.packageName
-                        ))
+                            )
+                        )
                         true
                     }
                     pref.key = "pref_push_app_" + app.packageName
@@ -131,15 +133,42 @@ class PushNotificationFragment : PreferenceFragmentCompat() {
                 database.close()
                 res
             }
-            pushAppsAll.isVisible = showAll
+
             pushApps.removeAll()
-            for (app in apps) {
-                pushApps.addPreference(app)
+
+            val totalDisplayed = when {
+                apps.isEmpty() -> 1
+                showAll -> apps.size + 1
+                else -> apps.size
             }
-            if (showAll) {
-                pushApps.addPreference(pushAppsAll)
-            } else if (apps.isEmpty()) {
+
+            apps.forEachIndexed { index, pref ->
+                pref.layoutResource = chooseLayoutForPosition(index, totalDisplayed)
+                pref.isIconSpaceReserved = true
+                pushApps.addPreference(pref)
+            }
+
+            if (apps.isEmpty()) {
+                pushAppsNone.layoutResource = chooseLayoutForPosition(0, totalDisplayed)
+                pushAppsNone.isIconSpaceReserved = false
                 pushApps.addPreference(pushAppsNone)
+            } else if (showAll) {
+                pushAppsAll.layoutResource = chooseLayoutForPosition(apps.size, totalDisplayed)
+                pushAppsAll.isIconSpaceReserved = false
+                pushApps.addPreference(pushAppsAll)
+            }
+            pushAppsAll.isVisible = showAll
+        }
+    }
+
+    private fun chooseLayoutForPosition(index: Int, total: Int): Int {
+        return if (total <= 1) {
+            R.layout.preference_material_secondary_top
+        } else {
+            if (index == 0) {
+                R.layout.preference_material_secondary_top
+            } else {
+                R.layout.preference_material_secondary_middle
             }
         }
     }
@@ -148,11 +177,13 @@ class PushNotificationFragment : PreferenceFragmentCompat() {
         setHasOptionsMenu(true)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.gcm_menu_item, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_settings -> {

@@ -20,7 +20,6 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +30,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -43,6 +43,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 public abstract class AbstractAboutFragment extends Fragment {
 
@@ -71,7 +72,7 @@ public abstract class AbstractAboutFragment extends Fragment {
     }
 
     protected String getAppName() {
-        return getAppName(getContext());
+        return getAppName(requireContext());
     }
 
     public static String getLibVersion(String packageName) {
@@ -94,7 +95,7 @@ public abstract class AbstractAboutFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         view.setBackgroundColor(MaterialColors.getColor(view, android.R.attr.colorBackground));
     }
@@ -116,7 +117,7 @@ public abstract class AbstractAboutFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View aboutRoot = inflater.inflate(R.layout.about_root, container, false);
 
-        ((ImageView) aboutRoot.findViewById(android.R.id.icon)).setImageDrawable(getIcon(getContext()));
+        ((ImageView) aboutRoot.findViewById(android.R.id.icon)).setImageDrawable(getIcon(requireContext()));
         ((TextView) aboutRoot.findViewById(android.R.id.title)).setText(getAppName());
         ((TextView) aboutRoot.findViewById(R.id.about_version)).setText(getString(R.string.about_version_str, getSelfVersion()));
 
@@ -153,11 +154,12 @@ public abstract class AbstractAboutFragment extends Fragment {
             super(context, android.R.layout.simple_list_item_2, android.R.id.text1, libraries);
         }
 
+        @NonNull
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(int position, View convertView, @NonNull ViewGroup parent) {
             View v = super.getView(position, convertView, parent);
-            ((TextView) v.findViewById(android.R.id.text1)).setText(getString(R.string.about_name_version_str, getItem(position).name, getLibVersion(getItem(position).packageName)));
-            ((TextView) v.findViewById(android.R.id.text2)).setText(getItem(position).copyright != null ? getItem(position).copyright : getString(R.string.about_default_license));
+            ((TextView) v.findViewById(android.R.id.text1)).setText(getString(R.string.about_name_version_str, Objects.requireNonNull(getItem(position)).name, getLibVersion(Objects.requireNonNull(getItem(position)).packageName)));
+            ((TextView) v.findViewById(android.R.id.text2)).setText(Objects.requireNonNull(getItem(position)).copyright != null ? Objects.requireNonNull(getItem(position)).copyright : getString(R.string.about_default_license));
             return v;
         }
     }
@@ -173,6 +175,7 @@ public abstract class AbstractAboutFragment extends Fragment {
             this.copyright = copyright;
         }
 
+        @NonNull
         @Override
         public String toString() {
             return name + ", " + copyright;

@@ -1,4 +1,7 @@
 <resources>
+
+    <!--material colors-->
+
     <color name="md_theme_primary">#ADC7FF</color>
     <color name="md_theme_onPrimary">#0F2F60</color>
     <color name="md_theme_primaryContainer">#2A4678</color>

@@ -56,7 +56,6 @@ class SettingsFragment : ResourceSettingsFragment() {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         super.onCreatePreferences(savedInstanceState, rootKey)
-
         setupStaticPreferenceClickListeners()
         updateAboutSummary()
         loadStaticEntries()

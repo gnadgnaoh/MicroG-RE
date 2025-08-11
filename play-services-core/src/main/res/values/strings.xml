@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ SPDX-FileCopyrightText: 2017 MicroG Project Team
   ~ SPDX-License-Identifier: Apache-2.0
   -->
+
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="gms_app_name">MicroG</string>
     <string name="gms_settings_name">MicroG Settings</string>

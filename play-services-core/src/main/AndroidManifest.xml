@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<!--
   ~ Copyright (C) 2013-2019 microG Project Team
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,6 +13,7 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -269,7 +270,7 @@
             android:exported="true"
             android:label="@string/pref_accounts_add_account_title"
             android:process=":ui"
-            android:theme="@style/AppThemeLauncher">
+            android:theme="@style/AppTheme.Login">
             <intent-filter>
                 <action android:name="${basePackageName}.android.gms.auth.login.LOGIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -281,7 +282,7 @@
             android:excludeFromRecents="true"
             android:exported="true"
             android:process=":ui"
-            android:theme="@style/Component.Dialog" />
+            android:theme="@style/Theme.Component.Material.AlertDialog" />
 
         <service
             android:name=".auth.GetToken"
@@ -332,7 +333,7 @@
 
         <activity
             android:name="org.microg.gms.auth.signin.AuthSignInActivity"
-            android:theme="@style/Component.Dialog"
+            android:theme="@style/Theme.Component.Material.AlertDialog"
             android:process=":ui"
             android:exported="true">
             <intent-filter>
@@ -427,7 +428,7 @@
             android:name="org.microg.gms.ui.AskPushPermission"
             android:excludeFromRecents="true"
             android:process=":ui"
-            android:theme="@style/AppThemeTransparent" />
+            android:theme="@style/AppTheme.Transparent" />
 
         <activity
             android:name="org.microg.gms.ui.SelfCheckFragment$AsActivity"
@@ -440,7 +441,7 @@
             android:label="@string/pref_account_title"
             android:process=":ui"
             android:taskAffinity="org.microg.gms.settings"
-            android:theme="@style/AppThemeLauncher" />
+            android:theme="@style/AppTheme.Login" />
 
         <activity
             android:name="org.microg.gms.ui.PrivacySettingsActivity"
@@ -453,7 +454,7 @@
             android:process=":ui"
             android:exported="false"
             android:taskAffinity="org.microg.gms.settings"
-            android:theme="@style/Component.Dialog">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="com.google.android.gms.accountsettings.MY_ACCOUNT" />
                 <action android:name="com.google.android.gms.accountsettings.ACCOUNT_PREFERENCES_SETTINGS" />
