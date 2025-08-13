@@ -2,6 +2,8 @@
  * SPDX-FileCopyrightText: 2020, microG Project Team
  * SPDX-License-Identifier: Apache-2.0
  */
+@file:Suppress("DEPRECATION")
+
 package org.microg.gms.gcm
 
 import android.app.Activity
@@ -21,7 +23,7 @@ import org.microg.gms.checkin.LastCheckinInfo
 import org.microg.gms.common.ForegroundServiceContext
 import org.microg.gms.common.PackageUtils
 import org.microg.gms.gcm.GcmConstants.*
-import org.microg.gms.ui.AskPushPermission
+import org.microg.gms.ui.AskPushPermissionActivity
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
@@ -37,7 +39,9 @@ private suspend fun ensureCheckinIsUpToDate(context: Context) {
             val continued = AtomicBoolean(false)
             intent.putExtra(CheckinService.EXTRA_RESULT_RECEIVER, object : ResultReceiver(null) {
                 override fun onReceiveResult(resultCode: Int, resultData: Bundle?) {
-                    if (continued.compareAndSet(false, true)) continuation.resume(resultData ?: Bundle.EMPTY)
+                    if (continued.compareAndSet(false, true)) continuation.resume(
+                        resultData ?: Bundle.EMPTY
+                    )
                 }
             })
             ForegroundServiceContext(context).startService(intent)
@@ -51,21 +55,23 @@ private suspend fun ensureCheckinIsUpToDate(context: Context) {
     }
 }
 
-private suspend fun ensureAppRegistrationAllowed(context: Context, database: GcmDatabase, packageName: String) {
+private suspend fun ensureAppRegistrationAllowed(
+    context: Context, database: GcmDatabase, packageName: String
+) {
     if (!GcmPrefs.get(context).isEnabled) throw RuntimeException("GCM disabled")
     val app = database.getApp(packageName)
     if (app == null && GcmPrefs.get(context).confirmNewApps) {
         val accepted: Boolean = suspendCoroutine { continuation ->
-            val i = Intent(context, AskPushPermission::class.java)
-            i.putExtra(AskPushPermission.EXTRA_REQUESTED_PACKAGE, packageName)
-            i.putExtra(AskPushPermission.EXTRA_RESULT_RECEIVER, object : ResultReceiver(null) {
-                override fun onReceiveResult(resultCode: Int, resultData: Bundle?) {
-                    continuation.resume(resultCode == Activity.RESULT_OK)
-                }
-            })
+            val i = Intent(context, AskPushPermissionActivity::class.java)
+            i.putExtra(AskPushPermissionActivity.EXTRA_REQUESTED_PACKAGE, packageName)
+            i.putExtra(
+                AskPushPermissionActivity.EXTRA_RESULT_RECEIVER, object : ResultReceiver(null) {
+                    override fun onReceiveResult(resultCode: Int, resultData: Bundle?) {
+                        continuation.resume(resultCode == Activity.RESULT_OK)
+                    }
+                })
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             i.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
-            i.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT)
             context.startActivity(i)
         }
         if (!accepted) {
@@ -76,8 +82,12 @@ private suspend fun ensureAppRegistrationAllowed(context: Context, database: Gcm
     }
 }
 
-suspend fun completeRegisterRequest(context: Context, database: GcmDatabase, request: RegisterRequest, requestId: String? = null): Bundle = suspendCoroutine { continuation ->
-    PushRegisterManager.completeRegisterRequest(context, database, requestId, request) { continuation.resume(it) }
+suspend fun completeRegisterRequest(
+    context: Context, database: GcmDatabase, request: RegisterRequest, requestId: String? = null
+): Bundle = suspendCoroutine { continuation ->
+    PushRegisterManager.completeRegisterRequest(
+        context, database, requestId, request
+    ) { continuation.resume(it) }
 }
 
 private val Intent.requestId: String?
@@ -124,7 +134,10 @@ class PushRegisterService : LifecycleService() {
     private suspend fun handleIntent(intent: Intent) {
         try {
             ensureCheckinIsUpToDate(this)
-            if (ACTION_C2DM_UNREGISTER == intent.action || ACTION_C2DM_REGISTER == intent.action && "1" == intent.getStringExtra(EXTRA_DELETE)) {
+            if (ACTION_C2DM_UNREGISTER == intent.action || ACTION_C2DM_REGISTER == intent.action && "1" == intent.getStringExtra(
+                    EXTRA_DELETE
+                )
+            ) {
                 unregister(intent)
             } else if (ACTION_C2DM_REGISTER == intent.action) {
                 register(intent)
@@ -137,21 +150,23 @@ class PushRegisterService : LifecycleService() {
 
     private fun replyNotAvailable(intent: Intent) {
         val outIntent = Intent(ACTION_C2DM_REGISTRATION)
-        outIntent.putExtra(EXTRA_ERROR, PushRegisterManager.attachRequestId(ERROR_SERVICE_NOT_AVAILABLE, intent.requestId))
+        outIntent.putExtra(
+            EXTRA_ERROR,
+            PushRegisterManager.attachRequestId(ERROR_SERVICE_NOT_AVAILABLE, intent.requestId)
+        )
         sendReply(intent, intent.appPackageName, outIntent)
     }
 
     private suspend fun register(intent: Intent) {
         val packageName = intent.appPackageName ?: throw RuntimeException("No package provided")
         ensureAppRegistrationAllowed(this, database, packageName)
-        Log.d(TAG, "register[req]: " + intent.toString() + " extras=" + intent!!.extras)
-        val bundle = completeRegisterRequest(this, database,
-                RegisterRequest()
-                        .build(this)
-                        .sender(intent.getStringExtra(EXTRA_SENDER))
-                        .checkin(LastCheckinInfo.read(this))
-                        .app(packageName)
-                        .extraParams(intent.extras))
+        Log.d(TAG, "register[req]: " + intent.toString() + " extras=" + intent.extras)
+        val bundle = completeRegisterRequest(
+            this,
+            database,
+            RegisterRequest().build(this).sender(intent.getStringExtra(EXTRA_SENDER))
+                .checkin(LastCheckinInfo.read(this)).app(packageName).extraParams(intent.extras)
+        )
 
         val outIntent = Intent(ACTION_C2DM_REGISTRATION)
         outIntent.putExtras(bundle)
@@ -162,12 +177,11 @@ class PushRegisterService : LifecycleService() {
     private suspend fun unregister(intent: Intent) {
         val packageName = intent.appPackageName ?: throw RuntimeException("No package provided")
         Log.d(TAG, "unregister[req]: " + intent.toString() + " extras=" + intent.extras)
-        val bundle = completeRegisterRequest(this, database, RegisterRequest()
-                .build(this)
-                .sender(intent.getStringExtra(EXTRA_SENDER))
-                .checkin(LastCheckinInfo.read(this))
-                .app(packageName)
-                .extraParams(intent.extras)
+        val bundle = completeRegisterRequest(
+            this,
+            database,
+            RegisterRequest().build(this).sender(intent.getStringExtra(EXTRA_SENDER))
+                .checkin(LastCheckinInfo.read(this)).app(packageName).extraParams(intent.extras)
         )
         val outIntent = Intent(ACTION_C2DM_REGISTRATION)
         outIntent.putExtras(bundle)
@@ -205,7 +219,11 @@ class PushRegisterService : LifecycleService() {
     }
 }
 
-internal class PushRegisterHandler(private val context: Context, private val database: GcmDatabase, override val lifecycle: Lifecycle) : Handler(), LifecycleOwner {
+internal class PushRegisterHandler(
+    private val context: Context,
+    private val database: GcmDatabase,
+    override val lifecycle: Lifecycle
+) : Handler(), LifecycleOwner {
 
     private var callingUid = 0
     override fun sendMessageAtTime(msg: Message, uptimeMillis: Long): Boolean {
@@ -235,6 +253,7 @@ internal class PushRegisterHandler(private val context: Context, private val dat
         }
     }
 
+    @Suppress("unused")
     private fun sendReply(what: Int, id: Int, replyTo: Messenger, data: Bundle, oneWay: Boolean) {
         if (what == 0) {
             val outIntent = Intent(ACTION_C2DM_REGISTRATION)
@@ -247,7 +266,10 @@ internal class PushRegisterHandler(private val context: Context, private val dat
         sendReplyViaMessage(what, id, replyTo, messageData)
     }
 
-    private fun replyError(what: Int, id: Int, replyTo: Messenger, errorMessage: String, oneWay: Boolean) {
+    @Suppress("SameParameterValue")
+    private fun replyError(
+        what: Int, id: Int, replyTo: Messenger, errorMessage: String, oneWay: Boolean
+    ) {
         val bundle = Bundle()
         bundle.putString(EXTRA_ERROR, errorMessage)
         sendReply(what, id, replyTo, bundle, oneWay)
@@ -258,12 +280,13 @@ internal class PushRegisterHandler(private val context: Context, private val dat
     }
 
     private val selfAuthIntent: PendingIntent
-        private get() {
+        get() {
             val intent = Intent()
             intent.setPackage("com.google.example.invalidpackage")
             return PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
         }
 
+    @Suppress("DEPRECATION")
     override fun handleMessage(msg: Message) {
         var msg = msg
         val obj = msg.obj
@@ -310,14 +333,13 @@ internal class PushRegisterHandler(private val context: Context, private val dat
                         val delete = subdata?.get("delete") != null
                         ensureCheckinIsUpToDate(context)
                         if (!delete) ensureAppRegistrationAllowed(context, database, packageName)
-                        val bundle = completeRegisterRequest(context, database,
-                                RegisterRequest()
-                                        .build(context)
-                                        .sender(sender)
-                                        .checkin(LastCheckinInfo.read(context))
-                                        .app(packageName)
-                                        .delete(delete)
-                                        .extraParams(subdata))
+                        val bundle = completeRegisterRequest(
+                            context,
+                            database,
+                            RegisterRequest().build(context).sender(sender)
+                                .checkin(LastCheckinInfo.read(context)).app(packageName)
+                                .delete(delete).extraParams(subdata)
+                        )
                         sendReply(what, id, replyTo, bundle, oneWay)
                     } catch (e: Exception) {
                         Log.w(TAG, e)
@@ -325,6 +347,7 @@ internal class PushRegisterHandler(private val context: Context, private val dat
                     }
                 }
             }
+
             2 -> {
                 val messageId = subdata!!.getString("google.message_id")
                 Log.d(TAG, "Ack $messageId for $packageName")
@@ -333,6 +356,7 @@ internal class PushRegisterHandler(private val context: Context, private val dat
                 i.putExtra(EXTRA_APP, selfAuthIntent)
                 ForegroundServiceContext(context).startService(i)
             }
+
             else -> {
                 val bundle = Bundle()
                 bundle.putBoolean("unsupported", true)
@@ -348,6 +372,7 @@ internal class PushRegisterHandler(private val context: Context, private val dat
     }
 }
 
+@Suppress("DEPRECATION")
 class PushRegisterReceiver : WakefulBroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val intent2 = Intent(context, PushRegisterService::class.java)

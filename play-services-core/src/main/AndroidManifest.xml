@@ -63,6 +63,7 @@
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.READ_SYNC_STATS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
@@ -425,8 +426,10 @@
         </activity-alias>
 
         <activity
-            android:name="org.microg.gms.ui.AskPushPermission"
+            android:name="org.microg.gms.ui.AskPushPermissionActivity"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
             android:excludeFromRecents="true"
+            android:noHistory="true"
             android:process=":ui"
             android:theme="@style/AppTheme.Transparent" />
 
