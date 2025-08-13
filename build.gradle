@@ -8,13 +8,14 @@ buildscript {
     ext.basePackageName = "app.revanced"
 
     ext.annotationVersion = '1.9.1'
+    ext.androidXLegacyVersion = '1.0.0'
     ext.appcompatVersion = '1.7.0'
     ext.biometricVersion = '1.1.0'
     ext.coreVersion = '1.16.0'
     ext.fragmentVersion = '1.8.6'
     ext.lifecycleVersion = '2.8.7'
     ext.loaderVersion = '1.1.0'
-    ext.materialVersion = '1.13.0-alpha13'
+    ext.materialVersion = '1.14.0-alpha03'
     ext.mediarouterVersion = '1.7.0'
     ext.multidexVersion = '2.0.1'
     ext.navigationVersion = '2.8.9'
@@ -38,7 +39,7 @@ buildscript {
 
     ext.androidMinSdk = 24
     ext.androidTargetSdk = 29
-    ext.androidCompileSdk = 34
+    ext.androidCompileSdk = 36
 
     ext.localProperties = new Properties()
 

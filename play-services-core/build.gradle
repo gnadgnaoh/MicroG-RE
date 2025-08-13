@@ -14,12 +14,18 @@ dependencies {
     implementation "com.squareup.wire:wire-runtime:$wireVersion"
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     includeProjects.each { projectName ->
+        //noinspection DependencyNotationArgument
         implementation project(projectName)
     }
 
+    // AndroidX Legacy
+    implementation "androidx.legacy:legacy-support-v4:$androidXLegacyVersion"
+
     // AndroidX UI
     implementation "androidx.multidex:multidex:$multidexVersion"
+    //noinspection GradleDependency
     implementation "androidx.appcompat:appcompat:$appcompatVersion"
+    //noinspection GradleDependency
     implementation "androidx.mediarouter:mediarouter:$mediarouterVersion"
     implementation "androidx.preference:preference-ktx:$preferenceVersion"
     //noinspection GradleDependency
