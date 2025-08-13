@@ -114,6 +114,7 @@ Việc này có thể tốn thời gian"</string>
     <string name="checkin_last_registration">Lần liên kết cuối: <xliff:g example="Yesterday, 02:20 PM">%1$s</xliff:g></string>
     <string name="checkin_enable_switch">Thiết bị đã liên kết</string>
 
+    <string name="prefcat_details">Chi tiết</string>
     <string name="pref_info_status">Trạng thái</string>
 
     <string name="pref_account_title">Tài khoản</string>

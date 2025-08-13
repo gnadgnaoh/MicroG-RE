@@ -55,7 +55,7 @@ This can take a couple of minutes"</string>
     <string name="perm_extended_access_label">Extended access to Google services</string>
 
     <string name="service_name_checkin">Device registration</string>
-    <string name="service_name_mcs">Cloud Messaging</string>
+    <string name="service_name_mcs">Cloud messaging</string>
 
     <string name="network_type_mobile">Mobile network</string>
     <string name="network_type_wifi">Wi-Fi</string>
@@ -97,7 +97,7 @@ This can take a couple of minutes"</string>
     <string name="prefcat_about">About</string>
 
     <string name="cond_gcm_bat_title">Battery optimizations enabled</string>
-    <string name="cond_gcm_bat_summary">You enabled Cloud Messaging but have battery optimizations active for MicroG Services. For push notifications to arrive you should ignore battery optimizations</string>
+    <string name="cond_gcm_bat_summary">You enabled Cloud messaging but have battery optimizations active for MicroG Services. For push notifications to arrive you should ignore battery optimizations</string>
     <string name="cond_gcm_bat_action">Ignore optimizations</string>
     <string name="cond_perm_title">Permission missing</string>
 
@@ -118,11 +118,12 @@ This can take a couple of minutes"</string>
     <string name="checkin_last_registration">Last registration: <xliff:g example="Yesterday, 02:20 PM">%1$s</xliff:g></string>
     <string name="checkin_enable_switch">Register device</string>
 
+    <string name="prefcat_details">Details</string>
     <string name="pref_info_status">Status</string>
 
     <string name="pref_account_title">Accounts</string>
     <string name="pref_account_summary">Login in new Google account</string>
-    <string name="pref_gcm_enable_mcs_summary">Cloud Messaging is a push notification provider used for modified apps. To use it you must enable device registration</string>
+    <string name="pref_gcm_enable_mcs_summary">Cloud messaging is a push notification provider used for modified apps. To use it you must enable device registration</string>
     <string name="pref_gcm_confirm_new_apps_title">Confirm new apps</string>
     <string name="pref_gcm_confirm_new_apps_summary">Ask before registering a new app to receive push notifications</string>
 

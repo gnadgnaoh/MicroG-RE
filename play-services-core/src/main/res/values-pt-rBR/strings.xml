@@ -108,6 +108,7 @@ Isso pode levar alguns minutos. Por favor, seja paciente."</string>
     <string name="checkin_last_registration">Último registro: <xliff:g example="Yesterday, 02:20 PM">%1$s</xliff:g></string>
     <string name="checkin_enable_switch">Registrar dispositivo</string>
 
+    <string name="prefcat_details">Detalhes</string>
     <string name="pref_info_status">Status</string>
 
     <string name="pref_account_title">Contas</string>

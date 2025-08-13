@@ -41,6 +41,7 @@
             android:layout="@layout/preference_material_error_bottom"
             android:title="@string/gcm_unregister_app" />
     </PreferenceCategory>
+
     <PreferenceCategory
         android:key="prefcat_push_app_unregister"
         android:layout="@layout/preference_category_no_label"
@@ -51,6 +52,6 @@
             android:key="pref_push_app_status"
             android:layout="@layout/preference_material_information"
             android:selectable="false"
-            android:title="Messages: 1000 (37 MB)\nLast message: 22 min ago\nRegistered since: 3 month ago" />
+            tools:title="Messages: 1000 (37 MB)\nLast message: 22 min ago\nRegistered since: 3 month ago" />
     </PreferenceCategory>
 </PreferenceScreen>

@@ -46,4 +46,3 @@
             android:textColor="?android:attr/textColorSecondary" />
     </RelativeLayout>
 </LinearLayout>
-

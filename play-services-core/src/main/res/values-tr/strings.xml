@@ -122,6 +122,7 @@ Bu işlem birkaç dakika sürebilir."</string>
     <string name="checkin_last_registration">Son kayıt: <xliff:g example="Dün, 14:20">%1$s</xliff:g></string>
     <string name="checkin_enable_switch">Cihazı kaydet</string>
 
+    <string name="prefcat_details">Detaylar</string>
     <string name="pref_info_status">Durum</string>
 
     <string name="pref_account_title">Hesaplar</string>

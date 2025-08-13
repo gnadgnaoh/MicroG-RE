@@ -29,24 +29,25 @@
 
         <Preference
             android:key="pref_device_profile_import"
-            android:layout="@layout/preference_material_middle"
+            android:layout="@layout/preference_material_bottom"
             android:summary="@string/pref_device_registration_import_custom_profile_summary"
             android:title="@string/pref_device_registration_import_custom_profile_title"
             app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="prefcat_device_registration_status"
+        android:layout="@layout/preference_material_category"
+        app:allowDividerAbove="false"
+        app:title="@string/prefcat_details">
 
         <Preference
             android:key="pref_device_serial"
-            android:layout="@layout/preference_material_middle"
+            android:layout="@layout/preference_material_top"
             android:selectable="false"
             android:title="@string/pref_device_registration_serial_title"
             app:iconSpaceReserved="false"
             tools:summary="123456" />
-
-    </PreferenceCategory>
-    <PreferenceCategory
-        android:key="prefcat_device_registration_status"
-        android:layout="@layout/preference_category_no_label"
-        app:allowDividerAbove="false">
 
         <Preference
             android:key="pref_device_registration_android_id"

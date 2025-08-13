@@ -98,6 +98,9 @@
     <string name="checkin_last_registration">Ostatnia rejestracja: <xliff:g example="Wczoraj, 14:20">%1$s</xliff:g></string>
     <string name="checkin_enable_switch">Zarejestruj urządzenie</string>
 
+    <string name="prefcat_details">Szczegóły</string>
+    <string name="pref_info_status">Status</string>
+
     <string name="pref_account_title">Konta</string>
     <string name="pref_account_summary">Zaloguj się na nowe konto Google</string>
     <string name="pref_gcm_enable_mcs_summary">Cloud Messaging jest systemem zapewniającym powiadomienia dla wielu aplikacji. Musisz uruchomić rejestrację urządzenia, aby z niego korzystać</string>

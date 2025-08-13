@@ -162,13 +162,13 @@ class PushNotificationFragment : PreferenceFragmentCompat() {
     }
 
     private fun chooseLayoutForPosition(index: Int, total: Int): Int {
-        return if (total <= 1) {
-            R.layout.preference_material_secondary_top
-        } else {
-            if (index == 0) {
-                R.layout.preference_material_secondary_top
-            } else {
-                R.layout.preference_material_secondary_middle
+        return when {
+            total <= 1 -> R.layout.preference_material_secondary_single
+            total == 2 -> if (index == 0) R.layout.preference_material_secondary_top else R.layout.preference_material_secondary_bottom
+            else -> when (index) {
+                0 -> R.layout.preference_material_secondary_top
+                total - 1 -> R.layout.preference_material_secondary_bottom
+                else -> R.layout.preference_material_secondary_middle
             }
         }
     }

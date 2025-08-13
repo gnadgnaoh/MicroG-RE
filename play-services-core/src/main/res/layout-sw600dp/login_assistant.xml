@@ -93,7 +93,6 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/logo_view"
-                        tools:ignore="PrivateResource"
                         tools:text="@string/pref_accounts_add_account_title" />
 
                     <FrameLayout

@@ -23,6 +23,7 @@
 
     <SwitchPreferenceCompat
         android:defaultValue="true"
+        android:enabled="false"
         android:key="auth_manager_trust_google"
         android:layout="@layout/preference_material_top"
         android:summary="@string/pref_auth_trust_google_summary"

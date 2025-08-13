@@ -28,8 +28,8 @@
             android:title="@string/list_no_item_none"
             app:isPreferenceVisible="false"
             tools:isPreferenceVisible="true" />
-
     </PreferenceCategory>
+
     <PreferenceCategory
         android:key="prefcat_push_apps_unregistered"
         android:layout="@layout/preference_material_category"

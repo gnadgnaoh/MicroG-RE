@@ -138,7 +138,7 @@ class PushNotificationAppFragment : PreferenceFragmentCompat() {
                     sb.append(getString(R.string.gcm_registered_since, DateUtils.getRelativeDateTimeString(context, registration.timestamp, DateUtils.MINUTE_IN_MILLIS, DateUtils.WEEK_IN_MILLIS, DateUtils.FORMAT_SHOW_TIME)))
                 }
             }
-            status.summary = sb.toString()
+            status.title = sb.toString()
 
             database.close()
         }

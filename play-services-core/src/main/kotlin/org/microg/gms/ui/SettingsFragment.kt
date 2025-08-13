@@ -10,12 +10,12 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
 import android.os.PowerManager
 import android.provider.Settings
 import android.util.Log
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.net.toUri
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -50,6 +50,11 @@ class SettingsFragment : ResourceSettingsFragment() {
 
     private val createdPreferences = mutableListOf<Preference>()
 
+    private val requestIgnoreBatteryOptimizationLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            updateBatteryOptimizationPreference()
+        }
+
     init {
         preferencesResource = R.xml.preferences_start
     }
@@ -59,17 +64,15 @@ class SettingsFragment : ResourceSettingsFragment() {
         setupStaticPreferenceClickListeners()
         updateAboutSummary()
         loadStaticEntries()
-        updateBatteryOptimizationPreferenceVisibility()
+        updateBatteryOptimizationPreference()
     }
 
     override fun onResume() {
         super.onResume()
-
-        requireActivity().findViewById<ExtendedFloatingActionButton>(R.id.preference_fab)?.visibility = View.GONE
-
-        updateBatteryOptimizationPreferenceVisibility()
+        activity?.findViewById<ExtendedFloatingActionButton>(R.id.preference_fab)?.visibility =
+            View.GONE
+        updateBatteryOptimizationPreference()
         updateHideLauncherIconSwitchState()
-
         updateGcmSummary()
         updateCheckinSummary()
         updateDynamicEntries()
@@ -80,37 +83,30 @@ class SettingsFragment : ResourceSettingsFragment() {
             findNavController().navigate(requireContext(), R.id.accountManagerFragment)
             true
         }
-
         findPreference<Preference>(PREF_CHECKIN)?.setOnPreferenceClickListener {
             findNavController().navigate(requireContext(), R.id.openCheckinSettings)
             true
         }
-
         findPreference<Preference>(PREF_GCM)?.setOnPreferenceClickListener {
             findNavController().navigate(requireContext(), R.id.openGcmSettings)
             true
         }
-
         findPreference<Preference>(PREF_PRIVACY)?.setOnPreferenceClickListener {
             findNavController().navigate(requireContext(), R.id.privacyFragment)
             true
         }
-
         findPreference<SwitchPreferenceCompat>(PREF_HIDE_LAUNCHER_ICON)?.setOnPreferenceChangeListener { _, newValue ->
             toggleActivityVisibility(MainSettingsActivity::class.java, !(newValue as Boolean))
             true
         }
-
         findPreference<Preference>(PREF_DEVELOPER)?.setOnPreferenceClickListener {
             openLink(getString(R.string.developer_link))
             true
         }
-
         findPreference<Preference>(PREF_GITHUB)?.setOnPreferenceClickListener {
             openLink(getString(R.string.github_link))
             true
         }
-
         findPreference<Preference>(PREF_ABOUT)?.setOnPreferenceClickListener {
             findNavController().navigate(requireContext(), R.id.openAbout)
             true
@@ -118,20 +114,21 @@ class SettingsFragment : ResourceSettingsFragment() {
     }
 
     private fun updateAboutSummary() {
-        findPreference<Preference>(PREF_ABOUT)?.summary =
-            getString(org.microg.tools.ui.R.string.about_version_str, AboutFragment.getSelfVersion(context))
+        findPreference<Preference>(PREF_ABOUT)?.summary = getString(
+            org.microg.tools.ui.R.string.about_version_str, AboutFragment.getSelfVersion(context)
+        )
     }
 
     private fun loadStaticEntries() {
-        getAllSettingsProviders(requireContext())
-            .flatMap { it.getEntriesStatic(requireContext()) }
-            .forEach { entry -> entry.createPreference() }
+        val ctx = context ?: return
+        getAllSettingsProviders(ctx).flatMap { it.getEntriesStatic(ctx) }
+            .forEach { entry -> entry.createPreference(ctx) }
     }
 
     private fun updateDynamicEntries() {
         lifecycleScope.launch {
-            val entries = getAllSettingsProviders(requireContext())
-                .flatMap { it.getEntriesDynamic(requireContext()) }
+            val ctx = context ?: return@launch
+            val entries = getAllSettingsProviders(ctx).flatMap { it.getEntriesDynamic(ctx) }
 
             createdPreferences.forEach { preference ->
                 if (entries.none { it.key == preference.key }) preference.isVisible = false
@@ -140,7 +137,7 @@ class SettingsFragment : ResourceSettingsFragment() {
             entries.forEach { entry ->
                 val preference = createdPreferences.find { it.key == entry.key }
                 if (preference != null) preference.fillFromEntry(entry)
-                else entry.createPreference()
+                else entry.createPreference(ctx)
             }
         }
     }
@@ -150,33 +147,40 @@ class SettingsFragment : ResourceSettingsFragment() {
             packageName
         ) == true
 
-    private fun updateBatteryOptimizationPreferenceVisibility() {
+    private fun updateBatteryOptimizationPreference() {
+        val ctx = context ?: return
         findPreference<Preference>(PREF_IGNORE_BATTERY_OPTIMIZATION)?.apply {
-            isVisible = !requireContext().isIgnoringBatteryOptimizations
+            isVisible = !ctx.isIgnoringBatteryOptimizations
             setOnPreferenceClickListener {
-                requestBatteryOptimizationPermission()
+                requestIgnoringBatteryOptimizations()
                 true
             }
         }
     }
 
-    private fun requestBatteryOptimizationPermission() {
+    private fun requestIgnoringBatteryOptimizations() {
+        val ctx = context ?: return
         val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS).apply {
-            data = Uri.fromParts("package", requireContext().packageName, null)
+            data = "package:${ctx.packageName}".toUri()
         }
         try {
-            startActivity(intent)
-        } catch (e: ActivityNotFoundException) {
-            Log.w(TAG, "Not possible request battery optimization permission", e)
+            requestIgnoreBatteryOptimizationLauncher.launch(intent)
+        } catch (_: ActivityNotFoundException) {
+            try {
+                val fallbackIntent = Intent(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS)
+                requestIgnoreBatteryOptimizationLauncher.launch(fallbackIntent)
+            } catch (e2: ActivityNotFoundException) {
+                Log.w(TAG, "Device does not support ignoring battery optimizations", e2)
+            }
         }
     }
 
     private fun toggleActivityVisibility(activityClass: Class<*>, showActivity: Boolean) {
-        val component = ComponentName(requireContext(), activityClass)
+        val ctx = context ?: return
+        val component = ComponentName(ctx, activityClass)
         val newState = if (showActivity) PackageManager.COMPONENT_ENABLED_STATE_ENABLED
         else PackageManager.COMPONENT_ENABLED_STATE_DISABLED
-
-        requireActivity().packageManager.setComponentEnabledSetting(
+        ctx.packageManager.setComponentEnabledSetting(
             component, newState, PackageManager.DONT_KILL_APP
         )
     }
@@ -187,20 +191,18 @@ class SettingsFragment : ResourceSettingsFragment() {
     }
 
     private fun isIconActivityVisible(activityClass: Class<*>): Boolean {
-        val component = ComponentName(requireContext(), activityClass)
-        val setting = requireActivity().packageManager.getComponentEnabledSetting(component)
-
-        return when (setting) {
+        val ctx = context ?: return false
+        val component = ComponentName(ctx, activityClass)
+        return when (ctx.packageManager.getComponentEnabledSetting(component)) {
             PackageManager.COMPONENT_ENABLED_STATE_ENABLED -> true
             PackageManager.COMPONENT_ENABLED_STATE_DISABLED -> false
-            PackageManager.COMPONENT_ENABLED_STATE_DEFAULT -> {
+            else -> {
                 try {
-                    requireActivity().packageManager.getActivityInfo(component, 0).enabled
+                    ctx.packageManager.getActivityInfo(component, 0).enabled
                 } catch (_: PackageManager.NameNotFoundException) {
                     false
                 }
             }
-            else -> false
         }
     }
 
@@ -212,21 +214,22 @@ class SettingsFragment : ResourceSettingsFragment() {
             val database = GcmDatabase(context)
             val regCount = database.registrationList.size
             database.close()
-
-            pref.summary = context.getString(org.microg.gms.base.core.R.string.service_status_enabled_short) +
-                    " - " + context.resources.getQuantityString(R.plurals.gcm_registered_apps_counter, regCount, regCount)
+            pref.summary =
+                context.getString(org.microg.gms.base.core.R.string.service_status_enabled_short) + " - " + context.resources.getQuantityString(
+                    R.plurals.gcm_registered_apps_counter, regCount, regCount
+                )
         } else {
             pref.setSummary(org.microg.gms.base.core.R.string.service_status_disabled_short)
         }
     }
 
     private fun updateCheckinSummary() {
-        val summaryRes = if (CheckinPreferences.isEnabled(requireContext()))
-            org.microg.gms.base.core.R.string.service_status_enabled_short
-        else org.microg.gms.base.core.R.string.service_status_disabled_short
-
+        val summaryRes =
+            if (CheckinPreferences.isEnabled(requireContext())) org.microg.gms.base.core.R.string.service_status_enabled_short
+            else org.microg.gms.base.core.R.string.service_status_disabled_short
         findPreference<Preference>(PREF_CHECKIN)?.setSummary(summaryRes)
     }
+
 
     private fun openLink(url: String) {
         try {
@@ -236,15 +239,14 @@ class SettingsFragment : ResourceSettingsFragment() {
         }
     }
 
-    private fun SettingsProvider.Companion.Entry.createPreference(): Preference? {
-        val preference = Preference(requireContext()).fillFromEntry(this)
+    private fun SettingsProvider.Companion.Entry.createPreference(context: Context): Preference? {
+        val preference = Preference(context).fillFromEntry(this)
         val categoryKey = when (group) {
             SettingsProvider.Companion.Group.HEADER -> "prefcat_header"
             SettingsProvider.Companion.Group.GOOGLE -> "prefcat_google_services"
             SettingsProvider.Companion.Group.OTHER -> "prefcat_other_services"
             SettingsProvider.Companion.Group.FOOTER -> "prefcat_footer"
         }
-
         return try {
             findPreference<PreferenceCategory>(categoryKey)?.addPreference(preference)?.let {
                 if (it) createdPreferences.add(preference)
@@ -264,7 +266,7 @@ class SettingsFragment : ResourceSettingsFragment() {
         isPersistent = false
         isVisible = true
         setOnPreferenceClickListener {
-            findNavController().navigate(requireContext(), entry.navigationId)
+            findNavController().navigate(context, entry.navigationId)
             true
         }
         return this

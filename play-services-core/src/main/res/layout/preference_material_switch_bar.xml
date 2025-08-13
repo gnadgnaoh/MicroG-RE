@@ -7,12 +7,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/material_switch_bar_background_on"
-    android:minHeight="?attr/listPreferredItemHeight"
-    android:orientation="vertical"
     android:layout_marginStart="?attr/listPreferredItemPaddingStart"
     android:layout_marginEnd="?attr/listPreferredItemPaddingEnd"
-    android:layout_marginBottom="12dp">
+    android:layout_marginBottom="12dp"
+    android:background="@drawable/material_switch_bar_background_on"
+    android:minHeight="?attr/listPreferredItemHeight"
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/frame"
@@ -32,7 +32,6 @@
             android:ellipsize="end"
             android:textAppearance="?attr/textAppearanceTitleMediumEmphasized"
             android:textColor="?attr/colorOnPrimaryContainer"
-            tools:ignore="PrivateResource"
             tools:text="Enabled" />
 
         <com.google.android.material.materialswitch.MaterialSwitch
