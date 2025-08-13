@@ -57,9 +57,13 @@ class AccountsFragment : PreferenceFragmentCompat() {
         setupPreferenceListeners()
     }
 
+    override fun onStart() {
+        super.onStart()
+        fab.show()
+    }
+
     override fun onResume() {
         super.onResume()
-        fab.show()
         refreshAccountSettings()
     }
 
@@ -70,23 +74,21 @@ class AccountsFragment : PreferenceFragmentCompat() {
 
     private fun setupPreferenceListeners() {
         findPreference<Preference>("pref_manage_accounts")?.setOnPreferenceClickListener {
-            val intent = Intent(Settings.ACTION_SYNC_SETTINGS)
-            startActivitySafelyIntent(intent, "Failed to launch sync in device settings")
+            startActivitySafelyIntent(
+                Intent(Settings.ACTION_SYNC_SETTINGS), "Failed to launch sync in device settings"
+            )
             true
         }
-
         findPreference<Preference>("pref_privacy")?.setOnPreferenceClickListener {
             startActivitySafely(
                 PrivacySettingsActivity::class.java, "Failed to launch privacy activity"
             )
             true
         }
-
         findPreference<Preference>("pref_manage_history")?.setOnPreferenceClickListener {
             openUrl("https://myactivity.google.com/product/youtube")
             true
         }
-
         findPreference<Preference>("pref_your_data")?.setOnPreferenceClickListener {
             openUrl("https://myaccount.google.com/yourdata/youtube")
             true
@@ -103,13 +105,13 @@ class AccountsFragment : PreferenceFragmentCompat() {
     }
 
     private fun startActivitySafely(activityClass: Class<*>, errorMessage: String) {
-        val intent = Intent(requireContext(), activityClass)
-        startActivitySafelyIntent(intent, errorMessage)
+        startActivitySafelyIntent(Intent(requireContext(), activityClass), errorMessage)
     }
 
     private fun openUrl(url: String) {
-        val intent = Intent(Intent.ACTION_VIEW, url.toUri())
-        startActivitySafelyIntent(intent, "Failed to open URL: $url")
+        startActivitySafelyIntent(
+            Intent(Intent.ACTION_VIEW, url.toUri()), "Failed to open URL: $url"
+        )
     }
 
     private fun addAccountFab() {
@@ -119,7 +121,6 @@ class AccountsFragment : PreferenceFragmentCompat() {
         fab.setOnClickListener {
             startActivitySafely(LoginActivity::class.java, "Failed to launch login activity")
         }
-        fab.show()
     }
 
     private fun refreshAccountSettings() {
@@ -130,53 +131,57 @@ class AccountsFragment : PreferenceFragmentCompat() {
         clearAccountPreferences()
 
         val category = findPreference<PreferenceCategory>("prefcat_current_accounts") ?: return
-        val accountsCategoryVisible = accounts.isNotEmpty()
-        category.isVisible = accountsCategoryVisible
-        if (!accountsCategoryVisible) return
+        category.isVisible = accounts.isNotEmpty()
+        if (accounts.isEmpty()) return
 
-        lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             val quickBitmaps: List<Bitmap?> = withContext(Dispatchers.IO) {
                 accounts.map { acc -> PeopleManager.getOwnerAvatarBitmap(context, acc.name, false) }
             }
 
-            val total = accounts.size
             accounts.forEachIndexed { index, account ->
                 val photo = quickBitmaps.getOrNull(index)
-                val newPreference = Preference(requireContext()).apply {
-                    title = getDisplayName(account)
-                    summary = account.name
-                    key = "account:${account.name}"
-                    order = index
-                    icon = getCircleBitmapDrawable(photo)
-                    layoutResource = chooseLayoutForPosition(index, total)
-                    isIconSpaceReserved = photo != null
-                    setOnPreferenceClickListener {
-                        showAccountRemovalDialog(account.name)
-                        true
-                    }
-                }
+                category.addPreference(
+                    createAccountPreference(
+                        account, photo, index, accounts.size
+                    )
+                )
 
-                if (category.findPreference<Preference>(newPreference.key) == null) {
-                    category.addPreference(newPreference)
+                if (photo == null) {
+                    loadAndSetFullAvatar(account, category)
                 }
             }
+        }
+    }
 
-            accounts.forEachIndexed { index, account ->
-                if (quickBitmaps.getOrNull(index) == null) {
-                    lifecycleScope.launch {
-                        val bmp: Bitmap? = withContext(Dispatchers.IO) {
-                            PeopleManager.getOwnerAvatarBitmap(context, account.name, true)
-                        }
-                        bmp?.let {
-                            val drawable = getCircleBitmapDrawable(it)
-                            withContext(Dispatchers.Main) {
-                                val pref =
-                                    category.findPreference<Preference>("account:${account.name}")
-                                pref?.icon = drawable
-                                pref?.isIconSpaceReserved = true
-                            }
-                        }
-                    }
+    private fun createAccountPreference(
+        account: Account, photo: Bitmap?, index: Int, total: Int
+    ): Preference {
+        return Preference(requireContext()).apply {
+            title = getDisplayName(account) ?: account.name
+            summary = account.name
+            key = "account:${account.name}"
+            order = index
+            icon = getCircleBitmapDrawable(photo)
+            layoutResource = chooseLayoutForPosition(index, total)
+            isIconSpaceReserved = photo != null
+            setOnPreferenceClickListener {
+                showAccountRemovalDialog(account.name)
+                true
+            }
+        }
+    }
+
+    private fun loadAndSetFullAvatar(account: Account, category: PreferenceCategory) {
+        val context = requireContext()
+        viewLifecycleOwner.lifecycleScope.launch {
+            val bmp: Bitmap? = withContext(Dispatchers.IO) {
+                PeopleManager.getOwnerAvatarBitmap(context, account.name, true)
+            }
+            bmp?.let {
+                category.findPreference<Preference>("account:${account.name}")?.apply {
+                    icon = getCircleBitmapDrawable(it)
+                    isIconSpaceReserved = true
                 }
             }
         }
@@ -185,12 +190,7 @@ class AccountsFragment : PreferenceFragmentCompat() {
     private fun chooseLayoutForPosition(index: Int, total: Int): Int {
         return when {
             total <= 1 -> R.layout.preference_material_secondary_single
-            total == 2 -> if (index == 0) {
-                R.layout.preference_material_secondary_top
-            } else {
-                R.layout.preference_material_secondary_bottom
-            }
-
+            total == 2 -> if (index == 0) R.layout.preference_material_secondary_top else R.layout.preference_material_secondary_bottom
             else -> when (index) {
                 0 -> R.layout.preference_material_secondary_top
                 total - 1 -> R.layout.preference_material_secondary_bottom
@@ -205,43 +205,39 @@ class AccountsFragment : PreferenceFragmentCompat() {
 
     private fun showAccountRemovalDialog(accountName: String) {
         val account = Account(accountName, AuthConstants.DEFAULT_ACCOUNT_TYPE)
-
         val dialogView =
             LayoutInflater.from(requireContext()).inflate(R.layout.dialog_remove_account, null)
 
-        val avatarView = dialogView.findViewById<ShapeableImageView>(R.id.account_avatar)
-        val nameView = dialogView.findViewById<MaterialTextView>(R.id.account_name)
-        val emailView = dialogView.findViewById<MaterialTextView>(R.id.account_email)
-        val dialogTitle = dialogView.findViewById<MaterialTextView>(R.id.dialog_title)
-        val messageView = dialogView.findViewById<MaterialTextView>(R.id.dialog_message)
-        val positiveButton = dialogView.findViewById<MaterialButton>(R.id.positive_button)
-        val negativeButton = dialogView.findViewById<MaterialButton>(R.id.negative_button)
+        dialogView.findViewById<MaterialTextView>(R.id.account_name).text =
+            getDisplayName(account) ?: accountName
+        dialogView.findViewById<MaterialTextView>(R.id.account_email).text = accountName
+        dialogView.findViewById<MaterialTextView>(R.id.dialog_title).text =
+            getString(R.string.dialog_title_remove_account)
+        dialogView.findViewById<MaterialTextView>(R.id.dialog_message).text =
+            getString(R.string.dialog_message_remove_account)
+        dialogView.findViewById<MaterialButton>(R.id.positive_button).text =
+            getString(R.string.dialog_confirm_button)
+        dialogView.findViewById<MaterialButton>(R.id.negative_button).text =
+            getString(R.string.dialog_cancel_button)
 
-        nameView.text = getDisplayName(account) ?: accountName
-        emailView.text = accountName
-        dialogTitle.text = getString(R.string.dialog_title_remove_account)
-        messageView.text = getString(R.string.dialog_message_remove_account)
-        positiveButton.text = getString(R.string.dialog_confirm_button)
-        negativeButton.text = getString(R.string.dialog_cancel_button)
-
-        lifecycleScope.launch(Dispatchers.IO) {
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
             PeopleManager.getOwnerAvatarBitmap(requireContext(), accountName, true)?.let { bmp ->
-                val circular = RoundedBitmapDrawableFactory.create(resources, bmp).apply {
-                    isCircular = true
-                }
+                val circular =
+                    RoundedBitmapDrawableFactory.create(resources, bmp).apply { isCircular = true }
                 withContext(Dispatchers.Main) {
-                    avatarView.setImageDrawable(circular)
+                    dialogView.findViewById<ShapeableImageView>(R.id.account_avatar)
+                        .setImageDrawable(circular)
                 }
             }
         }
 
         val dialog = MaterialAlertDialogBuilder(requireContext()).setView(dialogView).create()
 
-        positiveButton.setOnClickListener {
+        dialogView.findViewById<MaterialButton>(R.id.positive_button).setOnClickListener {
             removeAccount(accountName)
             dialog.dismiss()
         }
-        negativeButton.setOnClickListener {
+        dialogView.findViewById<MaterialButton>(R.id.negative_button).setOnClickListener {
             dialog.dismiss()
         }
         dialog.show()
@@ -250,34 +246,25 @@ class AccountsFragment : PreferenceFragmentCompat() {
     private fun removeAccount(accountName: String) {
         val rootView = view ?: return
         val accountManager = AccountManager.get(requireContext())
-        val accounts = accountManager.getAccountsByType(AuthConstants.DEFAULT_ACCOUNT_TYPE)
-        val accountToRemove = accounts.firstOrNull { it.name == accountName }
+        val accountToRemove = accountManager.getAccountsByType(AuthConstants.DEFAULT_ACCOUNT_TYPE)
+            .firstOrNull { it.name == accountName }
 
         accountToRemove?.let {
+            var cancelRemoval = false
             val snackbar = Snackbar.make(
                 rootView,
                 getString(R.string.snackbar_remove_account, accountName),
                 Snackbar.LENGTH_LONG
-            )
-
-            var cancelRemoval = false
-
-            snackbar.setAction(getString(R.string.snackbar_undo_button)) {
-                cancelRemoval = true
-            }
+            ).setAction(getString(R.string.snackbar_undo_button)) { cancelRemoval = true }
 
             snackbar.addCallback(object : Snackbar.Callback() {
                 override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
                     if (!cancelRemoval) {
-                        lifecycleScope.launch(Dispatchers.IO) {
-                            try {
-                                val removedSuccessfully = accountManager.removeAccountExplicitly(it)
-                                if (removedSuccessfully) {
-                                    withContext(Dispatchers.Main) {
-                                        refreshAccountSettings()
-                                    }
+                        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+                            if (accountManager.removeAccountExplicitly(it)) {
+                                withContext(Dispatchers.Main) {
+                                    refreshAccountSettings()
                                 }
-                            } catch (_: Exception) {
                             }
                         }
                     }
@@ -288,28 +275,24 @@ class AccountsFragment : PreferenceFragmentCompat() {
     }
 
     private fun getDisplayName(account: Account): String? {
-        val databaseHelper = DatabaseHelper(requireContext())
-        val cursor = databaseHelper.getOwner(account.name)
+        val dbHelper = DatabaseHelper(requireContext())
+        val cursor = dbHelper.getOwner(account.name)
         return try {
             if (cursor.moveToNext()) {
-                cursor.getColumnIndex("display_name").takeIf { it >= 0 }
-                    ?.let { cursor.getString(it) }?.takeIf { it.isNotBlank() }
+                val index = cursor.getColumnIndex("display_name")
+                if (index >= 0) cursor.getString(index)?.takeIf { it.isNotBlank() } else null
             } else null
         } finally {
             cursor.close()
-            databaseHelper.close()
+            dbHelper.close()
         }
     }
 
     private fun getCircleBitmapDrawable(bitmap: Bitmap?) = bitmap?.let {
-        RoundedBitmapDrawableFactory.create(resources, it).apply {
-            isCircular = true
-        }
+        RoundedBitmapDrawableFactory.create(resources, it).apply { isCircular = true }
     }
 
     private fun showSnackbar(message: String) {
-        view?.let {
-            Snackbar.make(it, message, Snackbar.LENGTH_LONG).show()
-        }
+        view?.let { Snackbar.make(it, message, Snackbar.LENGTH_LONG).show() }
     }
 }
