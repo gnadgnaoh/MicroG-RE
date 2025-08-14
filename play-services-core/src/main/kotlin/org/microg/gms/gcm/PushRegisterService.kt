@@ -72,6 +72,7 @@ private suspend fun ensureAppRegistrationAllowed(
                 })
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             i.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
+            i.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
             context.startActivity(i)
         }
         if (!accepted) {
