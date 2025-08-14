@@ -267,11 +267,12 @@
 
         <activity
             android:name="org.microg.gms.auth.login.LoginActivity"
-            android:configChanges="uiMode|keyboardHidden|keyboard|screenSize"
+            android:configChanges="uiMode|orientation|keyboardHidden|keyboard|screenSize"
             android:exported="true"
             android:label="@string/pref_accounts_add_account_title"
             android:process=":ui"
-            android:theme="@style/AppTheme.Login">
+            android:theme="@style/AppTheme.Login"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="${basePackageName}.android.gms.auth.login.LOGIN" />
                 <category android:name="android.intent.category.DEFAULT" />
