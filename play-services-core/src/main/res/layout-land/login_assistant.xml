@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:importantForAccessibility="no"
-                android:src="@drawable/microg_logo"
+                android:src="@drawable/ic_microg_logotipo"
                 app:layout_constraintStart_toEndOf="@+id/guideline"
                 app:layout_constraintTop_toTopOf="parent" />
 
