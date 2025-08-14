@@ -28,12 +28,13 @@
         android:layout="@layout/preference_material_top"
         android:summary="@string/pref_auth_trust_google_summary"
         android:title="@string/pref_auth_trust_google_title"
-        app:iconSpaceReserved="false" />
+        app:iconSpaceReserved="false"
+        app:isPreferenceVisible="false" />
 
     <SwitchPreferenceCompat
         android:defaultValue="false"
         android:key="auth_manager_visible"
-        android:layout="@layout/preference_material_bottom"
+        android:layout="@layout/preference_material_single"
         android:summary="@string/pref_auth_visible_summary"
         android:title="@string/pref_auth_visible_title"
         app:iconSpaceReserved="false" />
