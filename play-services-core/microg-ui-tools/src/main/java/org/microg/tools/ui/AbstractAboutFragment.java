@@ -45,6 +45,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
+/**
+ * @noinspection unused
+ */
 public abstract class AbstractAboutFragment extends Fragment {
 
     protected abstract void collectLibraries(List<Library> libraries);
@@ -52,7 +55,7 @@ public abstract class AbstractAboutFragment extends Fragment {
     public static Drawable getIcon(Context context) {
         try {
             PackageManager pm = context.getPackageManager();
-            return pm.getPackageInfo(context.getPackageName(), 0).applicationInfo.loadIcon(pm);
+            return Objects.requireNonNull(pm.getPackageInfo(context.getPackageName(), 0).applicationInfo).loadIcon(pm);
         } catch (PackageManager.NameNotFoundException e) {
             // Never happens, self package always exists!
             throw new RuntimeException(e);
@@ -62,7 +65,7 @@ public abstract class AbstractAboutFragment extends Fragment {
     public static String getAppName(Context context) {
         try {
             PackageManager pm = context.getPackageManager();
-            CharSequence label = pm.getPackageInfo(context.getPackageName(), 0).applicationInfo.loadLabel(pm);
+            CharSequence label = Objects.requireNonNull(pm.getPackageInfo(context.getPackageName(), 0).applicationInfo).loadLabel(pm);
             if (TextUtils.isEmpty(label)) return context.getPackageName();
             return label.toString().trim();
         } catch (PackageManager.NameNotFoundException e) {
@@ -141,8 +144,10 @@ public abstract class AbstractAboutFragment extends Fragment {
 
         Button btnCheckUpdates = aboutRoot.findViewById(R.id.btnCheckUpdates);
         btnCheckUpdates.setOnClickListener(v -> {
-            UpdateChecker updateChecker = new UpdateChecker(getContext());
-            updateChecker.checkForUpdates(() -> {
+            Context context = getContext();
+            if (context == null) return;
+            UpdateChecker updateChecker = new UpdateChecker(context);
+            updateChecker.checkForUpdates(v, () -> {
             });
         });
         return aboutRoot;
