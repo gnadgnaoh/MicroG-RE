@@ -4,6 +4,7 @@
   -->
 
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -41,6 +42,7 @@
             android:layout_gravity="center_vertical"
             android:clickable="false"
             android:focusable="false"
+            app:thumbIcon="@drawable/ic_check_switch"
             tools:checked="true" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.appcompat.widget.LinearLayoutCompat>
