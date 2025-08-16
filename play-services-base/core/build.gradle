@@ -12,6 +12,7 @@ dependencies {
     api project(':play-services-basement-ktx')
 
     implementation "androidx.annotation:annotation:$annotationVersion"
+    //noinspection GradleDependency
     implementation "androidx.appcompat:appcompat:$appcompatVersion"
     //noinspection GradleDependency
     implementation "androidx.lifecycle:lifecycle-service:$lifecycleVersion"
@@ -22,6 +23,7 @@ dependencies {
     implementation "androidx.preference:preference-ktx:$preferenceVersion"
     implementation "com.google.android.material:material:$materialVersion"
 
+    //noinspection GradleDependency
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 }
 
@@ -29,7 +31,7 @@ android {
     namespace "org.microg.gms.base.core"
 
     compileSdkVersion androidCompileSdk
-    buildToolsVersion "$androidBuildVersionTools"
+//    buildToolsVersion "$androidBuildVersionTools"
 
     defaultConfig {
         versionName version
@@ -50,12 +52,13 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
+        sourceCompatibility JavaVersion.VERSION_18
+        targetCompatibility JavaVersion.VERSION_18
     }
 
     kotlinOptions {
-        jvmTarget = 1.8
+        //noinspection GrDeprecatedAPIUsage
+        jvmTarget = '18'
     }
 
     lintOptions {

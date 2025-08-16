@@ -12,6 +12,7 @@ dependencies {
     implementation project(':play-services-cast-framework')
     implementation project(':play-services-base-core')
 
+    //noinspection GradleDependency
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion"
     //noinspection GradleDependency
@@ -22,7 +23,7 @@ android {
     namespace "org.microg.gms.cast.framework.core"
 
     compileSdkVersion androidCompileSdk
-    buildToolsVersion "$androidBuildVersionTools"
+//    buildToolsVersion "$androidBuildVersionTools"
 
     defaultConfig {
         versionName version
@@ -44,12 +45,13 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
+        sourceCompatibility JavaVersion.VERSION_18
+        targetCompatibility JavaVersion.VERSION_18
     }
 
     kotlinOptions {
-        jvmTarget = 1.8
+        //noinspection GrDeprecatedAPIUsage
+        jvmTarget = '18'
     }
 }
 

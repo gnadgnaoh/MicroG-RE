@@ -20,7 +20,7 @@ android {
     namespace "org.microg.tools.ui"
 
     compileSdkVersion androidCompileSdk
-    buildToolsVersion "$androidBuildVersionTools"
+//    buildToolsVersion "$androidBuildVersionTools"
 
     defaultConfig {
         minSdkVersion androidMinSdk
@@ -30,8 +30,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
+        sourceCompatibility JavaVersion.VERSION_18
+        targetCompatibility JavaVersion.VERSION_18
     }
 
     buildFeatures {
@@ -43,9 +43,11 @@ android {
 }
 
 dependencies {
+    //noinspection GradleDependency
     implementation "androidx.appcompat:appcompat:$appcompatVersion"
     implementation "androidx.preference:preference:$preferenceVersion"
     implementation "com.google.android.material:material:$materialVersion"
+    //noinspection NewerVersionAvailable
     implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
 }
 
