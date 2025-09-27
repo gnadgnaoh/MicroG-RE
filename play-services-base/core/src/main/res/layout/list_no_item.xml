@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<!--
   ~ Copyright (C) 2013 The Android Open Source Project
   ~ Copyright (C) 2013-2017 microG Project Team
   ~
@@ -21,6 +21,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground"
+    android:baselineAligned="false"
     android:gravity="center_vertical"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:paddingEnd="?android:attr/scrollbarSize"
@@ -45,4 +46,3 @@
             android:textColor="?android:attr/textColorSecondary" />
     </RelativeLayout>
 </LinearLayout>
-

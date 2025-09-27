@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Copyright (C) 2013-2017 microG Project Team
   ~
@@ -18,35 +17,46 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory android:title="@string/prefcat_applications" />
+    <PreferenceCategory
+        android:layout="@layout/preference_material_category_small"
+        android:title="@string/prefcat_applications" />
 
-        <SwitchPreferenceCompat
-            android:defaultValue="true"
-            android:title="@string/pref_auth_trust_google_title"
-            android:key="auth_manager_trust_google"
-            android:summary="@string/pref_auth_trust_google_summary"
-            app:iconSpaceReserved="false" />
+    <SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:enabled="false"
+        android:key="auth_manager_trust_google"
+        android:layout="@layout/preference_material_top"
+        android:summary="@string/pref_auth_trust_google_summary"
+        android:title="@string/pref_auth_trust_google_title"
+        app:iconSpaceReserved="false"
+        app:isPreferenceVisible="false" />
 
-        <SwitchPreferenceCompat
-            android:defaultValue="false"
-            android:key="auth_manager_visible"
-            android:summary="@string/pref_auth_visible_summary"
-            android:title="@string/pref_auth_visible_title"
-            app:iconSpaceReserved="false" />
+    <SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="auth_manager_visible"
+        android:layout="@layout/preference_material_single"
+        android:summary="@string/pref_auth_visible_summary"
+        android:title="@string/pref_auth_visible_title"
+        app:iconSpaceReserved="false" />
 
-    <PreferenceCategory android:title="@string/prefcat_authentication" />
+    <PreferenceCategory
+        android:layout="@layout/preference_material_category"
+        android:title="@string/prefcat_authentication"
+        app:allowDividerAbove="false" />
 
-        <SwitchPreferenceCompat
-            android:defaultValue="true"
-            android:key="auth_include_android_id"
-            android:summary="@string/pref_auth_include_android_id_summary"
-            android:title="@string/pref_auth_include_android_id_title"
-            app:iconSpaceReserved="false" />
+    <SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:key="auth_include_android_id"
+        android:layout="@layout/preference_material_top"
+        android:summary="@string/pref_auth_include_android_id_summary"
+        android:title="@string/pref_auth_include_android_id_title"
+        app:iconSpaceReserved="false" />
 
-        <SwitchPreferenceCompat
-            android:defaultValue="false"
-            android:key="auth_strip_device_name"
-            android:summary="@string/pref_auth_strip_device_name_summary"
-            android:title="@string/pref_auth_strip_device_name_title"
-            app:iconSpaceReserved="false" />
+    <SwitchPreferenceCompat
+        android:defaultValue="false"
+        android:key="auth_strip_device_name"
+        android:layout="@layout/preference_material_bottom"
+        android:summary="@string/pref_auth_strip_device_name_summary"
+        android:title="@string/pref_auth_strip_device_name_title"
+        app:iconSpaceReserved="false" />
 </PreferenceScreen>

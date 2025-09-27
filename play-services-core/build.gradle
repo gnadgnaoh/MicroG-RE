@@ -14,12 +14,18 @@ dependencies {
     implementation "com.squareup.wire:wire-runtime:$wireVersion"
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     includeProjects.each { projectName ->
+        //noinspection DependencyNotationArgument
         implementation project(projectName)
     }
 
+    // AndroidX Legacy
+    implementation "androidx.legacy:legacy-support-v4:$androidXLegacyVersion"
+
     // AndroidX UI
     implementation "androidx.multidex:multidex:$multidexVersion"
+    //noinspection GradleDependency
     implementation "androidx.appcompat:appcompat:$appcompatVersion"
+    //noinspection GradleDependency
     implementation "androidx.mediarouter:mediarouter:$mediarouterVersion"
     implementation "androidx.preference:preference-ktx:$preferenceVersion"
     //noinspection GradleDependency
@@ -38,6 +44,7 @@ dependencies {
 
     //noinspection GradleDependency
     implementation "androidx.lifecycle:lifecycle-service:$lifecycleVersion"
+    //noinspection GradleDependency
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
 }
 
@@ -45,7 +52,7 @@ android {
     namespace "$applicationNamespace"
 
     compileSdkVersion androidCompileSdk
-    buildToolsVersion "$androidBuildVersionTools"
+//    buildToolsVersion "$androidBuildVersionTools"
 
     buildFeatures {
         buildConfig = true
@@ -115,12 +122,13 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_18
+        targetCompatibility JavaVersion.VERSION_18
     }
 
     kotlinOptions {
-        jvmTarget = 1.8
+        //noinspection GrDeprecatedAPIUsage
+        jvmTarget = '18'
     }
 
     packagingOptions {

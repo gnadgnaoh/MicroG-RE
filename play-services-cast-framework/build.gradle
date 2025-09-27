@@ -11,7 +11,7 @@ android {
     namespace "com.google.android.gms.cast.framework"
 
     compileSdkVersion androidCompileSdk
-    buildToolsVersion "$androidBuildVersionTools"
+//    buildToolsVersion "$androidBuildVersionTools"
 
     buildFeatures {
         aidl = true
@@ -28,8 +28,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_18
+        targetCompatibility JavaVersion.VERSION_18
     }
 }
 
@@ -62,6 +62,6 @@ dependencies {
     api project(':play-services-basement')
     api project(':play-services-cast')
     api project(':play-services-tasks')
-    //noinspection GradleDependency
+    //noinspection NewerVersionAvailable,GradleDependency
     api 'com.google.guava:listenablefuture:1.0'
 }

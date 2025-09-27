@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ SPDX-FileCopyrightText: 2017, microG Project Team
   ~ SPDX-License-Identifier: Apache-2.0
@@ -15,10 +14,13 @@
 
     <PreferenceCategory
         android:key="prefcat_device_profile"
-        android:title="@string/pref_device_registration_device_profile_category">
+        android:layout="@layout/preference_material_category"
+        android:title="@string/pref_device_registration_device_profile_category"
+        app:allowDividerAbove="false">
 
         <ListPreference
             android:key="pref_device_profile"
+            android:layout="@layout/preference_material_top"
             android:persistent="false"
             android:title="@string/pref_device_registration_select_profile_title"
             app:dialogIcon="@drawable/ic_profile_device"
@@ -27,36 +29,46 @@
 
         <Preference
             android:key="pref_device_profile_import"
+            android:layout="@layout/preference_material_bottom"
             android:summary="@string/pref_device_registration_import_custom_profile_summary"
-            android:title="@string/pref_device_registration_import_custom_profile_title" />
-
-        <Preference
-            android:selectable="false"
-            android:key="pref_device_serial"
-            android:title="@string/pref_device_registration_serial_title"
-            tools:summary="123456" />
-
+            android:title="@string/pref_device_registration_import_custom_profile_title"
+            app:iconSpaceReserved="false" />
     </PreferenceCategory>
+
     <PreferenceCategory
         android:key="prefcat_device_registration_status"
-        android:layout="@layout/preference_category_no_label">
+        android:layout="@layout/preference_material_category"
+        app:allowDividerAbove="false"
+        app:title="@string/prefcat_details">
 
         <Preference
+            android:key="pref_device_serial"
+            android:layout="@layout/preference_material_top"
             android:selectable="false"
+            android:title="@string/pref_device_registration_serial_title"
+            app:iconSpaceReserved="false"
+            tools:summary="123456" />
+
+        <Preference
             android:key="pref_device_registration_android_id"
+            android:layout="@layout/preference_material_middle"
+            android:selectable="false"
             android:title="@string/pref_device_registration_android_id"
+            app:iconSpaceReserved="false"
             tools:summary="1953a59d1c1b7e4b" />
 
         <Preference
             android:key="pref_device_registration_status"
+            android:layout="@layout/preference_material_bottom"
             android:selectable="false"
             android:title="@string/pref_info_status"
+            app:iconSpaceReserved="false"
             tools:summary="Last registration: 13 hours ago" />
 
-        <PreferenceCategory android:icon="@drawable/ic_information" />
-
-        <org.microg.gms.ui.TextPreference
+        <Preference
+            android:icon="@drawable/ic_information"
+            android:layout="@layout/preference_material_information"
             android:selectable="false"
-            android:summary="@string/pref_checkin_enable_summary" />
+            android:title="@string/pref_checkin_enable_summary" />
     </PreferenceCategory>
 </PreferenceScreen>

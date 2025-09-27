@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<!--
   ~ Copyright (C) 2013-2017 microG Project Team
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,10 +16,16 @@
 
 <resources>
 
+    <!--app icon-->
+
     <color name="ic_launcher_background">#FFFFFF</color>
+
+    <!--ui components-->
 
     <color name="dialog_border_color">#88CCCCCC</color>
     <color name="material_error">#BA1A1A</color>
+
+    <!--material colors-->
 
     <color name="md_theme_primary">#435E91</color>
     <color name="md_theme_onPrimary">#FFFFFF</color>

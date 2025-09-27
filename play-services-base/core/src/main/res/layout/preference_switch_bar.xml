@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ SPDX-FileCopyrightText: 2020 microG Project Team
   ~ SPDX-License-Identifier: Apache-2.0
@@ -27,8 +26,8 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textColor="?android:textColorPrimaryInverse"
         android:textSize="18sp"
-        tools:text="Enabled"
-        tools:ignore="RtlSymmetry" />
+        tools:ignore="RtlSymmetry"
+        tools:text="Enabled" />
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/switch_widget"

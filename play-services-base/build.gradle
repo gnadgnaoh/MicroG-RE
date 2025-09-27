@@ -22,7 +22,7 @@ android {
     namespace "com.google.android.gms.base"
 
     compileSdkVersion androidCompileSdk
-    buildToolsVersion "$androidBuildVersionTools"
+//    buildToolsVersion "$androidBuildVersionTools"
 
     aidlPackagedList "com/google/android/gms/common/data/DataHolder.aidl"
     aidlPackagedList "com/google/android/gms/common/images/WebImage.aidl"
@@ -41,8 +41,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
+        sourceCompatibility JavaVersion.VERSION_18
+        targetCompatibility JavaVersion.VERSION_18
     }
 }
 

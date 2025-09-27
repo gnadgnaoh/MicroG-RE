@@ -6,6 +6,10 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -34,13 +38,13 @@ public class UpdateChecker {
         this.client = new OkHttpClient.Builder().retryOnConnectionFailure(true).build();
     }
 
-    public void checkForUpdates(Runnable onComplete) {
+    public void checkForUpdates(View view, Runnable onComplete) {
         CompletableFuture.supplyAsync(this::fetchLatestVersion).thenAccept(latestVersion -> runOnMainThread(() -> {
-            handleLatestVersion(latestVersion);
+            handleLatestVersion(latestVersion, view);
             onComplete.run();
         })).exceptionally(throwable -> {
             runOnMainThread(() -> {
-                handleError(throwable);
+                handleError(throwable, view);
                 onComplete.run();
             });
             return null;
@@ -49,11 +53,9 @@ public class UpdateChecker {
 
     private String fetchLatestVersion() {
         Request request = new Request.Builder().url(GITHUB_API_URL).build();
-
         try (Response response = client.newCall(request).execute()) {
             if (response.isSuccessful() && response.body() != null) {
-                String jsonData = response.body().string();
-                return parseLatestVersion(jsonData);
+                return parseLatestVersion(response.body().string());
             } else {
                 throw new IOException("Unsuccessful response: " + response.code());
             }
@@ -71,52 +73,52 @@ public class UpdateChecker {
         }
     }
 
-    private void handleLatestVersion(String latestVersion) {
+    private void handleLatestVersion(String latestVersion, View view) {
         Context context = contextRef.get();
-        if (context == null) return;
-
-        View rootView = getRootView(context);
-        if (rootView == null) return;
+        if (context == null || view == null) return;
 
         String appVersion = context.getString(R.string.github_tag_version);
 
         if (appVersion.compareTo(latestVersion) < 0) {
-            showSnackbarWithAction(rootView, context.getString(R.string.update_available), context.getString(R.string.snackbar_button_download), v -> openGitHubReleaseLink(context));
+            showSnackbarWithAction(view, context.getString(R.string.update_available), context.getString(R.string.snackbar_button_download), v -> openGitHubReleaseLink(context));
         } else {
-            showSnackbar(rootView, context.getString(R.string.no_update_available));
+            showSnackbar(view, context.getString(R.string.no_update_available));
         }
     }
 
-    private void handleError(Throwable throwable) {
+    private void handleError(Throwable throwable, View view) {
         Context context = contextRef.get();
-        if (context == null) return;
+        if (context == null || view == null) return;
 
-        View rootView = getRootView(context);
-        if (rootView != null) {
-            String errorMessage = throwable.getMessage() != null && throwable.getMessage().toLowerCase().contains("connection") ? context.getString(R.string.error_connection) + " " + throwable.getMessage() : context.getString(R.string.error_others) + " " + throwable.getMessage();
-
-            showSnackbar(rootView, errorMessage);
-        }
+        String errorMessage = throwable.getMessage() != null && throwable.getMessage().toLowerCase().contains("connection") ? context.getString(R.string.error_connection) + " " + throwable.getMessage() : context.getString(R.string.error_others) + " " + throwable.getMessage();
+        showSnackbar(view, errorMessage);
     }
 
-    private void showSnackbar(View rootView, String message) {
-        Snackbar.make(rootView, message, Snackbar.LENGTH_LONG).show();
+    private void showSnackbar(View view, String message) {
+        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);
+        configureSnackbar(snackbar);
+        snackbar.show();
     }
 
-    private void showSnackbarWithAction(View rootView, String message, String actionText, View.OnClickListener actionListener) {
-        Snackbar.make(rootView, message, Snackbar.LENGTH_LONG).setAction(actionText, actionListener).show();
+    private void showSnackbarWithAction(View view, String message, String actionText, View.OnClickListener actionListener) {
+        Snackbar snackbar = Snackbar.make(view, message, Snackbar.LENGTH_LONG).setAction(actionText, actionListener);
+        configureSnackbar(snackbar);
+        snackbar.show();
+    }
+
+    private void configureSnackbar(Snackbar snackbar) {
+        ViewCompat.setOnApplyWindowInsetsListener(snackbar.getView(), (v, insets) -> {
+            int bottomPadding = insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom;
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
+            params.bottomMargin = bottomPadding;
+            v.setLayoutParams(params);
+            return insets;
+        });
     }
 
     private void openGitHubReleaseLink(Context context) {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(GITHUB_RELEASE_LINK));
         context.startActivity(intent);
-    }
-
-    private View getRootView(Context context) {
-        if (context instanceof android.app.Activity) {
-            return ((android.app.Activity) context).findViewById(android.R.id.content);
-        }
-        return null;
     }
 
     private void runOnMainThread(Runnable action) {

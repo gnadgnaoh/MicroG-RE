@@ -8,37 +8,38 @@ buildscript {
     ext.basePackageName = "app.revanced"
 
     ext.annotationVersion = '1.9.1'
-    ext.appcompatVersion = '1.7.0'
+    ext.androidXLegacyVersion = '1.0.0'
+    ext.appcompatVersion = '1.7.1'
     ext.biometricVersion = '1.1.0'
-    ext.coreVersion = '1.16.0'
-    ext.fragmentVersion = '1.8.6'
-    ext.lifecycleVersion = '2.8.7'
+    ext.coreVersion = '1.17.0'
+    ext.fragmentVersion = '1.8.9'
+    ext.lifecycleVersion = '2.9.2'
     ext.loaderVersion = '1.1.0'
-    ext.materialVersion = '1.13.0-alpha13'
-    ext.mediarouterVersion = '1.7.0'
+    ext.materialVersion = '1.14.0-alpha03'
+    ext.mediarouterVersion = '1.8.1'
     ext.multidexVersion = '2.0.1'
-    ext.navigationVersion = '2.8.9'
+    ext.navigationVersion = '2.9.3'
     ext.preferenceVersion = '1.2.1'
     ext.recyclerviewVersion = '1.4.0'
-    ext.webkitVersion = '1.13.0'
+    ext.webkitVersion = '1.14.0'
 
     ext.coroutineVersion = '1.10.2'
-    ext.kotlinVersion = '2.1.20'
+    ext.kotlinVersion = '2.2.10'
 
     ext.cronetVersion = '119.6045.31'
-    ext.okhttpVersion = '4.12.0'
+    ext.okhttpVersion = '5.1.0'
     ext.slf4jVersion = '2.0.17'
     ext.volleyVersion = '1.2.1'
     ext.wearableVersion = '0.1.1'
-    ext.wireVersion = '5.3.1'
+    ext.wireVersion = '5.3.10'
 
-    ext.androidBuildGradleVersion = '8.9.2'
+    ext.androidBuildGradleVersion = '8.12.0'
 
-    ext.androidBuildVersionTools = '34.0.0'
+//    ext.androidBuildVersionTools = '34.0.0'
 
     ext.androidMinSdk = 24
     ext.androidTargetSdk = 29
-    ext.androidCompileSdk = 34
+    ext.androidCompileSdk = 36
 
     ext.localProperties = new Properties()
 
@@ -82,8 +83,8 @@ allprojects {
     apply plugin: 'idea'
 
     group = 'org.microg.gms'
-    ext.appVersionName = 5.11
-    ext.appVersionCode = 251462000
+    ext.appVersionName = 5.12
+    ext.appVersionCode = 253133000
     ext.baseVersion = ext.appVersionCode.toString()[0..1] + '.' + ext.appVersionCode.toString()[2..3] + '.' + ext.appVersionCode.toString()[4..5]
     version = ext.appVersionName + " GMS-" + ext.baseVersion
     ext.isReleaseVersion = false

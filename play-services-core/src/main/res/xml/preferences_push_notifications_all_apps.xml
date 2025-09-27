@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ SPDX-FileCopyrightText: 2020, microG Project Team
   ~ SPDX-License-Identifier: Apache-2.0
@@ -16,27 +15,33 @@
 
     <PreferenceCategory
         android:key="prefcat_push_apps_registered"
+        android:layout="@layout/preference_material_category_small"
         android:title="@string/prefcat_push_apps_registered_title"
+        app:allowDividerAbove="false"
         app:isPreferenceVisible="false"
         tools:isPreferenceVisible="true">
 
         <Preference
             android:enabled="false"
             android:key="pref_push_apps_registered_none"
+            android:layout="@layout/preference_material_single"
             android:title="@string/list_no_item_none"
             app:isPreferenceVisible="false"
             tools:isPreferenceVisible="true" />
-
     </PreferenceCategory>
+
     <PreferenceCategory
         android:key="prefcat_push_apps_unregistered"
+        android:layout="@layout/preference_material_category"
         android:title="@string/prefcat_push_apps_unregistered_title"
+        app:allowDividerAbove="false"
         app:isPreferenceVisible="false"
         tools:isPreferenceVisible="true">
 
         <Preference
             android:enabled="false"
             android:key="pref_push_apps_unregistered_none"
+            android:layout="@layout/preference_material_single"
             android:title="@string/list_no_item_none"
             app:isPreferenceVisible="false"
             tools:isPreferenceVisible="true" />

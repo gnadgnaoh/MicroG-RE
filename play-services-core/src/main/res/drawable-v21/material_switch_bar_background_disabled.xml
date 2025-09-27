@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<!--
   ~ SPDX-FileCopyrightText: 2024 microG Project Team
   ~ SPDX-License-Identifier: Apache-2.0
   -->
@@ -7,8 +7,8 @@
     android:color="?attr/colorSurfaceContainerHighest">
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="?attr/colorSurfaceContainerHighest"/>
-            <corners android:radius="28dp"/>
+            <solid android:color="?attr/colorSurfaceContainerHighest" />
+            <corners android:radius="40dp" />
         </shape>
     </item>
 </ripple>

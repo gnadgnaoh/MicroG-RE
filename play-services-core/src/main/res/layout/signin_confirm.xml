@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ SPDX-FileCopyrightText: 2023 microG Project Team
   ~ SPDX-License-Identifier: Apache-2.0
@@ -76,6 +75,7 @@
             tools:text="To continue, microG will share name, email address and profile picture of your Google Account with Test App. Before using this app, review its privacy policy and terms of service." />
 
         <LinearLayout
+            style="?android:attr/buttonBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -84,12 +84,14 @@
 
             <Button
                 android:id="@android:id/button2"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@android:string/cancel" />
 
             <Button
                 android:id="@android:id/button1"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"

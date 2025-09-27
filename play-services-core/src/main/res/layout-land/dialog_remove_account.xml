@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.50" />
+        app:layout_constraintGuide_percent="0.5" />
 
     <include
         android:id="@+id/include_account_info"
@@ -23,19 +23,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/negative_button"
-        style="@style/Widget.Material3Expressive.Button.TonalButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/guideline_vertical_split"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/include_account_info"
-        app:layout_constraintVertical_bias="1.0"
-        tools:text="@string/dialog_cancel_button" />
-
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_container"
         style="?attr/materialCardViewFilledStyle"
@@ -43,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         app:cardBackgroundColor="?attr/colorSurfaceContainerHighest"
-        app:cardCornerRadius="16dp"
+        app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/guideline_vertical_split"
         app:layout_constraintTop_toTopOf="parent">
@@ -53,26 +40,45 @@
             style="?attr/textAppearanceBodyMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="12"
-            android:padding="14dp"
-            tools:ignore="VisualLintLongText"
+            android:maxLines="10"
+            android:padding="16dp"
             tools:text="@string/dialog_message_remove_account" />
     </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/positive_button"
-        style="@style/Widget.Material3Expressive.Button"
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier_bottom_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="include_account_info,card_container" />
+
+    <com.google.android.material.button.MaterialButtonGroup
+        android:id="@+id/button_group"
+        style="@style/Widget.Material3.MaterialButtonGroup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
         android:layout_marginTop="16dp"
-        android:backgroundTint="?attr/colorError"
-        android:textColor="?colorOnError"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/guideline_vertical_split"
-        app:layout_constraintTop_toBottomOf="@id/card_container"
-        app:layout_constraintVertical_bias="1.0"
-        tools:text="@string/dialog_confirm_button" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrier_bottom_content">
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/negative_button"
+            style="@style/Widget.Material3Expressive.Button.TonalButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:text="@string/dialog_cancel_button" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/positive_button"
+            style="@style/Widget.Material3Expressive.Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="?attr/colorError"
+            android:textColor="?colorOnError"
+            tools:text="@string/dialog_confirm_button" />
+    </com.google.android.material.button.MaterialButtonGroup>
 </androidx.constraintlayout.widget.ConstraintLayout>

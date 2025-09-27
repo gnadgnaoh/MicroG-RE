@@ -19,6 +19,7 @@ package org.microg.tools.ui;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
@@ -39,17 +40,20 @@ public abstract class AbstractSettingsFragment extends PreferenceFragmentCompat 
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         view.setBackgroundColor(MaterialColors.getColor(view, android.R.attr.colorBackground));
     }
 
+    /**
+     * @noinspection deprecation
+     */
     @Override
-    public void onDisplayPreferenceDialog(Preference preference) {
+    public void onDisplayPreferenceDialog(@NonNull Preference preference) {
         if (preference instanceof DialogPreference) {
             DialogFragment f = DialogPreference.DialogPreferenceCompatDialogFragment.newInstance(preference.getKey());
             f.setTargetFragment(this, 0);
-            f.show(getFragmentManager(), DIALOG_FRAGMENT_TAG);
+            f.show(requireFragmentManager(), DIALOG_FRAGMENT_TAG);
         } else {
             super.onDisplayPreferenceDialog(preference);
         }

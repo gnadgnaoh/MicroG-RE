@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2013-2017 microG Project Team
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,11 +14,12 @@
   ~ limitations under the License.
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
     android:orientation="vertical">
 
     <com.google.android.material.progressindicator.LinearProgressIndicator
@@ -27,7 +27,6 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:indeterminate="true"
-        android:layout_marginTop="12dp"
         app:indeterminateAnimatorDurationScale="6"
         app:waveAmplitude="6dp"
         app:wavelength="28dp" />
@@ -35,9 +34,9 @@
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/description_text"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:textAppearance="?attr/textAppearanceTitleMedium"
+        android:textAppearance="?attr/textAppearanceBodyLarge"
         android:textColor="?android:textColorPrimary"
         tools:text="@string/auth_connecting" />
-</LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

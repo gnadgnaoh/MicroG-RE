@@ -1,25 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?><!--
-  ~ SPDX-FileCopyrightText: 2024 microG Project Team
-  ~ SPDX-License-Identifier: Apache-2.0
-  -->
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-<resources>
-    <style name="Theme.Base.DayNight" parent="Theme.Base.Dark" />
-    <style name="Theme.Base.DayNight.NoActionBar" parent="Theme.Base.Dark.NoActionBar" />
+    <!--app theme base-->
 
-    <style name="AppThemeBase" parent="Theme.Base.DayNight.NoActionBar">
-        <!-- Theming -->
-        <item name="android:textAppearanceListItem">@style/TextAppearance.Preference.Title</item>
-        <item name="alertDialogTheme">@style/Component.AlertDialog</item>
-        <item name="snackbarStyle">@style/Component.Snackbar</item>
-        <item  name="android:windowActivityTransitions">true</item>
-        <!-- Layout padding -->
-        <item name="android:listPreferredItemHeightSmall">@dimen/settings_listPreferredItemHeightSmall</item>
-        <item name="android:listPreferredItemPaddingLeft">@dimen/settings_listPreferredItemPaddingStart</item>
-        <item name="android:listPreferredItemPaddingRight">@dimen/settings_listPreferredItemPaddingEnd</item>
-        <item name="android:listPreferredItemPaddingStart">@dimen/settings_listPreferredItemPaddingStart</item>
-        <item name="android:listPreferredItemPaddingEnd">@dimen/settings_listPreferredItemPaddingEnd</item>
-        <!-- Theme Colors -->
+    <style name="AppTheme.Base" parent="@style/Theme.Material3Expressive.Dark.NoActionBar">
+        <!--preference theme-->
+        <item name="android:colorAccent">?attr/colorPrimary</item>
+        <!--components theme-->
+        <item name="bottomSheetDialogTheme">@style/Theme.Component.Material.BottomSheet</item>
+        <item name="alertDialogTheme">@style/Theme.Component.Material.AlertDialog</item>
+        <item name="snackbarStyle">@style/Theme.Component.Material.Snackbar</item>
+        <item name="switchPreferenceCompatStyle">@style/Theme.Component.Material.SwitchPreferenceCompat</item>
+        <item name="switchBarPreferenceStyle">@style/Component.SwitchBarPreference</item>
+        <!--fixes some UI issues on MIUI/HyperOS devices -->
+        <item name="android:forceDarkAllowed" tools:targetApi="Q">false</item>
+        <!--app bars colors-->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">?android:colorBackground</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <!--material colors-->
         <item name="colorPrimary">@color/md_theme_primary</item>
         <item name="colorOnPrimary">@color/md_theme_onPrimary</item>
         <item name="colorPrimaryContainer">@color/md_theme_primaryContainer</item>
@@ -66,5 +64,10 @@
         <item name="colorSurfaceContainer">@color/md_theme_surfaceContainer</item>
         <item name="colorSurfaceContainerHigh">@color/md_theme_surfaceContainerHigh</item>
         <item name="colorSurfaceContainerHighest">@color/md_theme_surfaceContainerHighest</item>
+        <!-- layout padding -->
+        <item name="android:listPreferredItemPaddingLeft">17dp</item>
+        <item name="android:listPreferredItemPaddingRight">17dp</item>
+        <item name="android:listPreferredItemPaddingStart">17dp</item>
+        <item name="android:listPreferredItemPaddingEnd">17dp</item>
     </style>
 </resources>

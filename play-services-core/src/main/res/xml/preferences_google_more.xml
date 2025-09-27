@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Copyright (C) 2017 microG Project Team
   ~
@@ -15,20 +14,25 @@
   ~ limitations under the License.
   -->
 
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <SwitchPreferenceCompat
         android:defaultValue="true"
         android:enabled="false"
         android:key="network_google_enabled"
+        android:layout="@layout/preference_material_top"
         android:summary="@string/pref_network_google_enabled_summary"
-        android:title="@string/pref_network_google_enabled" />
+        android:title="@string/pref_network_google_enabled"
+        app:iconSpaceReserved="false" />
 
     <SwitchPreferenceCompat
         android:defaultValue="false"
         android:dependency="network_google_enabled"
         android:enabled="false"
         android:key="network_google_use_tor"
+        android:layout="@layout/preference_material_bottom"
         android:summary="@string/pref_network_google_use_tor_summary"
-        android:title="@string/pref_network_google_use_tor" />
+        android:title="@string/pref_network_google_use_tor"
+        app:iconSpaceReserved="false" />
 </PreferenceScreen>

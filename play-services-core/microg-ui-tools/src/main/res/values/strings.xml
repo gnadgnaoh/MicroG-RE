@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Copyright (C) 2013-2017 microG Project Team
   ~
@@ -44,7 +43,7 @@
 
     <!-- UpdateChecker tag controller-->
 
-    <string name="github_tag_version">5.11</string>
+    <string name="github_tag_version">5.12</string>
 
     <!-- Updater strings-->
 

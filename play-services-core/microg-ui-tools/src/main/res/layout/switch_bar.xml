@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Copyright (C) 2014 The Android Open Source Project
   ~ Copyright (C) 2014-2017 microG Project Team
@@ -18,7 +17,7 @@
 
 <merge xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/switch_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

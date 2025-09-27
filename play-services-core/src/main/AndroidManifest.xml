@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<!--
   ~ Copyright (C) 2013-2019 microG Project Team
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,6 +13,7 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -62,6 +63,7 @@
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.READ_SYNC_STATS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
@@ -265,11 +267,12 @@
 
         <activity
             android:name="org.microg.gms.auth.login.LoginActivity"
-            android:configChanges="uiMode|keyboardHidden|keyboard|screenSize"
+            android:configChanges="uiMode|orientation|keyboardHidden|keyboard|screenSize"
             android:exported="true"
             android:label="@string/pref_accounts_add_account_title"
             android:process=":ui"
-            android:theme="@style/AppThemeLauncher">
+            android:theme="@style/AppTheme.Login"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="${basePackageName}.android.gms.auth.login.LOGIN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -281,7 +284,7 @@
             android:excludeFromRecents="true"
             android:exported="true"
             android:process=":ui"
-            android:theme="@style/Component.Dialog" />
+            android:theme="@style/AppTheme.Transparent" />
 
         <service
             android:name=".auth.GetToken"
@@ -332,9 +335,9 @@
 
         <activity
             android:name="org.microg.gms.auth.signin.AuthSignInActivity"
-            android:theme="@style/Component.Dialog"
+            android:exported="true"
             android:process=":ui"
-            android:exported="true">
+            android:theme="@style/Theme.Component.Material.AlertDialog">
             <intent-filter>
                 <action android:name="${basePackageName}.android.gms.auth.GOOGLE_SIGN_IN" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -363,8 +366,8 @@
         <activity
             android:name="org.microg.gms.ui.MainSettingsActivity"
             android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
-            android:exported="true"
             android:enabled="false"
+            android:exported="true"
             android:taskAffinity="org.microg.gms.settings">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -417,17 +420,19 @@
         <!-- microG Settings activity-alias for Google settings compatibility -->
         <activity-alias
             android:name="com.google.android.gms.app.settings.GoogleSettingsLink"
-            android:process=":ui"
             android:exported="true"
+            android:process=":ui"
             android:targetActivity="org.microg.gms.ui.MainSettingsActivity"
             android:taskAffinity="org.microg.gms.settings">
         </activity-alias>
 
         <activity
-            android:name="org.microg.gms.ui.AskPushPermission"
+            android:name="org.microg.gms.ui.AskPushPermissionActivity"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden"
             android:excludeFromRecents="true"
+            android:noHistory="true"
             android:process=":ui"
-            android:theme="@style/AppThemeTransparent" />
+            android:theme="@style/AppTheme.Transparent" />
 
         <activity
             android:name="org.microg.gms.ui.SelfCheckFragment$AsActivity"
@@ -440,7 +445,7 @@
             android:label="@string/pref_account_title"
             android:process=":ui"
             android:taskAffinity="org.microg.gms.settings"
-            android:theme="@style/AppThemeLauncher" />
+            android:theme="@style/AppTheme.Login" />
 
         <activity
             android:name="org.microg.gms.ui.PrivacySettingsActivity"
@@ -450,10 +455,10 @@
 
         <activity
             android:name="org.microg.gms.accountsettings.ui.MainActivity"
-            android:process=":ui"
             android:exported="false"
+            android:process=":ui"
             android:taskAffinity="org.microg.gms.settings"
-            android:theme="@style/Component.Dialog">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="com.google.android.gms.accountsettings.MY_ACCOUNT" />
                 <action android:name="com.google.android.gms.accountsettings.ACCOUNT_PREFERENCES_SETTINGS" />
@@ -466,9 +471,9 @@
 
         <activity-alias
             android:name="org.microg.gms.accountsettings.ui.ManagerActivity"
-            android:process=":ui"
-            android:exported="true"
             android:excludeFromRecents="true"
+            android:exported="true"
+            android:process=":ui"
             android:targetActivity="org.microg.gms.ui.AccountManagerActivity"
             android:taskAffinity="org.microg.gms.settings">
             <intent-filter tools:ignore="AppLinkUrlError">
@@ -484,7 +489,8 @@
 
         <!-- Other -->
 
-        <service android:name="org.microg.gms.auth.SignInService"
+        <service
+            android:name="org.microg.gms.auth.SignInService"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.google.android.gms.signin.service.START" />
@@ -507,11 +513,11 @@
         </service>
 
         <meta-data
-                android:name="org.microg.gms.settings.checkin_enable_service"
-                android:value="true" />
+            android:name="org.microg.gms.settings.checkin_enable_service"
+            android:value="true" />
         <meta-data
-                android:name="org.microg.gms.settings.gcm_enable_mcs_service"
-                android:value="true" />
+            android:name="org.microg.gms.settings.gcm_enable_mcs_service"
+            android:value="true" />
     </application>
 
 </manifest>

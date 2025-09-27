@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Copyright (C) 2013-2017 microG Project Team
   ~
@@ -15,17 +14,17 @@
   ~ limitations under the License.
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground"
     android:orientation="horizontal"
     android:paddingStart="?android:attr/listPreferredItemPaddingStart"
     android:paddingLeft="?attr/listPreferredItemPaddingLeft"
-    android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
     android:paddingRight="?attr/listPreferredItemPaddingRight">
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginTop="8dp"
@@ -35,24 +34,26 @@
         android:gravity="center_vertical"
         android:orientation="vertical">
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/self_check_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:textAppearance="?android:attr/textAppearanceListItem"
-            android:textColor="?android:textColorPrimary" />
+            android:textColor="?android:textColorPrimary"
+            tools:text="@string/self_check_title" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/self_check_resolution"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:textAppearance="?attr/textAppearanceBodyMedium"
-            android:textColor="?android:textColorSecondary" />
-    </LinearLayout>
+            android:textColor="?android:textColorSecondary"
+            tools:text="@string/self_check_desc" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <CheckBox
+    <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/self_check_result"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -60,4 +61,4 @@
         android:layout_marginBottom="8dp"
         android:focusable="false"
         android:gravity="end|center_vertical" />
-</LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

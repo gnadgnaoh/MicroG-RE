@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+
 <!--
   ~ SPDX-FileCopyrightText: 2017 MicroG Project Team
   ~ SPDX-License-Identifier: Apache-2.0
@@ -110,6 +110,7 @@ Ini mungkin memerlukan beberapa menit"</string>
     <string name="checkin_last_registration">Registrasi terakhir: <xliff:g example="Kemarin, 02:20 PM">%1$s</xliff:g></string>
     <string name="checkin_enable_switch">Daftarkan perangkat</string>
 
+    <string name="prefcat_details">Rincian</string>
     <string name="pref_info_status">Status</string>
 
     <string name="pref_account_title">Akun</string>

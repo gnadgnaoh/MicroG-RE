@@ -23,15 +23,17 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import androidx.activity.ComponentActivity;
 import androidx.activity.EdgeToEdge;
 import androidx.activity.SystemBarStyle;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.gms.R;
+
+import java.util.Objects;
 
 public abstract class AssistantActivity extends AppCompatActivity {
 
@@ -43,14 +45,19 @@ public abstract class AssistantActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //noinspection DataFlowIssue
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //noinspection deprecation
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
 
         findViewById(R.id.spoof_button).setOnClickListener(v -> onHuaweiButtonClicked());
         findViewById(R.id.next_button).setOnClickListener(v -> onNextButtonClicked());
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.auth_root), (v, insets) -> {
+            androidx.core.graphics.Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
     }
 
     public void setSpoofButtonText(@StringRes int res) {

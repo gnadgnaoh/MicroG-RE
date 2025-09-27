@@ -23,6 +23,7 @@ import kotlinx.coroutines.withContext
 import org.microg.gms.gcm.GcmDatabase
 import org.microg.gms.gcm.PushRegisterManager
 
+@Suppress("DEPRECATION")
 class PushNotificationAppFragment : PreferenceFragmentCompat() {
     private lateinit var appHeadingPreference: AppHeadingPreference
     private lateinit var wakeForDelivery: TwoStatePreference
@@ -137,7 +138,7 @@ class PushNotificationAppFragment : PreferenceFragmentCompat() {
                     sb.append(getString(R.string.gcm_registered_since, DateUtils.getRelativeDateTimeString(context, registration.timestamp, DateUtils.MINUTE_IN_MILLIS, DateUtils.WEEK_IN_MILLIS, DateUtils.FORMAT_SHOW_TIME)))
                 }
             }
-            status.summary = sb.toString()
+            status.title = sb.toString()
 
             database.close()
         }

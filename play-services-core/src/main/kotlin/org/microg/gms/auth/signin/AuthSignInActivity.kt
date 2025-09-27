@@ -127,7 +127,7 @@ class AuthSignInActivity : AppCompatActivity() {
                 emailView.visibility = View.GONE
             }
         } else {
-            photoView.setImageResource(R.drawable.ic_add_new_account)
+            photoView.setImageResource(R.drawable.ic_add)
             displayNameView.setText(R.string.signin_picker_add_account_label)
             emailView.visibility = View.GONE
         }

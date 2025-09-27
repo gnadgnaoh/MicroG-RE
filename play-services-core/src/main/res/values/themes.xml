@@ -1,140 +1,48 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ SPDX-FileCopyrightText: 2015 microG Project Team
-  ~ SPDX-License-Identifier: Apache-2.0
-  -->
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-<resources>
+    <!--app theme-->
 
-    <!-- Base application theme -->
+    <style name="AppTheme" parent="AppTheme.Base" />
 
-    <style name="Theme.Base" parent="Theme.Material3Expressive.DynamicColors.DayNight">
-        <item name="preferenceTheme">@style/Theme.Base.PreferenceThemeOverlay</item>
-    </style>
+    <!--app theme library-->
 
-    <style name="Theme.Base.DayNight" parent="Theme.Base.Light" />
+    <style name="AppTheme.Login" parent="@style/AppTheme.Base" />
 
-    <style name="Theme.Base.DayNight.NoActionBar" parent="Theme.Base.Light.NoActionBar" />
+    <!--app theme transparent-->
 
-    <style name="Theme.Base.Light">
+    <style name="AppTheme.Transparent" parent="@style/AppTheme.Base">
+        <!--app bars colors-->
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowLightStatusBar">true</item>
-    </style>
-
-    <style name="Theme.Base.Dark">
-        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">false</item>
-    </style>
-
-    <style name="Theme.Base.Dark.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="Theme.Base.Light.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <!-- Preference application theme -->
-
-    <style name="Theme.Base.PreferenceThemeOverlay" parent="@style/PreferenceThemeOverlay">
-        <item name="preferenceStyle">@style/Theme.Base.SettingsPreference</item>
-        <item name="preferenceCategoryStyle">@style/Settings.CategoryPreference</item>
-        <item name="preferenceCategoryTitleTextAppearance">@style/TextAppearance.Preference.Category.Title</item>
-        <item name="switchPreferenceCompatStyle">@style/Component.SwitchPreferenceCompat</item>
-        <item name="switchBarPreferenceStyle">@style/Component.SwitchBarPreference</item>
-    </style>
-
-    <style name="Theme.Base.SettingsPreference" parent="@style/Preference.Material">
-        <item name="iconSpaceReserved">@bool/settings_config_icon_space_reserved</item>
-        <item name="layout">@layout/settings_preference</item>
-    </style>
-
-    <!-- Components application theme -->
-
-    <style name="Component.SwitchPreferenceCompat" parent="@style/Preference.SwitchPreferenceCompat.Material">
-        <item name="widgetLayout">@layout/preference_material_switch</item>
-        <item name="layout">@layout/settings_preference</item>
-    </style>
-
-    <style name="Component.SwitchBarPreference" parent="@style/Preference.SwitchBar">
-        <item name="layout">@layout/preference_material_switch_bar</item>
-        <item name="switchBarFrameId">@id/frame</item>
-        <item name="switchBarFrameBackgroundOn">@drawable/material_switch_bar_background_on</item>
-        <item name="switchBarFrameBackgroundOff">@drawable/material_switch_bar_background_off</item>
-        <item name="switchBarFrameBackgroundDisabled">@drawable/material_switch_bar_background_disabled</item>
-    </style>
-
-    <style name="Component.AlertDialog" parent="@style/ThemeOverlay.Material3.MaterialAlertDialog.Centered">
-        <item name="android:colorBackground">?colorSurfaceContainer</item>
-        <item name="android:listPreferredItemHeightSmall">48dp</item>
-        <item name="android:windowAnimationStyle">@style/MaterialAlertDialog.Material3.Animation</item>
-        <item name="android:windowSoftInputMode">adjustResize</item>
-        <item name="dialogCornerRadius">@dimen/settings_dialog_corner_radius</item>
-        <item name="materialAlertDialogTitleIconStyle">@style/Component.MaterialAlertDialog.Material3.Title.Icon</item>
-        <item name="android:windowMinWidthMajor">91%</item>
-        <item name="android:windowMinWidthMinor">91%</item>
-    </style>
-
-    <style name="Component.Dialog" parent="AppThemeBase">
-        <item name="android:windowIsFloating">true</item>
-        <item name="colorBackgroundFloating">?colorSurfaceContainer</item>
-        <item name="android:windowMinWidthMajor">91%</item>
-        <item name="android:windowMinWidthMinor">91%</item>
-    </style>
-
-    <style name="Component.MaterialAlertDialog.Material3.Title.Icon" parent="MaterialAlertDialog.Material3.Title.Icon.CenterStacked">
-        <item name="android:layout_marginTop">12dp</item>
-    </style>
-
-    <style name="Component.Snackbar" parent="Widget.Material3.Snackbar">
-        <item name="android:layout_margin">24dp</item>
-        <item name="animationMode">slide</item>
-    </style>
-
-    <style name="Settings.CategoryPreference" parent="@style/Preference.Category.Material">
-        <item name="allowDividerAbove">@bool/settings_config_allow_divider</item>
-        <item name="allowDividerBelow">@bool/settings_config_allow_divider</item>
-        <item name="iconSpaceReserved">@bool/settings_config_icon_space_reserved</item>
-    </style>
-
-    <!-- Text application appearance -->
-
-    <style name="TextAppearance.Preference.Title" parent="@style/TextAppearance.Material3.TitleMedium" />
-
-    <style name="TextAppearance.Preference.Category.Title" parent="@style/TextAppearance.Material3.LabelLarge" />
-
-    <!-- Application theme -->
-
-    <style name="AppTheme" parent="AppThemeBase" />
-
-    <style name="AppThemeTransparent" parent="AppThemeBase">
-        <item name="background">@android:color/transparent</item>
-        <item name="android:background">@android:color/transparent</item>
-        <item name="android:windowNoTitle">true</item>
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="Q">false</item>
+        <!--window transparent-->
         <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:colorBackgroundCacheHint">@null</item>
-        <item name="android:backgroundDimEnabled">false</item>
         <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
     </style>
 
-    <style name="AppThemeLauncher" parent="AppThemeBase" />
+    <!--app theme base-->
 
-    <style name="AppThemeBase" parent="Theme.Base.DayNight.NoActionBar">
-        <!-- Theming -->
-        <item name="android:textAppearanceListItem">@style/TextAppearance.Preference.Title</item>
-        <item name="alertDialogTheme">@style/Component.AlertDialog</item>
-        <item name="snackbarStyle">@style/Component.Snackbar</item>
-        <item  name="android:windowActivityTransitions">true</item>
-        <!-- Layout padding -->
-        <item name="android:listPreferredItemHeightSmall">@dimen/settings_listPreferredItemHeightSmall</item>
-        <item name="android:listPreferredItemPaddingLeft">@dimen/settings_listPreferredItemPaddingStart</item>
-        <item name="android:listPreferredItemPaddingRight">@dimen/settings_listPreferredItemPaddingEnd</item>
-        <item name="android:listPreferredItemPaddingStart">@dimen/settings_listPreferredItemPaddingStart</item>
-        <item name="android:listPreferredItemPaddingEnd">@dimen/settings_listPreferredItemPaddingEnd</item>
-        <!-- Theme Colors -->
+    <style name="AppTheme.Base" parent="@style/Theme.Material3Expressive.Light.NoActionBar">
+        <!--preference theme-->
+        <item name="android:colorAccent">?attr/colorPrimary</item>
+        <!--components theme-->
+        <item name="bottomSheetDialogTheme">@style/Theme.Component.Material.BottomSheet</item>
+        <item name="alertDialogTheme">@style/Theme.Component.Material.AlertDialog</item>
+        <item name="snackbarStyle">@style/Theme.Component.Material.Snackbar</item>
+        <item name="materialAlertDialogTheme">@style/Theme.Component.Material.AlertDialog</item>
+        <item name="switchPreferenceCompatStyle">@style/Theme.Component.Material.SwitchPreferenceCompat</item>
+        <item name="switchBarPreferenceStyle">@style/Component.SwitchBarPreference</item>
+        <!--fixes some UI issues on MIUI/HyperOS devices -->
+        <item name="android:forceDarkAllowed" tools:targetApi="Q">false</item>
+        <!--app bars colors-->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/black</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <!--material colors-->
         <item name="colorPrimary">@color/md_theme_primary</item>
         <item name="colorOnPrimary">@color/md_theme_onPrimary</item>
         <item name="colorPrimaryContainer">@color/md_theme_primaryContainer</item>
@@ -181,5 +89,10 @@
         <item name="colorSurfaceContainer">@color/md_theme_surfaceContainer</item>
         <item name="colorSurfaceContainerHigh">@color/md_theme_surfaceContainerHigh</item>
         <item name="colorSurfaceContainerHighest">@color/md_theme_surfaceContainerHighest</item>
+        <!-- layout padding -->
+        <item name="android:listPreferredItemPaddingLeft">17dp</item>
+        <item name="android:listPreferredItemPaddingRight">17dp</item>
+        <item name="android:listPreferredItemPaddingStart">17dp</item>
+        <item name="android:listPreferredItemPaddingEnd">17dp</item>
     </style>
 </resources>
