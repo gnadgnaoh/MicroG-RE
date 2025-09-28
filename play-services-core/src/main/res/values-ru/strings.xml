@@ -1,0 +1,206 @@
+<!--
+  ~ SPDX-FileCopyrightText: 2017 MicroG Project Team
+  ~ SPDX-License-Identifier: Apache-2.0
+  -->
+
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="gms_settings_name">Параметры MicroG</string>
+    <string name="gms_settings_summary">Настроить службы MicroG</string>
+
+    <string name="just_a_sec">Подождите…</string>
+    <string name="ask_permission_tos">Продолжая, вы разрешаете этому приложению и Google использовать вашу информацию в соответствии с их условиями обслуживания и политиками конфиденциальности</string>
+    <string name="ask_scope_permission_title"><xliff:g example="F-Droid">%1$s</xliff:g> запрашивает:</string>
+    <string name="ask_service_permission_title"><xliff:g example="F-Droid">%1$s</xliff:g> хотел бы использовать:</string>
+
+    <string name="pref_privacy_title">Конфиденциальность</string>
+    <string name="pref_privacy_summary">Настройки конфиденциальности для аутентификации и приложений</string>
+    <string name="prefcat_applications">Приложения</string>
+    <string name="prefcat_authentication">Аутентификация</string>
+
+    <string name="sorry">Извините…</string>
+    <string name="auth_before_connect">"Подключите аккаунт Google к MicroG.
+
+Давайте подключим аккаунт Google — используйте кнопку <b>Войти</b> или кнопку <b>Huawei</b>, если у вас устройство этого производителя. Нажав одну из кнопок, вы будете перенаправлены на страницу входа в аккаунт."</string>
+    <string name="auth_sign_in">Войти</string>
+    <string name="auth_connecting">"Ваше устройство устанавливает соединение с серверами Google для входа в аккаунт.
+
+Это может занять несколько секунд"</string>
+    <string name="no_network_error_desc">"У вас нет сетевого подключения.
+
+Это может быть временная проблема или ваше Android-устройство может не быть настроено для передачи данных. Попробуйте снова при подключении к мобильной сети или подключитесь к Wi-Fi сети"</string>
+    <string name="auth_general_error_desc">"Произошла проблема при обмене данными с серверами Google.
+
+Попробуйте позже"</string>
+    <string name="auth_finalize">"Ваше устройство связывается с Google, чтобы сохранить информацию в вашем аккаунте.
+
+Это может занять пару минут"</string>
+    <string name="allow">Разрешить</string>
+    <string name="deny">Отказать</string>
+    <string name="auth_notification_title">Требуется аутентификация</string>
+    <string name="auth_notification_content"><xliff:g example="F-Droid">%1$s</xliff:g> требует вашего разрешения для доступа к вашему аккаунту Google</string>
+
+    <string name="signin_picker_title">Выберите аккаунт</string>
+    <string name="signin_picker_subtitle">чтобы продолжить в <xliff:g example="F-Droid">%1$s</xliff:g></string>
+    <string name="signin_picker_add_account_label">Добавить другой аккаунт</string>
+    <string name="signin_confirm_title">Разрешить вход в <xliff:g example="F-Droid">%1$s</xliff:g></string>
+    <string name="signin_confirm_button_text">Разрешить и поделиться</string>
+    <string name="signin_subtext_sharing">Чтобы продолжить, MicroG передаст имя, адрес электронной почты и фотографию профиля вашего аккаунта Google в <xliff:g example="F-Droid">%1$s</xliff:g></string>
+
+    <string name="perm_status_broadcast_label">прослушивать внутренние сообщения статуса</string>
+    <string name="perm_gsf_read_gservices_label">читать конфигурацию сервисов Google</string>
+    <string name="perm_c2dm_receive_label">принимать сообщения C2DM</string>
+    <string name="perm_c2dm_send_label">отправлять C2DM сообщения другим приложениям</string>
+    <string name="perm_gtalk_svc_label">обмениваться сообщениями и получать уведомления синхронизации от серверов Google</string>
+    <string name="perm_extended_access_label">Расширенный доступ к сервисам Google</string>
+
+    <string name="service_name_checkin">Регистрация устройства</string>
+    <string name="service_name_mcs">Облачные сообщения</string>
+
+    <string name="network_type_mobile">Мобильная сеть</string>
+    <string name="network_type_wifi">Wi-Fi</string>
+    <string name="network_type_roaming">Роуминг</string>
+    <string name="network_type_other">Другие сети</string>
+
+    <!-- Self check -->
+
+    <string name="self_check_cat_fake_sig">Подмена подписи</string>
+    <string name="self_check_cat_gms_packages">Установленные пакеты</string>
+    <string name="self_check_cat_system">Система</string>
+
+    <string name="self_check_name_fake_sig_perm">Система поддерживает подмену подписи</string>
+    <string name="self_check_resolution_fake_sig_perm">Ваша прошивка не имеет нативной поддержки подмены подписи. Вы всё ещё можете использовать Xposed или другие системы для подмены подписи. Пожалуйста, проверьте документацию, какие прошивки поддерживают подмену подписи и как использовать MicroG на прошивках без нативной поддержки</string>
+    <string name="self_check_name_perm_granted">Система предоставляет разрешение на подмену подписи</string>
+    <string name="self_check_resolution_perm_granted">Это сильный индикатор того, что прошивка поддерживает подмену подписи, но требуются дополнительные действия для её активации. Пожалуйста, проверьте документацию о необходимых шагах</string>
+    <string name="self_check_name_system_spoofs">Система подделывает подпись</string>
+    <string name="self_check_resolution_system_spoofs">Пожалуйста, проверьте документацию о возможных дополнительных шагах</string>
+
+    <string name="self_check_name_app_installed"><xliff:g example="F-Droid">%1$s</xliff:g> установлено</string>
+    <string name="self_check_resolution_app_installed">Установите приложение <xliff:g example="F-Droid">%1$s</xliff:g> или совместимое с ним. Пожалуйста, проверьте документацию, какие приложения совместимы</string>
+    <string name="self_check_name_correct_sig"><xliff:g example="F-Droid">%1$s</xliff:g> корректная подпись</string>
+    <string name="self_check_resolution_correct_sig">Либо установленное <xliff:g example="F-Droid">%1$s</xliff:g> несовместимо, либо подмена подписи не активирована. Пожалуйста, проверьте документацию, какие приложения и прошивки совместимы</string>
+
+    <string name="self_check_name_battery_optimizations">Игнорирование оптимизаций батареи</string>
+    <string name="self_check_resolution_battery_optimizations">Нажмите здесь, чтобы отключить оптимизации батареи. Без этого вы можете не получать уведомления от YouTube и других зарегистрированных приложений</string>
+
+    <string name="self_check_revanced_name_app_installed">Запущено с <xliff:g example="F-Droid">%1$s</xliff:g></string>
+    <string name="self_check_revanced_resolution_app_installed"><xliff:g example="F-Droid">%1$s</xliff:g> приложения не найдены, скомпилируйте или установите модифицированный apk</string>
+
+    <!-- Settings strings -->
+
+    <string name="prefcat_about">О приложении</string>
+
+    <string name="cond_gcm_bat_title">Включены оптимизации батареи</string>
+    <string name="cond_gcm_bat_summary">Вы включили облачные сообщения, но для MicroG активированы оптимизации батареи. Чтобы push-уведомления приходили, исключите MicroG из оптимизаций</string>
+    <string name="cond_gcm_bat_action">Отключить оптимизации</string>
+    <string name="cond_perm_title">Отсутствует разрешение</string>
+
+    <string name="pref_auth_trust_google_title">Доверять Google для разрешений приложений</string>
+    <string name="pref_auth_trust_google_summary">Если отключено, перед отправкой запроса авторизации приложению будет задаваться вопрос. Некоторые приложения не смогут использовать Google-аккаунт, если это отключено</string>
+    <string name="pref_auth_visible_title">Разрешить приложениям находить аккаунты</string>
+    <string name="pref_auth_visible_summary">Если включено, все приложения на этом устройстве смогут видеть адрес электронной почты ваших аккаунтов Google без предварительного разрешения</string>
+    <string name="pref_auth_include_android_id_title">Аутентификация с регистрацией устройства</string>
+    <string name="pref_auth_include_android_id_summary">Если отключено, запросы аутентификации не будут связаны с регистрацией устройства, что позволяет неавторизованным устройствам входить, но может иметь непредвиденные последствия</string>
+    <string name="pref_auth_strip_device_name_title">Удалять имя устройства при аутентификации</string>
+    <string name="pref_auth_strip_device_name_summary">Если включено, запросы аутентификации не будут включать имя устройства, что может позволить неавторизованным устройствам входить, но может иметь непредвиденные последствия</string>
+
+    <string name="pref_checkin_enable_summary">Регистрирует ваше устройство в службах Google и создаёт уникальный идентификатор устройства. MicroG удаляет идентифицирующие данные, кроме имени вашей учётной записи Google, из регистрационных данных</string>
+    <string name="pref_device_registration_android_id">Android ID</string>
+
+    <string name="checkin_not_registered">Не зарегистрировано</string>
+    <string name="checkin_last_registration">Последняя регистрация: <xliff:g example="Yesterday, 02:20 PM">%1$s</xliff:g></string>
+    <string name="checkin_enable_switch">Регистрация устройства</string>
+
+    <string name="prefcat_details">Подробности</string>
+    <string name="pref_info_status">Статус</string>
+
+    <string name="pref_account_title">Аккаунты</string>
+    <string name="pref_account_summary">Войти в новый аккаунт Google</string>
+    <string name="pref_gcm_enable_mcs_summary">Облачные сообщения — это провайдер push-уведомлений для модифицированных приложений. Для его использования необходимо включить регистрацию устройства</string>
+    <string name="pref_gcm_confirm_new_apps_title">Подтверждать новые приложения</string>
+    <string name="pref_gcm_confirm_new_apps_summary">Спрашивать перед регистрацией нового приложения для получения push-уведомлений</string>
+
+    <string name="pref_about_title">О MicroG</string>
+
+    <string name="gcm_unregister_app">Отменить регистрацию</string>
+    <string name="gcm_no_message_yet">Пока сообщений нет</string>
+    <string name="gcm_last_message_at">Последнее сообщение: <xliff:g example="Yesterday, 02:20 PM">%1$s</xliff:g></string>
+    <string name="gcm_registered">Зарегистрировано</string>
+    <string name="gcm_registered_since">Зарегистрировано с: <xliff:g example="Yesterday, 02:20 PM">%1$s</xliff:g></string>
+    <string name="gcm_unregister_confirm_title">Отменить регистрацию <xliff:g example="F-Droid">%1$s</xliff:g>?</string>
+    <string name="gcm_unregister_confirm_message">Некоторые приложения не регистрируются автоматически повторно и/или не предоставляют опцию для ручной регистрации. После отмены регистрации эти приложения могут работать некорректно.\nПродолжить?</string>
+    <string name="gcm_unregister_after_deny_message">Вы отказали приложению в регистрации для push-уведомлений, которое уже зарегистрировано.\nХотите отменить регистрацию, чтобы оно больше не получало push-сообщения?</string>
+    <string name="gcm_messages_counter">Сообщения: <xliff:g example="123">%1$d</xliff:g> (<xliff:g example="12345">%2$d</xliff:g> байт)</string>
+    <string name="gcm_network_state_disconnected">Отключено</string>
+    <string name="gcm_network_state_connected">Подключено с: <xliff:g example="2 hours ago">%1$s</xliff:g></string>
+    <string name="gcm_enable_switch">Push-уведомления</string>
+    <string name="gcm_allow_app_popup">Разрешить <xliff:g example="F-Droid">%1$s</xliff:g> регистрироваться для push-уведомлений?</string>
+
+    <string name="pref_push_app_allow_register_title">Разрешить регистрацию</string>
+    <string name="pref_push_app_allow_register_summary">Разрешить приложению регистрироваться для push-уведомлений</string>
+    <string name="pref_push_app_wake_for_delivery_title">Запускать приложение при push-сообщении</string>
+    <string name="pref_push_app_wake_for_delivery_summary">Запускать приложение в фоне для получения входящих push-сообщений</string>
+    <string name="prefcat_push_apps_title">Приложения, использующие push-уведомления</string>
+    <string name="prefcat_push_apps_registered_title">Зарегистрированные приложения</string>
+    <string name="prefcat_push_apps_unregistered_title">Незарегистрированные приложения</string>
+    <string name="prefcat_push_networks_title">Сети для push-уведомлений</string>
+
+    <string name="profile_name_native">Нативный</string>
+    <string name="profile_name_real">Реальный</string>
+    <string name="profile_name_user">Пользовательский: %s</string>
+    <string name="profile_name_auto">Автоматический: %s</string>
+    <string name="profile_name_system">Системный: %s</string>
+    <string name="pref_device_registration_import_custom_profile_title">Импортировать пользовательский профиль</string>
+    <string name="pref_device_registration_serial_title">Серийный номер</string>
+    <string name="pref_device_registration_import_custom_profile_summary">Импортировать профиль устройства из файла</string>
+    <string name="pref_device_registration_select_profile_title">Выбрать профиль</string>
+    <string name="pref_device_registration_device_profile_category">Профиль устройства</string>
+
+    <string name="push_notifications_summary_off">ВЫКЛ</string>
+    <string name="push_notifications_summary_automatic">ВКЛ / Автоматически: %s</string>
+    <string name="push_notifications_summary_manual">ВКЛ / Вручную: %s</string>
+    <string name="push_notifications_summary_values_seconds">%s секунд</string>
+    <string name="push_notifications_summary_values_minutes">%s минут</string>
+
+    <string name="pref_network_google_enabled_summary">Если отключено, все соединения с серверами Google, обычно выполняемые MicroG, будут запрещены. Это переопределяет настройки для конкретных сервисов</string>
+    <string name="pref_network_google_enabled">Разрешить соединение с серверами Google</string>
+    <string name="pref_network_google_use_tor">Подключаться к Google через сеть Tor</string>
+    <string name="pref_network_google_use_tor_summary">Требует установки Orbot\\nЕщё не поддерживается</string>
+
+    <string name="prefcat_gcm_registers">Регистрации</string>
+    <string name="pref_gcm_remove_registers">Удалить все регистрации</string>
+    <string name="pref_gcm_remove_registers_summary">Используйте эту опцию только если у вас проблемы с регистрацией приложения или получением уведомлений</string>
+
+    <string name="gcm_remove_registers_dialog_title">Удалить все регистрации?</string>
+    <string name="gcm_remove_registers_dialog_message">Это удалит все приложения, зарегистрированные для push-уведомлений.\n\nВам понадобится открыть приложения, чтобы повторно зарегистрироваться в облачных сообщениях.\n\nНекоторые приложения могут не суметь зарегистрироваться снова после этого действия</string>
+
+    <!-- Account settings-->
+
+    <string name="pref_accounts_summary">Добавлять и управлять аккаунтами Google</string>
+    <string name="prefcat_accounts_options_title">Опции</string>
+    <string name="prefcat_accounts_login_accounts_title">Авторизованные аккаунты</string>
+    <string name="pref_accounts_login_accounts_summary">Аккаунты хранятся только на этом устройстве. Нажмите на аккаунт, чтобы навсегда удалить его</string>
+    <string name="pref_accounts_add_account_title">Добавить аккаунт</string>
+    <string name="pref_accounts_manage_accounts_title">Управлять аккаунтами</string>
+    <string name="pref_accounts_manage_accounts_summary">Открыть менеджер аккаунтов устройства</string>
+
+    <!-- YouTube activity-->
+
+    <string name="prefcat_youtube_activity">Активность YouTube</string>
+    <string name="pref_manage_all_history">Управлять всей историей</string>
+    <string name="pref_data_in_youtube">Ваши данные в YouTube</string>
+
+    <!-- Account remove dialog-->
+
+    <string name="dialog_title_remove_account">Удалить аккаунт</string>
+    <string name="dialog_message_remove_account">Вы уверены, что хотите удалить этот аккаунт?\n\nНекоторые службы и функции будут недоступны\n\nВаши данные не будут потеряны</string>
+    <string name="dialog_confirm_button">Удалить</string>
+    <string name="dialog_cancel_button">Отмена</string>
+    <string name="snackbar_remove_account">Аккаунт %s удалён</string>
+    <string name="snackbar_undo_button">Отменить</string>
+
+    <!-- Settings options strings-->
+
+    <string name="developer">Разработчик</string>
+    <string name="github_source">Репозиторий исходного кода</string>
+    <string name="pref_hide_launcher_icon">Скрыть значок в лаунчере</string>
+</resources>
